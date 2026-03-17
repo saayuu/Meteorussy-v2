@@ -632,16 +632,11 @@ function updateClock() {
     n.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) + " · " +
     n.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
 }
-if (!localStorage.getItem("splashSeen")) {
   document.getElementById("splash").addEventListener("click", function() {
     document.getElementById("splash").style.transition = "opacity 0.8s";
     document.getElementById("splash").style.opacity = "0";
     setTimeout(function() { document.getElementById("splash").style.display = "none"; }, 800);
-    localStorage.setItem("splashSeen", "1");
   });
-} else {
-  document.getElementById("splash").style.display = "none";
-}
 loadState();
 document.getElementById("explToggle").checked = S.explicit;
 if (S.chaos) document.getElementById("chaosBanner").style.display = "block";
