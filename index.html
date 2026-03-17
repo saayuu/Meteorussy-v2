@@ -617,7 +617,9 @@ async function reqNotif() {
   if (!("Notification" in window)) { alert("Notifications not supported."); return; }
   const p = await Notification.requestPermission();
   if (p === "granted") new Notification("METEORUSSY", { body: "Daily roasts enabled. You asked for this, " + (S.name || "Mimen") + "." });
-  else alert("You denied notifications. Just like everyone denies you.\n\nTo fix: Chrome Settings → Site Settings → Notifications → find this site → Allow.");
+ } else {
+    alert("You denied notifications. Just like everyone denies you.\n\nTo fix: Chrome Settings → Site Settings → Notifications → find this site → Allow.");
+  }
 }
 
 // SERVICE WORKER
