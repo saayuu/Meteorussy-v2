@@ -52,7 +52,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .stat-val{font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--pglow);line-height:1;}
 .stat-sub{font-size:.5rem;color:var(--text4);margin-top:1px;}
 .w-loc{font-size:.56rem;color:var(--text4);text-align:center;}
-#retryBtn{display:none;margin:2px auto 0;font-size:.58rem;color:var(--pglow);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Manrope',sans-serif;}
 .roast-card{background:linear-gradient(135deg,rgba(91,46,255,.08),rgba(10,10,11,.9));border:1px solid rgba(91,46,255,.3);border-radius:16px;padding:18px;margin:16px 0;position:relative;overflow:hidden;min-height:80px;}
 .roast-card::before{content:'\201C';position:absolute;top:-15px;left:8px;font-family:'Bebas Neue',sans-serif;font-size:7rem;color:rgba(91,46,255,.07);pointer-events:none;line-height:1;}
 .roast-cat{font-size:.52rem;letter-spacing:.22em;color:var(--pglow);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
@@ -142,7 +141,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
         <div class="stat"><span class="stat-lbl">SKY</span><div style="text-align:right"><div class="stat-val" id="wSky">--</div><div class="stat-sub" id="wSkyDesc">--</div></div></div>
       </div>
       <div class="w-loc" id="wLoc">&#128205; detecting location...</div>
-      <button id="retryBtn" onclick="retryLocation()">&#8635; retry location</button>
     </div>
   </div>
   <div class="roast-card">
@@ -502,7 +500,6 @@ function humDesc(h) {
 
 async function loadWeather() {
   document.getElementById("wLoc").textContent = "📍 Bejaia, Algeria";
-  document.getElementById("retryBtn").style.display = "none";
   try {
     const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=36.7509&lon=5.0564&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
     renderWeather(data);
@@ -529,7 +526,6 @@ function renderWeather(data) {
   document.getElementById("wFeels").textContent    = "FEELS LIKE " + feels + "°C";
   document.getElementById("wDesc").textContent     = desc;
   document.getElementById("wLoc").textContent      = "📍 " + data.name;
-  document.getElementById("retryBtn").style.display = "none";
   document.getElementById("wHumidity").textContent = hum + "%";
   document.getElementById("wHumidDesc").textContent = humDesc(hum);
   const w = trumpWind(wkm);
@@ -548,7 +544,6 @@ function renderError() {
   document.getElementById("greetMain").textContent = "Weather's broken. Just like your love life.";
   document.getElementById("greetSub").textContent  = "Could not fetch weather. Check your connection.";
   document.getElementById("wLoc").textContent      = "Location unavailable";
-  document.getElementById("retryBtn").style.display = "block";
   updateMeter(20, 0);
   if (!weatherLoaded) { showJoke(); weatherLoaded = true; }
 }
