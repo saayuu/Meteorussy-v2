@@ -635,10 +635,9 @@ function updateClock() {
     n.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
 }
   document.getElementById("splash").onclick = function() {
-  this.style.transition = "opacity 0.8s";
-  this.style.opacity = "0";
-  var s = this;
-  setTimeout(function() { s.style.display = "none"; }, 800);
+  document.getElementById("splash").style.transition = "opacity 0.8s";
+  document.getElementById("splash").style.opacity = "0";
+  setTimeout(function() { document.getElementById("splash").style.display = "none"; }, 800);
 };
 loadState();
 document.getElementById("explToggle").checked = S.explicit;
