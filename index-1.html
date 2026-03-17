@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="METEORUSSY">
+<title>MIMEN's METEORUSSY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTUlNRU4ncyBNRVRFT1JVU1NZIiwic2hvcnRfbmFtZSI6Ik1FVEVPULVTU1kiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBBMEEwQiIsInRoZW1lX2NvbG9yIjoiIzBBMEEwQiIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzMEEwQTBCJy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1NSUyNScgZm9udC1zaXplPScyMjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGRvbWluYW50LWJhc2VsaW5lPSdtaWRkbGUnJTNFJUYwJTlGOEUlQjElM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
+
+<style>
+:root {
+  --bg: #0A0A0B;
+  --bg2: #111113;
+  --bg3: #1A1A1F;
+  --border: #222228;
+  --purple: #5B2EFF;
+  --purple-hover: #4726CC;
+  --purple-glow: #7A5CFF;
+  --purple-deep: #2A146E;
+  --purple-black: #140A2A;
+  --cyan: #00E0FF;
+  --text: #F5F5F7;
+  --text2: #CFCFE6;
+  --text3: #9A9AAD;
+  --text4: #6B6B78;
+  --red: #FF4D6D;
+  --red2: #CC3654;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html, body {
+  height:100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  overflow-x: hidden;
+}
+
+/* NOISE TEXTURE */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:150px;
+}
+
+/* PURPLE GLOW BLOBS */
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(91,46,255,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 10% 85%, rgba(122,92,255,0.12) 0%, transparent 38%);
+}
+
+.wrap {
+  position:relative;
+  z-index:1;
+  max-width:480px;
+  margin:0 auto;
+  padding:0 16px 60px;
+  min-height:100vh;
+}
+
+/* ── HEADER ── */
+.hdr {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 0 16px;
+  border-bottom:1px solid var(--border);
+}
+
+.logo {
+  font-family:'Bebas Neue', sans-serif;
+  font-size:2rem;
+  letter-spacing:0.06em;
+  background: linear-gradient(90deg, var(--purple-glow), var(--cyan));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  line-height:1;
+}
+
+.logo small {
+  display:block;
+  font-family:'Manrope',sans-serif;
+  font-size:0.55rem;
+  font-weight:600;
+  letter-spacing:0.2em;
+  color:var(--text3);
+  -webkit-text-fill-color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+
+.hdr-btns { display:flex; gap:8px; }
+
+.icon-btn {
+  width:36px; height:36px;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text3);
+  font-size:1rem;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.2s;
+}
+.icon-btn:hover { border-color:var(--purple); color:var(--purple-glow); }
+
+/* ── GREETING ── */
+.greeting {
+  padding:20px 0 4px;
+  animation: fadeUp 0.5s ease forwards;
+}
+.greeting-main {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;
+  letter-spacing:0.03em;
+  color:var(--text);
+  line-height:1.2;
+}
+.greeting-sub {
+  font-size:0.72rem;
+  color:var(--purple-glow);
+  margin-top:4px;
+  font-weight:600;
+  letter-spacing:0.05em;
+}
+
+/* ── WEATHER CARD ── */
+.w-card {
+  background: linear-gradient(135deg, var(--bg2) 0%, var(--bg) 100%);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  margin:16px 0;
+  position:relative;
+  overflow:hidden;
+  animation: fadeUp 0.6s ease forwards;
+}
+.w-card::before {
+  content:'';
+  position:absolute;
+  top:-40px; right:-40px;
+  width:120px; height:120px;
+  background: radial-gradient(circle, rgba(91,46,255,0.15), transparent 70%);
+  pointer-events:none;
+}
+
+.w-main {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:16px;
+}
+.w-icon { font-size:2.8rem; line-height:1; }
+.w-temp {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3rem;
+  line-height:1;
+  color:var(--text);
+}
+.w-feels {
+  font-size:0.65rem;
+  color:var(--text4);
+  letter-spacing:0.06em;
+  margin-top:2px;
+}
+.w-desc {
+  margin-left:auto;
+  font-size:0.72rem;
+  color:var(--text3);
+  text-align:right;
+  text-transform:capitalize;
+  max-width:90px;
+  line-height:1.4;
+}
+
+.w-stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  border-top:1px solid var(--border);
+  padding-top:14px;
+}
+.stat {
+  background:var(--bg3);
+  border-radius:10px;
+  padding:10px 8px;
+  text-align:center;
+}
+.stat-lbl {
+  font-size:0.52rem;
+  letter-spacing:0.15em;
+  color:var(--text4);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.stat-val {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;
+  color:var(--purple-glow);
+  letter-spacing:0.04em;
+}
+.stat-sub {
+  font-size:0.55rem;
+  color:var(--text4);
+  margin-top:2px;
+  line-height:1.3;
+}
+
+.w-loc {
+  margin-top:12px;
+  font-size:0.62rem;
+  color:var(--text4);
+  text-align:center;
+  letter-spacing:0.05em;
+}
+
+/* ── HOTNESS METER ── */
+.meter-section {
+  margin:16px 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+.section-lbl {
+  font-size:0.58rem;
+  letter-spacing:0.2em;
+  color:var(--text4);
+  text-transform:uppercase;
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.meter-wrap {
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:20px;
+}
+
+.silhouette-box {
+  width:120px;
+  height:200px;
+  position:relative;
+  filter: drop-shadow(0 0 18px rgba(91,46,255,0.35));
+}
+.silhouette-box svg { width:100%; height:100%; }
+
+.bar-track {
+  width:10px; height:200px;
+  background:var(--bg3);
+  border-radius:5px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.bar-fill {
+  width:100%;
+  height:0%;
+  background: linear-gradient(0deg, var(--red), var(--purple-glow), var(--cyan));
+  border-radius:5px;
+  transition: height 1.8s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 0 8px rgba(91,46,255,0.5);
+}
+
+.meter-caption {
+  font-size:0.68rem;
+  color:var(--red);
+  text-align:center;
+  margin-top:10px;
+  font-weight:600;
+  letter-spacing:0.03em;
+  font-style:italic;
+  min-height:20px;
+}
+
+/* ── ROAST CARD ── */
+.roast-card {
+  background: linear-gradient(135deg, rgba(91,46,255,0.08), rgba(10,10,11,0.9));
+  border:1px solid rgba(91,46,255,0.3);
+  border-radius:16px;
+  padding:18px;
+  margin:16px 0;
+  position:relative;
+  overflow:hidden;
+  min-height:90px;
+  animation: fadeUp 0.8s ease forwards;
+}
+.roast-card::before {
+  content:'"';
+  position:absolute;
+  top:-15px; left:10px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:8rem;
+  color:rgba(91,46,255,0.08);
+  pointer-events:none;
+  line-height:1;
+}
+
+.roast-cat {
+  font-size:0.52rem;
+  letter-spacing:0.22em;
+  color:var(--purple-glow);
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.roast-txt {
+  font-size:1rem;
+  font-weight:600;
+  line-height:1.55;
+  color:var(--text);
+  position:relative;
+  z-index:1;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.roast-txt.out { opacity:0; transform:translateY(6px); }
+.roast-txt.in { animation: jokeIn 0.3s ease forwards; }
+
+/* ── REACTION BUTTONS ── */
+.reactions {
+  display:flex;
+  gap:8px;
+  margin:12px 0;
+  animation: fadeUp 0.9s ease forwards;
+}
+.rxn-btn {
+  flex:1;
+  padding:11px 6px;
+  border-radius:10px;
+  font-family:'Manrope',sans-serif;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:0.02em;
+  cursor:pointer;
+  border:1px solid;
+  transition:all 0.18s;
+  text-align:center;
+  line-height:1.3;
+}
+.rxn-roast { background:rgba(255,77,109,0.1); border-color:rgba(255,77,109,0.35); color:var(--red); }
+.rxn-roast:active { background:rgba(255,77,109,0.25); transform:scale(0.97); }
+.rxn-weak { background:var(--bg2); border-color:var(--border); color:var(--text3); }
+.rxn-weak:active { background:var(--bg3); transform:scale(0.97); }
+.rxn-hard { background:rgba(91,46,255,0.12); border-color:rgba(91,46,255,0.4); color:var(--purple-glow); }
+.rxn-hard:active { background:rgba(91,46,255,0.25); transform:scale(0.97); }
+
+.chaos-banner {
+  display:none;
+  text-align:center;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  color:var(--red);
+  padding:8px;
+  border:1px solid rgba(255,77,109,0.35);
+  border-radius:8px;
+  background:rgba(255,77,109,0.07);
+  animation:pulse 1.5s infinite;
+  margin-top:8px;
+}
+
+/* ── EXPLICIT TOGGLE ── */
+.explicit-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 16px;
+  margin:12px 0;
+}
+.explicit-lbl {
+  font-size:0.62rem;
+  letter-spacing:0.14em;
+  color:var(--text3);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.tog {
+  position:relative;
+  width:44px; height:24px;
+  display:inline-block;
+}
+.tog input { opacity:0; width:0; height:0; }
+.tog-slider {
+  position:absolute;
+  inset:0;
+  background:var(--bg3);
+  border-radius:24px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:0.3s;
+}
+.tog-slider::before {
+  content:'';
+  position:absolute;
+  width:16px; height:16px;
+  left:3px; bottom:3px;
+  background:var(--text4);
+  border-radius:50%;
+  transition:0.3s;
+}
+.tog input:checked + .tog-slider { background:var(--purple); border-color:var(--purple); }
+.tog input:checked + .tog-slider::before { transform:translateX(20px); background:#fff; box-shadow:0 0 6px rgba(91,46,255,0.6); }
+
+/* ── SETTINGS MODAL ── */
+.modal-bg {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(10,10,11,0.88);
+  backdrop-filter:blur(6px);
+  padding:20px 16px;
+  overflow-y:auto;
+}
+.modal-bg.open { display:flex; align-items:flex-start; justify-content:center; }
+.modal {
+  background: linear-gradient(180deg, var(--bg2), var(--bg));
+  border:1px solid rgba(91,46,255,0.25);
+  border-radius:18px;
+  width:100%;
+  max-width:440px;
+  margin:auto;
+  animation: modalIn 0.25s ease;
+}
+.modal-hdr {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 18px 0;
+  margin-bottom:16px;
+}
+.modal-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;
+  letter-spacing:0.06em;
+  color:var(--purple-glow);
+}
+.modal-close {
+  width:30px; height:30px;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--text3);
+  font-size:0.9rem;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.modal-body { padding:0 18px 20px; }
+
+.s-group { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border); }
+.s-group:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.s-lbl {
+  display:block;
+  font-size:0.58rem;
+  letter-spacing:0.18em;
+  color:var(--purple-glow);
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:4px;
+}
+.s-desc { font-size:0.68rem; color:var(--text3); margin-bottom:10px; line-height:1.5; }
+
+.asset-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.asset-btn {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 4px;
+  color:var(--text3);
+  font-family:'Manrope',sans-serif;
+  font-size:0.58rem;
+  font-weight:700;
+  cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  transition:all 0.18s;
+}
+.asset-btn.active, .asset-btn:hover { border-color:var(--purple); color:var(--purple-glow); background:rgba(91,46,255,0.1); }
+.asset-ico { font-size:1.2rem; }
+
+.name-inp {
+  width:100%;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 12px;
+  color:var(--text);
+  font-family:'Manrope',sans-serif;
+  font-size:0.85rem;
+  outline:none;
+}
+.name-inp:focus { border-color:var(--purple); }
+.name-inp::placeholder { color:var(--text4); }
+
+.reset-btn {
+  width:100%;
+  padding:11px;
+  background:rgba(255,77,109,0.08);
+  border:1px solid rgba(255,77,109,0.3);
+  border-radius:8px;
+  color:var(--red);
+  font-family:'Manrope',sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.18s;
+}
+.reset-btn:hover { background:rgba(255,77,109,0.18); }
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center;
+  padding:14px 0;
+  border-top:1px solid var(--border);
+  margin-top:8px;
+}
+.footer-txt { font-size:0.6rem; color:var(--text4); }
+.footer-time { font-size:0.65rem; color:var(--purple-glow); margin-top:3px; font-weight:600; }
+
+/* ── INSTALL BANNER ── */
+.install-bar {
+  display:none;
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:200;
+  background: linear-gradient(90deg, var(--purple), var(--purple-glow));
+  color:#fff;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  font-size:0.72rem;
+  font-weight:600;
+}
+.inst-btn {
+  background:rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:0.7rem;
+  font-weight:700;
+  cursor:pointer;
+  font-family:'Manrope',sans-serif;
+}
+.inst-x { background:none; border:none; color:rgba(255,255,255,0.6); cursor:pointer; margin-left:auto; font-size:1rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes jokeIn {
+  from { opacity:0; transform:translateY(6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes modalIn {
+  from { opacity:0; transform:scale(0.96); }
+  to   { opacity:1; transform:scale(1); }
+}
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:0.5; }
+}
+@keyframes flicker {
+  0%,100% { opacity:1; }
+  92% { opacity:1; }
+  93% { opacity:0.7; }
+  94% { opacity:1; }
+  96% { opacity:0.8; }
+  97% { opacity:1; }
+}
+
+.logo { animation: flicker 8s infinite; }
+</style>
+</head>
+<body>
+
+<div class="install-bar" id="installBar">
+  <span>📲 Add METEORUSSY to home screen</span>
+  <button class="inst-btn" onclick="doInstall()">Install</button>
+  <button class="inst-x" onclick="dismissInstall()">✕</button>
+</div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="hdr">
+    <div>
+      <div class="logo"><small>MIMEN's</small>METEORUSSY</div>
+    </div>
+    <div class="hdr-btns">
+      <button class="icon-btn" onclick="openSettings()">⚙</button>
+      <button class="icon-btn" onclick="requestNotif()">🔔</button>
+    </div>
+  </header>
+
+  <!-- GREETING -->
+  <div class="greeting">
+    <div class="greeting-main" id="greetMain">Loading your daily roast...</div>
+    <div class="greeting-sub" id="greetSub"></div>
+  </div>
+
+  <!-- WEATHER CARD -->
+  <div class="w-card">
+    <div class="w-main">
+      <div class="w-icon" id="wIcon">🌡</div>
+      <div>
+        <div class="w-temp" id="wTemp">--°</div>
+        <div class="w-feels" id="wFeels">FEELS LIKE --°</div>
+      </div>
+      <div class="w-desc" id="wDesc">fetching vibes...</div>
+    </div>
+    <div class="w-stats">
+      <div class="stat">
+        <div class="stat-lbl">WETNESS</div>
+        <div class="stat-val" id="wHumidity">--%</div>
+        <div class="stat-sub" id="wHumidDesc">--</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">WIND</div>
+        <div class="stat-val" id="wWind">--</div>
+        <div class="stat-sub" id="wWindDesc">--</div>
+      </div>
+      <div class="stat">
+        <div class="stat-lbl">SKY</div>
+        <div class="stat-val" id="wSky">--</div>
+        <div class="stat-sub" id="wSkyDesc">--</div>
+      </div>
+    </div>
+    <div class="w-loc" id="wLoc">📍 detecting location...</div>
+  </div>
+
+  <!-- HOTNESS METER -->
+  <div class="meter-section">
+    <div class="section-lbl">HOTNESS METER</div>
+    <div class="meter-wrap">
+      <div class="silhouette-box" id="silBox"></div>
+      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    </div>
+    <div class="meter-caption" id="meterCap"></div>
+  </div>
+
+  <!-- ROAST -->
+  <div class="roast-card">
+    <div class="roast-cat" id="roastCat">DAILY ROAST</div>
+    <div class="roast-txt" id="roastTxt">Loading your personalized insult...</div>
+  </div>
+
+  <!-- REACTIONS -->
+  <div class="reactions">
+    <button class="rxn-btn rxn-roast" onclick="react('roast')">🔁 Roast again</button>
+    <button class="rxn-btn rxn-weak" onclick="react('weak')">😒 Too weak</button>
+    <button class="rxn-btn rxn-hard" onclick="react('hard')">🔥 Go harder</button>
+  </div>
+  <div class="chaos-banner" id="chaosBanner">⚠ CHAOS MODE UNLOCKED ⚠</div>
+
+  <!-- EXPLICIT TOGGLE -->
+  <div class="explicit-row">
+    <span class="explicit-lbl">Explicit Mode</span>
+    <label class="tog">
+      <input type="checkbox" id="explToggle" checked onchange="setExplicit(this.checked)">
+      <span class="tog-slider"></span>
+    </label>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-txt">Built with love and malice by Ikrame 💀</div>
+    <div class="footer-time" id="clock"></div>
+  </div>
+
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-bg" id="settingsModal" onclick="outsideClose(event,'settingsModal')">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">⚙ ASS-ET MANAGER</div>
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="s-group">
+        <label class="s-lbl">Explicit Mode</label>
+        <p class="s-desc">Off = PG-13. For when he's showing this to his mom.</p>
+        <label class="tog">
+          <input type="checkbox" id="explToggle2" checked onchange="setExplicit(this.checked)">
+          <span class="tog-slider"></span>
+        </label>
+      </div>
+      <div class="s-group">
+        <label class="s-lbl">Favorite Asset</label>
+        <p class="s-desc">Silhouette color scheme. He's going to pretend he doesn't care.</p>
+        <div class="asset-grid">
+          <button class="asset-btn" data-a="brunette" onclick="setAsset('brunette')"><span class="asset-ico">🟤</span>Brunette</button>
+          <button class="asset-btn" data-a="blonde" onclick="setAsset('blonde')"><span class="asset-ico">🟡</span>Blonde</button>
+          <button class="asset-btn" data-a="redhead" onclick="setAsset('redhead')"><span class="asset-ico">🔴</span>Redhead</button>
+          <button class="asset-btn active" data-a="random" onclick="setAsset('random')"><span class="asset-ico">🎲</span>Random</button>
+        </div>
+      </div>
+      <div class="s-group">
+        <label class="s-lbl">Short Mode</label>
+        <p class="s-desc">Extra short jokes. Check "yes" if he deserves it.</p>
+        <label class="tog">
+          <input type="checkbox" id="shortToggle" onchange="setShort(this.checked)">
+          <span class="tog-slider"></span>
+        </label>
+      </div>
+      <div class="s-group">
+        <label class="s-lbl">Victim Name</label>
+        <p class="s-desc">Who's getting roasted today?</p>
+        <input type="text" class="name-inp" id="nameInp" value="Mimen" placeholder="Mimen" oninput="setName(this.value)">
+      </div>
+      <div class="s-group">
+        <button class="reset-btn" onclick="resetMood()">🔄 Reset Chaos Level</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const OWM = '2133b5855a85429480c181245261703';
+let S = {
+  name:'Mimen', explicit:true, asset:'random', short:false,
+  intensity:0, harderCount:0, chaos:false, recent:[], weather:null
+};
+function loadS(){ try{ Object.assign(S,JSON.parse(localStorage.getItem('mrs')||'{}')); S.weather=null; }catch(e){} }
+function saveS(){ try{ localStorage.setItem('mrs',JSON.stringify({...S,weather:null})); }catch(e){} }
+
+// ═══════════════════════════════════════════════
+// COLORS
+// ═══════════════════════════════════════════════
+const COLORS = {
+  brunette:{hair:'#3d1a00',skin:'#c8855a',hi:'#e0a070'},
+  blonde:  {hair:'#c8960c',skin:'#d4956a',hi:'#f0b87a'},
+  redhead: {hair:'#a01010',skin:'#c07858',hi:'#d89068'},
+};
+function getColors(){
+  if(S.asset==='random'){
+    const k=['brunette','blonde','redhead'];
+    return COLORS[k[Math.floor(Math.random()*k.length)]];
+  }
+  return COLORS[S.asset]||COLORS.brunette;
+}
+
+// ═══════════════════════════════════════════════
+// SILHOUETTE SVG — dark pin-up style
+// ═══════════════════════════════════════════════
+function makeSil(temp){
+  const c = getColors();
+  const sk = c.skin, ha = c.hair, hi = c.hi;
+  const nude   = S.explicit && temp >= 32;
+  const bikini = S.explicit && temp >= 25 && temp < 32;
+  const tank   = temp >= 15 && temp < 25;
+  const coat   = temp < 5;
+  const sweat  = temp >= 5 && temp < 15;
+
+  return `<svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sg" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="${hi}"/>
+      <stop offset="100%" stop-color="${sk}"/>
+    </radialGradient>
+    <radialGradient id="bg2" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="${hi}"/>
+      <stop offset="100%" stop-color="${sk}"/>
+    </radialGradient>
+    <linearGradient id="hg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${hi}"/>
+      <stop offset="100%" stop-color="${ha}"/>
+    </linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
+    <filter id="gl"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="rgba(91,46,255,0.4)"/></filter>
+  </defs>
+
+  <!-- LEGS -->
+  <rect x="36" y="128" width="18" height="62" rx="8" fill="url(#sg)" filter="url(#sh)"/>
+  <rect x="62" y="128" width="18" height="62" rx="8" fill="url(#sg)" filter="url(#sh)"/>
+  <rect x="51" y="130" width="14" height="52" rx="5" fill="rgba(0,0,0,0.09)"/>
+
+  <!-- HIPS -->
+  <path d="M28 118 Q22 132 27 145 Q40 152 60 152 Q80 152 93 145 Q98 132 92 118 Z" fill="url(#sg)"/>
+
+  <!-- BOTTOM — panties when semi-dressed -->
+  ${!nude && !coat && !sweat ? `
+  <path d="M28 118 Q25 140 38 150 Q50 156 60 156 Q70 156 82 150 Q95 140 92 118 Z"
+    fill="#1A0030" opacity="0.95"/>
+  <path d="M40 118 Q38 138 60 140 Q82 138 80 118 Z" fill="rgba(91,46,255,0.15)"/>
+  <text x="60" y="136" text-anchor="middle" font-size="7" fill="rgba(91,46,255,0.5)" font-family="Manrope">✦</text>
+  ` : ''}
+
+  <!-- TORSO -->
+  <path d="M30 75 Q24 95 26 118 Q30 130 60 131 Q90 130 94 118 Q96 95 90 75 Z" fill="url(#sg)" filter="url(#sh)"/>
+
+  <!-- BOOBS — always drawn, covered by clothing layers -->
+  <ellipse cx="44" cy="88" rx="15" ry="13" fill="url(#bg2)"/>
+  <ellipse cx="76" cy="88" rx="15" ry="13" fill="url(#bg2)"/>
+  <ellipse cx="44" cy="97" rx="13" ry="5" fill="rgba(0,0,0,0.1)"/>
+  <ellipse cx="76" cy="97" rx="13" ry="5" fill="rgba(0,0,0,0.1)"/>
+  <!-- cleavage line -->
+  <path d="M57 84 Q60 92 63 84" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none"/>
+
+  ${nude ? `
+  <!-- NIPPLES — explicit fully nude -->
+  <circle cx="44" cy="86" r="4" fill="#b06060"/>
+  <circle cx="44" cy="86" r="2" fill="#8a3838"/>
+  <circle cx="76" cy="86" r="4" fill="#b06060"/>
+  <circle cx="76" cy="86" r="2" fill="#8a3838"/>
+  ` : ''}
+
+  ${bikini ? `
+  <!-- BIKINI TOP — strappy -->
+  <path d="M24 72 Q28 92 44 97 Q60 90 60 90 Q60 90 60 97 Q76 92 96 72 Q86 60 76 66 Q68 79 60 80 Q52 79 44 66 Q34 60 24 72Z"
+    fill="#2A0050"/>
+  <path d="M24 72 Q28 92 44 97 Q60 90 60 90 Q60 90 60 97 Q76 92 96 72 Q86 60 76 66 Q68 79 60 80 Q52 79 44 66 Q34 60 24 72Z"
+    stroke="rgba(91,46,255,0.6)" stroke-width="1" fill="none"/>
+  <!-- straps -->
+  <line x1="28" y1="73" x2="60" y2="68" stroke="#3A0070" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="92" y1="73" x2="60" y2="68" stroke="#3A0070" stroke-width="2.5" stroke-linecap="round"/>
+  ` : ''}
+
+  ${tank && !bikini ? `
+  <!-- TANK TOP -->
+  <path d="M26 75 Q22 98 26 125 L94 125 Q98 98 94 75 Q74 62 60 64 Q46 62 26 75Z"
+    fill="#111118"/>
+  <path d="M44 64 Q42 74 40 84" stroke="#1A1A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M76 64 Q78 74 80 84" stroke="#1A1A28" stroke-width="6" fill="none" stroke-linecap="round"/>
+  ` : ''}
+
+  ${sweat ? `
+  <!-- SWEATER -->
+  <path d="M20 72 Q14 98 18 132 L102 132 Q106 98 100 72 Q78 57 60 60 Q42 57 20 72Z"
+    fill="#0F0F1A"/>
+  <path d="M38 60 L36 72 L40 78 L44 72 L42 60Z" fill="#0A0A14"/>
+  <path d="M82 60 L84 72 L80 78 L76 72 L78 60Z" fill="#0A0A14"/>
+  <ellipse cx="60" cy="63" rx="14" ry="5" fill="#080810"/>
+  <path d="M20 72 Q14 98 18 132" stroke="rgba(91,46,255,0.1)" stroke-width="2" fill="none"/>
+  ` : ''}
+
+  ${coat ? `
+  <!-- WINTER COAT -->
+  <path d="M10 68 Q2 100 6 140 L114 140 Q118 100 110 68 Q82 50 60 54 Q38 50 10 68Z"
+    fill="#0A0A0E"/>
+  <path d="M60 54 L52 74 L60 90 L68 74 Z" fill="#141418"/>
+  <circle cx="60" cy="96" r="3" fill="#222228"/>
+  <circle cx="60" cy="110" r="3" fill="#222228"/>
+  <circle cx="60" cy="124" r="3" fill="#222228"/>
+  <!-- fur collar -->
+  <path d="M26 68 Q36 60 60 58 Q84 60 94 68 Q82 76 60 74 Q38 76 26 68Z"
+    fill="#F5F5F7" opacity="0.85"/>
+  ` : ''}
+
+  <!-- ARMS -->
+  <path d="M26 75 Q12 90 14 115 Q18 126 27 122 Q30 106 32 92Z" fill="url(#sg)"/>
+  <path d="M94 75 Q108 90 106 115 Q102 126 93 122 Q90 106 88 92Z" fill="url(#sg)"/>
+
+  ${coat || sweat ? `
+  <path d="M20 72 Q6 88 8 112 Q14 126 28 122 Q32 106 34 90Z" fill="${coat?'#0A0A0E':'#0F0F1A'}"/>
+  <path d="M100 72 Q114 88 112 112 Q106 126 92 122 Q88 106 86 90Z" fill="${coat?'#0A0A0E':'#0F0F1A'}"/>
+  ` : ''}
+
+  <!-- HANDS -->
+  <ellipse cx="14" cy="120" rx="9" ry="7" fill="url(#sg)"/>
+  <ellipse cx="106" cy="120" rx="9" ry="7" fill="url(#sg)"/>
+
+  <!-- NECK -->
+  <rect x="51" y="47" width="18" height="24" rx="8" fill="url(#sg)"/>
+
+  <!-- HEAD -->
+  <ellipse cx="60" cy="36" rx="24" ry="27" fill="url(#sg)" filter="url(#sh)"/>
+
+  <!-- HAIR — long dark style -->
+  <path d="M36 24 Q37 4 60 2 Q83 4 84 24 Q86 10 76 5 Q66 -1 60 0 Q54 -1 44 5 Q34 10 36 24Z"
+    fill="url(#hg)"/>
+  <!-- side hair long -->
+  <path d="M37 24 Q28 40 30 62 Q34 74 38 78" stroke="url(#hg)" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M83 24 Q92 40 90 62 Q86 74 82 78" stroke="url(#hg)" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- FACE -->
+  <!-- eyes — dark sultry -->
+  <ellipse cx="50" cy="34" rx="6" ry="5" fill="#0d0610"/>
+  <ellipse cx="70" cy="34" rx="6" ry="5" fill="#0d0610"/>
+  <!-- iris -->
+  <circle cx="50" cy="34" r="3" fill="#2a1060"/>
+  <circle cx="70" cy="34" r="3" fill="#2a1060"/>
+  <!-- highlight -->
+  <ellipse cx="48.5" cy="32.5" rx="1.5" ry="1.5" fill="rgba(255,255,255,0.7)"/>
+  <ellipse cx="68.5" cy="32.5" rx="1.5" ry="1.5" fill="rgba(255,255,255,0.7)"/>
+  <!-- lash line -->
+  <path d="M44 29 Q50 26 56 29" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M64 29 Q70 26 76 29" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- eyelashes -->
+  <path d="M44 30 L42 27 M47 29 L46 26 M50 29 L50 26" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <path d="M56 29 L56 26 M59 29 L60 26 M62 30 L64 27" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <!-- nose -->
+  <path d="M57 40 Q60 46 63 40" stroke="rgba(0,0,0,0.18)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- lips — fuller, darker red -->
+  <path d="M50 48 Q54 52 60 50 Q66 52 70 48 Q66 56 60 55 Q54 56 50 48Z" fill="#8B1A2A"/>
+  <path d="M50 48 Q54 51 60 50 Q66 51 70 48" stroke="#A02030" stroke-width="0.8" fill="none"/>
+  <!-- cupid bow highlight -->
+  <path d="M55 48 Q60 46 65 48" stroke="rgba(255,100,100,0.3)" stroke-width="0.8" fill="none"/>
+
+  <!-- FEET -->
+  <ellipse cx="45" cy="188" rx="9" ry="6" fill="url(#sg)"/>
+  <ellipse cx="71" cy="188" rx="9" ry="6" fill="url(#sg)"/>
+</svg>`;
+}
+
+// ═══════════════════════════════════════════════
+// JOKE BANKS
+// ═══════════════════════════════════════════════
+const J = {
+  bent:[
+    "That bent dick of yours looks like it's trying to dodge responsibility, fuck.",
+    "Call NASA, cunt—your cock's already launching on a 45-degree trajectory.",
+    "Six inches? More like six inches sideways, you kinky pretzel-dick bastard.",
+    "Your shaft's so curved it needs its own sat-nav, shithead.",
+    "I've seen straighter lines on a toddler's crayon drawing, you horny gremlin.",
+    "Congrats, fucker—you're the only guy who can high-five his own belly button.",
+    "That dick's a boomerang: throw it in, it curves right back to lonely town.",
+    "GPS rerouted—your cock keeps taking the scenic route, asshole.",
+    "Bend it like Beckham? Nah, you birthed Beckham's bend, you dirty legend.",
+    "Your dick's so crooked it signs its own name in cursive, cunt.",
+    "Even your Johnson's pulling a left turn like it heard free tacos, fucker.",
+    "Six inches of question-mark energy—punctuation meets penetration, huh?",
+    "That angle screams 'recalculating' every time you unzip, prick.",
+    "Shit, bro, your cock's so bent it could poke around corners for you.",
+    "Who needs a selfie stick? Your curved dick already frames the shot, asshole.",
+    "Your dong's playing Twister solo—right hand green, shaft hard left.",
+    "That bend's so dramatic, it deserves an intermission, you horny drama queen.",
+    "Even your dick can't commit to a straight line—on brand, you chaotic fuck.",
+    "Bro, surgeons use your cock as the protractor they lost in med school.",
+    "That dick curves harder than crypto charts on crash day—hold the line, fucker.",
+    "Google Maps can't even give turn-by-turn for that joystick, prick.",
+    "Six inches? Sure—if you measure along the arc, circus dick.",
+    "It's so bent, the condom needs a hinge, you filthy beast.",
+    "That pecker's basically a question mark asking, 'Why am I like this?'",
+    "Your dong's a shiv in solitary—short, sharp, and crooked as sin.",
+    "Fuck symmetry—your cock's living its best avant-garde life, you degenerate king.",
+  ],
+  mild:[
+    "Your confidence curves more than a mountain road.",
+    "You walk into a room at a 45-degree angle of optimism.",
+    "Your life trajectory is... uniquely non-linear.",
+    "Bend the rules like you bend... everything.",
+    "Your path in life has unusual load-bearing angles.",
+    "Six inches of chaotic energy. Somehow still standing.",
+  ],
+  weather:[
+    "Sun's out, tits out. Not yours though—just your confidence melting, short king.",
+    "UV index high. Goth girls still not texting you back. Tragic.",
+    "It's 30°C. Even your crooked dick straightened out for a second. Scared of the heat.",
+    "Hot day. Perfect time to cook something. Unlike your love life, which remains raw.",
+    "Sunny skies, clear vibes. Still no goth girlfriend in sight. Stay strong, soldier.",
+    "It's so hot even your art skills couldn't draw you some bitches.",
+    "Sun shining. Asses everywhere. Still none for you. Stay hydrated.",
+    "It's wet outside. Relax, not everything is about you, you horny bastard.",
+    "Rain falling. You cooking something or just staring at the window like a depressed chef?",
+    "Wet weather. Perfect for drawing. Or crying. Same thing for you.",
+    "Rainy day. Goth girl weather. You still alone though. Damn.",
+    "Humidity 80%. Your standards? 0%. Stay focused.",
+    "Storm incoming. Your mood already beat it to the punch.",
+    "Wind's strong today. Might finally lift you a few centimeters off the ground.",
+    "Gusts up to 50 km/h. Still not enough to blow you into a relationship.",
+    "Windy. Your hair's a mess. Your life? Bigger mess.",
+    "Cold as hell. Even your motivation froze. Again.",
+    "Snowing. You tried to draw a snow angel but got mistaken for a footprint.",
+    "Freezing temps. Goth girls thriving. You still not invited.",
+    "Cold outside. Go cook something warm. Like your nonexistent love life.",
+    "Gray skies. Perfect match for your mood when a goth girl ignores you.",
+    "Cloudy. Your thoughts are cloudier. Try thinking once.",
+    "Clear night. Stars out. You still inside simping for imaginary goth girls.",
+    "It's late. Go to sleep. Even your crooked dick needs rest.",
+    "Thunderstorms. God is angry. Probably at your haircut.",
+    "Lightning detected. Twice as many strikes as your Tinder matches.",
+    "Storm rolling in. You're rolling out. To your mom's basement.",
+    "Hail expected. Small ice balls. Like your future.",
+    "Flood warning. Stay inside. You might drown in a puddle.",
+    "Wind advisory. Secure loose objects. You are a loose object.",
+    "Tornado watch. Hide in a ditch. Finally, eye level.",
+  ],
+  art:[
+    "Weather's perfect for cooking. At least one part of your life is under control.",
+    "You cook better than you date. That's not a compliment.",
+    "Nice weather for drawing. Too bad you can't sketch yourself some standards.",
+    "You draw beautifully. Shame you can't draw a girlfriend into existence.",
+    "Weather updated. Generated by AI. I know you hate me. Stay mad.",
+    "Forecast powered by AI. Yeah, I exist. Cry about it.",
+    "AI says it's sunny. You say AI sucks. Who's right today?",
+    "You opened this app again. That's commitment. Shame you don't commit to anything else.",
+    "Daily reminder: you're short, horny, and somehow still optimistic. Respect.",
+    "Weather's mid. You're mid. Balance restored.",
+    "Another day, another chance to not get a girlfriend. You're consistent, king.",
+    "Rainy day meal incoming? Or are you just seasoning your sadness again?",
+  ],
+  wholesome:[
+    "Hey… have a good day. For real.",
+    "You're annoying, but you're my favorite annoying person.",
+    "Go cook something nice today. You deserve it.",
+    "You're actually talented. Don't waste that.",
+    "Take it easy today, yeah? Not everything needs to be chaos.",
+    "Weather's mid. Like you.\n…still checking this app though. I'm clearly your favorite.",
+    "You make people laugh. That's rarer than being tall.",
+  ],
+  unhinged:[
+    "It's freezing. Your dick shrunk so much it's now a clit. Congrats on the upgrade.",
+    "Sun's out. She's out. You're still in. Symmetry.",
+    "Electrical storm. Your personality? Shocking. Not in a good way.",
+    "Global warming is real. So is your virginity.",
+    "Comet visible once in 80 years. You've been visible once in your life. Birth.",
+  ],
+  short:[
+    "Looking for your self-esteem. Police widened the search to include the ground.",
+    "Dating profile: '6ft on Tinder.' Reality: '6ft if standing on your wallet.'",
+    "You walked under a rainbow. No one saw you for 3 days.",
+    "So short, your belly button smells like feet.",
+    "So short, when you cry, you cry upwards.",
+    "You're not short. You're concentrated awesome. Like a grenade. Or a turd.",
+    "Flood warning. Stay inside. You might drown in a puddle.",
+    "Wind advisory. Secure loose objects. You are a loose object.",
+  ]
+};
+
+function pickJoke(){
+  const name = S.name||'Mimen';
+  let weights = S.chaos
+    ? {w:0.55,u:0.25,b:0.15,wh:0.03,a:0.02}
+    : S.intensity===2
+    ? {w:0.35,u:0.2,b:0.3,wh:0.05,a:0.1}
+    : S.intensity===1
+    ? {w:0.45,u:0.1,b:0.2,wh:0.1,a:0.15}
+    : {w:0.45,u:0.05,b:0.1,wh:0.2,a:0.2};
+
+  const r=Math.random();
+  let pool;
+  if(r < weights.wh) pool=[...J.wholesome];
+  else if(r < weights.wh+weights.u) pool=[...J.unhinged];
+  else if(r < weights.wh+weights.u+weights.b) pool=S.explicit?[...J.bent]:[...J.mild];
+  else if(r < weights.wh+weights.u+weights.b+weights.a) pool=[...J.art];
+  else pool=[...J.weather];
+
+  if(S.short && Math.random()>0.55) pool=[...pool,...J.short];
+
+  const avail=pool.filter(j=>!S.recent.includes(j));
+  const final=avail.length?avail:pool;
+  const joke=final[Math.floor(Math.random()*final.length)];
+  S.recent=[joke,...S.recent].slice(0,3);
+  return joke.replace(/Mimen/g,name);
+}
+
+function jokeCat(joke){
+  if(J.bent.some(j=>joke.startsWith(j.substring(0,18)))) return '🍆 BENT DICK ALERT';
+  if(J.wholesome.some(j=>joke.startsWith(j.substring(0,18)))) return '💗 SURPRISINGLY WHOLESOME';
+  if(J.unhinged.some(j=>joke.startsWith(j.substring(0,18)))) return '⚡ UNHINGED MODE';
+  if(J.art.some(j=>joke.startsWith(j.substring(0,18)))) return '🎨 CHEF / ARTIST ENERGY';
+  return '🌡 DAILY ROAST';
+}
+
+// ═══════════════════════════════════════════════
+// GREETING ENGINE
+// ═══════════════════════════════════════════════
+const MN=['shortie','cunt','whore','toot','you absolute disaster'];
+function rnd(a){return a[Math.floor(Math.random()*a.length)];}
+
+function buildGreeting(h, code, temp){
+  const n=S.name||'Mimen';
+  const rain=code>=200&&code<700, sun=code===800||code===801;
+  const snow=code>=600&&code<700, storm=code>=200&&code<300;
+  const cloud=code>=802&&code<=804;
+  let main='',sub='';
+  if(h>=5&&h<12){
+    if(sun) main=`Morning, ${rnd(MN)}. Sun's up. Get your short ass out there.`;
+    else if(rain) main=`Rise and shine, ${n}. It's wet out there. Just like your dreams.`;
+    else if(snow) main=`Wake up, ${rnd(MN)}. It's snowing. Don't build a snowman — you're too short to reach the top.`;
+    else if(cloud) main=`Morning, ${rnd(MN)}. Gray and gloomy. Perfect for your personality.`;
+    else main=`Morning, ${rnd(MN)}. Weather's ${temp>20?'actually decent':'mid'}. Like you.`;
+    sub=h<7?'Bro it\'s so early. Why.':'You checked the weather. Champion behavior.';
+  } else if(h>=12&&h<17){
+    if(sun) main=`Afternoon, ${n}. UV index is high. Wear sunscreen or you'll look like a lobster. Lobsters are taller than you.`;
+    else if(rain) main=`Still raining, ${n}. Still wet. Like your DMs.`;
+    else main=`Afternoon, ${rnd(MN)}. ${temp>25?'It\'s hot. Hydrate. Your tears don\'t count.':'Mid afternoon. Mid weather. Mid energy.'}`;
+    sub='…still checking this app. I\'m clearly your favorite.';
+  } else if(h>=17&&h<21){
+    if(sun) main=`Evening, ${n}. Clear tonight. Good for stargazing. Can you see over the fence?`;
+    else if(storm) main=`Evening, ${n}. It's thundering. Bet that scared you. Tiny things startle easily.`;
+    else main=`Evening, ${rnd(MN)}. ${cloud?'Cloudy vibes.':'Nice evening.'} No goth girlfriend sighted. Keep hoping.`;
+    sub='Golden hour. Too bad your dating life isn\'t.';
+  } else {
+    main=`It's late, ${rnd(MN)}. Go to sleep. Nobody wants to see your short ass awake at this hour.`;
+    sub='Seriously. Put the phone down.';
+  }
+  return {main,sub};
+}
+
+// ═══════════════════════════════════════════════
+// TRUMP WIND SCALE
+// ═══════════════════════════════════════════════
+function trumpWind(kmh){
+  if(kmh<10) return {v:'COVFEFE',d:'Barely a breeze. Still enough to blow away your dignity.'};
+  if(kmh<20) return {v:'WALL LVL',d:'Nobody builds winds like this. Nobody.'};
+  if(kmh<30) return {v:'TWEET DEL',d:'Gone in an instant. Like your chances.'};
+  return {v:'IMPEACH',d:'Things are getting unhinged. Relatable.'};
+}
+
+function humDesc(h){
+  if(h<30) return 'Crisp and dry. Like your texts.';
+  if(h<60) return 'A little dewy. Getting there.';
+  if(h<80) return 'She\'s glistening. Post-workout.';
+  return 'Drenched. Gonna need a towel. And a cigarette.';
+}
+
+// ═══════════════════════════════════════════════
+// HOTNESS METER
+// ═══════════════════════════════════════════════
+function updateMeter(temp){
+  document.getElementById('silBox').innerHTML=makeSil(temp);
+  const pct=Math.min(100,Math.max(0,((temp+20)/60)*100));
+  document.getElementById('barFill').style.height=pct+'%';
+  const cap=document.getElementById('meterCap');
+  if(temp<5) cap.textContent='Fully bundled. Even she\'s cold.';
+  else if(temp<15) cap.textContent='Sweater weather. Coat\'s gone.';
+  else if(temp<25) cap.textContent='Tank top. Hair blowing. Vibes.';
+  else if(temp<32) cap.textContent='Bikini mode. Sun\'s winning.';
+  else cap.textContent='It\'s so hot even SHE couldn\'t keep it on. Hydrate, whore.';
+}
+
+// ═══════════════════════════════════════════════
+// WEATHER
+// ═══════════════════════════════════════════════
+const ICONS={Clear:'☀️',Clouds:'☁️',Rain:'🌧️',Drizzle:'🌦️',Thunderstorm:'⛈️',Snow:'❄️',Mist:'🌫️',Fog:'🌫️',Haze:'🌤️'};
+
+async function loadWeather(){
+  try{
+    const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{timeout:10000,maximumAge:300000}));
+    const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${OWM}&units=metric`)).json();
+    renderWeather(d);
+  }catch(e){
+    // fallback Casablanca
+    try{
+      const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.5731&lon=-7.5898&appid=${OWM}&units=metric`)).json();
+      renderWeather(d);
+    }catch(e2){ renderErr(); }
+  }
+}
+
+function renderWeather(d){
+  S.weather=d;
+  const temp=Math.round(d.main.temp), feels=Math.round(d.main.feels_like);
+  const hum=d.main.humidity, windKmh=Math.round(d.wind.speed*3.6);
+  const main=d.weather[0].main, desc=d.weather[0].description, code=d.weather[0].id;
+  const h=new Date().getHours();
+
+  document.getElementById('wIcon').textContent=ICONS[main]||'🌡';
+  document.getElementById('wTemp').textContent=temp+'°C';
+  document.getElementById('wFeels').textContent='FEELS LIKE '+feels+'°C';
+  document.getElementById('wDesc').textContent=desc;
+  document.getElementById('wLoc').textContent='📍 '+d.name;
+  document.getElementById('wHumidity').textContent=hum+'%';
+  document.getElementById('wHumidDesc').textContent=humDesc(hum);
+
+  const w=trumpWind(windKmh);
+  document.getElementById('wWind').textContent=windKmh+' km/h';
+  document.getElementById('wWindDesc').textContent=w.v+' — '+w.d.split('.')[0];
+  document.getElementById('wSky').textContent=main.toUpperCase();
+  document.getElementById('wSkyDesc').textContent=desc;
+
+  updateMeter(temp);
+
+  const g=buildGreeting(h,code,temp);
+  document.getElementById('greetMain').textContent=g.main;
+  document.getElementById('greetSub').textContent=g.sub;
+
+  showJoke();
+}
+
+function renderErr(){
+  document.getElementById('greetMain').textContent=`Weather's broken, ${S.name||'Mimen'}. Just like your love life.`;
+  document.getElementById('greetSub').textContent="Couldn't fetch weather. Check your connection.";
+  document.getElementById('wLoc').textContent='📍 Location unavailable (the roast continues)';
+  updateMeter(20);
+  showJoke();
+}
+
+// ═══════════════════════════════════════════════
+// SHOW JOKE
+// ═══════════════════════════════════════════════
+function showJoke(cat){
+  const joke=pickJoke(S.weather,cat);
+  const el=document.getElementById('roastTxt');
+  const catEl=document.getElementById('roastCat');
+  el.classList.add('out');
+  setTimeout(()=>{
+    el.textContent=joke;
+    catEl.textContent=jokeCat(joke);
+    el.classList.remove('out');
+    el.classList.add('in');
+    setTimeout(()=>el.classList.remove('in'),400);
+  },200);
+}
+
+// ═══════════════════════════════════════════════
+// REACTIONS
+// ═══════════════════════════════════════════════
+function react(type){
+  if(type==='roast'){ showJoke(); }
+  else if(type==='weak'){
+    if(S.intensity<2) S.intensity++;
+    showJoke();
+  }
+  else if(type==='hard'){
+    S.harderCount++;
+    S.intensity=2;
+    if(S.harderCount>=3&&!S.chaos){
+      S.chaos=true;
+      document.getElementById('chaosBanner').style.display='block';
+    }
+    showJoke(S.chaos?'unhinged':'bent');
+  }
+  saveS();
+}
+
+// ═══════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════
+function openSettings(){
+  document.getElementById('settingsModal').classList.add('open');
+  document.getElementById('explToggle2').checked=S.explicit;
+  document.getElementById('shortToggle').checked=S.short;
+  document.getElementById('nameInp').value=S.name||'Mimen';
+  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.a===S.asset));
+}
+function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
+function outsideClose(e,id){ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
+
+function setExplicit(v){
+  S.explicit=v;
+  document.getElementById('explToggle').checked=v;
+  document.getElementById('explToggle2').checked=v;
+  saveS();
+  if(S.weather) updateMeter(Math.round(S.weather.main.temp));
+}
+function setAsset(a){
+  S.asset=a;
+  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.a===a));
+  saveS();
+  if(S.weather) updateMeter(Math.round(S.weather.main.temp));
+}
+function setShort(v){ S.short=v; saveS(); }
+function setName(v){ S.name=(v.trim()||'Mimen'); saveS(); }
+function resetMood(){
+  S.intensity=0; S.harderCount=0; S.chaos=false; S.recent=[];
+  document.getElementById('chaosBanner').style.display='none';
+  saveS(); closeSettings(); showJoke();
+}
+
+// ═══════════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════════
+async function requestNotif(){
+  if(!('Notification' in window)){ alert('Notifications not supported.'); return; }
+  const p=await Notification.requestPermission();
+  if(p==='granted'){
+    new Notification("METEORUSSY 🌡️",{
+      body:`Notifications enabled, ${S.name||'Mimen'}. You'll get roasted at 8am sharp.`,
+      icon:'https://emojiapi.dev/api/emojis/thermometer/64.png'
+    });
+  } else {
+    alert('You denied notifications. Just like everyone denies you.');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// PWA INSTALL
+// ═══════════════════════════════════════════════
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault(); deferredPrompt=e;
+  if(!localStorage.getItem('inst_done')) document.getElementById('installBar').style.display='flex';
+});
+function doInstall(){
+  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; dismissInstall(); }); }
+}
+function dismissInstall(){
+  document.getElementById('installBar').style.display='none';
+  localStorage.setItem('inst_done','1');
+}
+
+// ═══════════════════════════════════════════════
+// SERVICE WORKER (inline registration)
+// ═══════════════════════════════════════════════
+if('serviceWorker' in navigator){
+  const swCode=`
+const CV='mrs-v1';
+const AS=['./'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CV).then(c=>c.addAll(AS)).then(()=>self.skipWaiting()));});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==CV).map(n=>caches.delete(n)))).then(()=>self.clients.claim()));});
+self.addEventListener('fetch',e=>{if(e.request.url.includes('openweathermap.org'))return;e.respondWith(fetch(e.request).then(r=>{const cl=r.clone();caches.open(CV).then(c=>c.put(e.request,cl));return r;}).catch(()=>caches.match(e.request)));});
+self.addEventListener('push',e=>{const d=e.data?e.data.text():'Your daily roast is ready.';e.waitUntil(self.registration.showNotification("MIMEN's METEORUSSY 🌡️",{body:d,icon:'https://emojiapi.dev/api/emojis/thermometer/64.png',tag:'roast',vibrate:[200,100,200]}));});
+self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow('/'));});
+`;
+  const blob=new Blob([swCode],{type:'application/javascript'});
+  const swUrl=URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(()=>{});
+}
+
+// ═══════════════════════════════════════════════
+// CLOCK
+// ═══════════════════════════════════════════════
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+
+    ' · '+n.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+}
+tick(); setInterval(tick,1000);
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+loadS();
+document.getElementById('explToggle').checked=S.explicit;
+updateMeter(20);
+loadWeather();
+setInterval(()=>{ if(!S.weather||Date.now()-S.lastFetch>1800000) loadWeather(); },60000);
+</script>
+</body>
+</html>
