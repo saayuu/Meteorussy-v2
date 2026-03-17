@@ -501,25 +501,13 @@ function humDesc(h) {
 }
 
 async function loadWeather() {
-  document.getElementById("wLoc").textContent = "detecting location...";
+  document.getElementById("wLoc").textContent = "📍 Bejaia, Algeria";
   document.getElementById("retryBtn").style.display = "none";
   try {
-    const pos = await new Promise(function(res, rej) {
-      if (!navigator.geolocation) { rej(new Error("no geo")); return; }
-      navigator.geolocation.getCurrentPosition(res, rej, { timeout: 15000, maximumAge: 600000, enableHighAccuracy: false });
-    });
-    const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude + "&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
-    if (data.cod && data.cod !== 200) throw new Error("api");
+    const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=36.7509&lon=5.0564&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
     renderWeather(data);
   } catch(e) {
-    try {
-      const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=36.7509&lon=5.0564&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
-      renderWeather(data);
-      document.getElementById("wLoc").textContent = "Bejaia, Algeria";
-      document.getElementById("retryBtn").style.display = "block";
-    } catch(e2) {
-      renderError();
-    }
+    renderError();
   }
 }
 
