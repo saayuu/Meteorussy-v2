@@ -10,1108 +10,637 @@
 <title>MIMEN's METEORUSSY</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTUlNRU4ncyBNRVRFT1JVU1NZIiwic2hvcnRfbmFtZSI6Ik1FVEVPULVTU1kiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBBMEEwQiIsInRoZW1lX2NvbG9yIjoiIzBBMEEwQiIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzMEEwQTBCJy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1NSUyNScgZm9udC1zaXplPScyMjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGRvbWluYW50LWJhc2VsaW5lPSdtaWRkbGUnJTNFJUYwJTlGOEUlQjElM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
-
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTUlNRU4ncyBNRVRFT1JVU1NZIiwic2hvcnRfbmFtZSI6Ik1FVEVPUlVTU1kiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBBMEEwQiIsInRoZW1lX2NvbG9yIjoiIzBBMEEwQiIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzMEEwQTBCJy8lM0UlM0N0ZXh0IHg9JzUwJTI1JyB5PSc1NSUyNScgZm9udC1zaXplPScyMjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGRvbWluYW50LWJhc2VsaW5lPSdtaWRkbGUnJTNFJUYwJTlGOEUlQjElM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
 <style>
 :root {
-  --bg: #0A0A0B;
-  --bg2: #111113;
-  --bg3: #1A1A1F;
-  --border: #222228;
-  --purple: #5B2EFF;
-  --purple-hover: #4726CC;
-  --purple-glow: #7A5CFF;
-  --purple-deep: #2A146E;
-  --purple-black: #140A2A;
-  --cyan: #00E0FF;
-  --text: #F5F5F7;
-  --text2: #CFCFE6;
-  --text3: #9A9AAD;
-  --text4: #6B6B78;
-  --red: #FF4D6D;
-  --red2: #CC3654;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-
-html, body {
-  height:100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Manrope', sans-serif;
-  overflow-x: hidden;
-}
-
-/* NOISE TEXTURE */
-body::before {
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  opacity:0.045;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:150px;
-}
-
-/* PURPLE GLOW BLOBS */
-body::after {
-  content:'';
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 85% 10%, rgba(91,46,255,0.18) 0%, transparent 40%),
-    radial-gradient(circle at 10% 85%, rgba(122,92,255,0.12) 0%, transparent 38%);
-}
-
-.wrap {
-  position:relative;
-  z-index:1;
-  max-width:480px;
-  margin:0 auto;
-  padding:0 16px 60px;
-  min-height:100vh;
-}
-
-/* ── HEADER ── */
-.hdr {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 0 16px;
-  border-bottom:1px solid var(--border);
-}
-
-.logo {
-  font-family:'Bebas Neue', sans-serif;
-  font-size:2rem;
-  letter-spacing:0.06em;
-  background: linear-gradient(90deg, var(--purple-glow), var(--cyan));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  line-height:1;
-}
-
-.logo small {
-  display:block;
-  font-family:'Manrope',sans-serif;
-  font-size:0.55rem;
-  font-weight:600;
-  letter-spacing:0.2em;
-  color:var(--text3);
-  -webkit-text-fill-color:var(--text3);
-  text-transform:uppercase;
-  margin-bottom:2px;
-}
-
-.hdr-btns { display:flex; gap:8px; }
-
-.icon-btn {
-  width:36px; height:36px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:8px;
-  color:var(--text3);
-  font-size:1rem;
-  cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:all 0.2s;
-}
-.icon-btn:hover { border-color:var(--purple); color:var(--purple-glow); }
-
-/* ── GREETING ── */
-.greeting {
-  padding:20px 0 4px;
-  animation: fadeUp 0.5s ease forwards;
-}
-.greeting-main {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.6rem;
-  letter-spacing:0.03em;
-  color:var(--text);
-  line-height:1.2;
-}
-.greeting-sub {
-  font-size:0.72rem;
-  color:var(--purple-glow);
-  margin-top:4px;
-  font-weight:600;
-  letter-spacing:0.05em;
-}
-
-/* ── WEATHER CARD ── */
-.w-card {
-  background: linear-gradient(135deg, var(--bg2) 0%, var(--bg) 100%);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:18px;
-  margin:16px 0;
-  position:relative;
-  overflow:hidden;
-  animation: fadeUp 0.6s ease forwards;
-}
-.w-card::before {
-  content:'';
-  position:absolute;
-  top:-40px; right:-40px;
-  width:120px; height:120px;
-  background: radial-gradient(circle, rgba(91,46,255,0.15), transparent 70%);
-  pointer-events:none;
-}
-
-.w-main {
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:16px;
-}
-.w-icon { font-size:2.8rem; line-height:1; }
-.w-temp {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:3rem;
-  line-height:1;
-  color:var(--text);
-}
-.w-feels {
-  font-size:0.65rem;
-  color:var(--text4);
-  letter-spacing:0.06em;
-  margin-top:2px;
-}
-.w-desc {
-  margin-left:auto;
-  font-size:0.72rem;
-  color:var(--text3);
-  text-align:right;
-  text-transform:capitalize;
-  max-width:90px;
-  line-height:1.4;
-}
-
-.w-stats {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  border-top:1px solid var(--border);
-  padding-top:14px;
-}
-.stat {
-  background:var(--bg3);
-  border-radius:10px;
-  padding:10px 8px;
-  text-align:center;
-}
-.stat-lbl {
-  font-size:0.52rem;
-  letter-spacing:0.15em;
-  color:var(--text4);
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.stat-val {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.1rem;
-  color:var(--purple-glow);
-  letter-spacing:0.04em;
-}
-.stat-sub {
-  font-size:0.55rem;
-  color:var(--text4);
-  margin-top:2px;
-  line-height:1.3;
-}
-
-.w-loc {
-  margin-top:12px;
-  font-size:0.62rem;
-  color:var(--text4);
-  text-align:center;
-  letter-spacing:0.05em;
-}
-
-/* ── MAIN ROW: figure left, weather right ── */
-.main-row {
-  display:flex;
-  gap:12px;
-  align-items:stretch;
-  margin-bottom:16px;
-  animation: fadeUp 0.6s ease forwards;
-}
-
-/* FIGURE PANEL */
-.fig-panel {
-  flex:0 0 138px;
-  background:linear-gradient(180deg,#0d0a1a,#0A0A0B);
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-.fig-label {
-  font-size:.48rem;letter-spacing:.18em;color:var(--text4);
-  text-transform:uppercase;font-weight:700;padding:8px 0 2px;text-align:center;
-}
-.fig-svg-wrap {
-  width:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;
-  position:relative;overflow:hidden;padding:0 18px 0 4px;
-}
-.fig-glow {
-  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
-  width:120px;height:120px;
-  background:radial-gradient(circle,rgba(91,46,255,.22),transparent 70%);pointer-events:none;
-}
-.fig-cap {
-  font-size:.58rem;color:var(--red);text-align:center;padding:5px 6px 7px;
-  font-weight:600;font-style:italic;line-height:1.3;min-height:28px;
-}
-.wind-bar-wrap {
-  position:absolute;right:6px;top:8px;bottom:34px;width:6px;
-  background:var(--bg3);border-radius:3px;border:1px solid var(--border);
-  overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
-}
-.wind-bar-fill {
-  width:100%;height:0%;
-  background:linear-gradient(0deg,var(--cyan),var(--purple-glow));
-  border-radius:3px;transition:height 1.5s cubic-bezier(.34,1.56,.64,1);
-}
-
-/* WEATHER PANEL */
-.w-panel {
-  flex:1;
-  background:linear-gradient(135deg,var(--bg2),var(--bg));
-  border:1px solid var(--border);
-  border-radius:16px;padding:14px;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;gap:9px;
-}
-.w-panel::before {
-  content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;
-  background:radial-gradient(circle,rgba(91,46,255,.12),transparent 70%);pointer-events:none;
-}
-.w-top { display:flex;align-items:center;gap:10px; }
-.w-icon-big { font-size:2.2rem;line-height:1; }
-.w-temp-val {
-  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;color:var(--text);
-}
-.w-feels-val { font-size:.58rem;color:var(--text4);letter-spacing:.06em;margin-top:1px; }
-.w-desc-val {
-  margin-left:auto;font-size:.63rem;color:var(--text3);
-  text-align:right;text-transform:capitalize;max-width:68px;line-height:1.4;
-}
-
-/* STATS — stacked vertically */
-.w-stats { display:flex;flex-direction:column;gap:6px; }
-.stat {
-  background:var(--bg3);border-radius:8px;padding:7px 9px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.stat-label { font-size:.5rem;letter-spacing:.12em;color:var(--text4);text-transform:uppercase;font-weight:700; }
-.stat-right { text-align:right; }
-.stat-value { font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--purple-glow);letter-spacing:.04em;line-height:1; }
-.stat-sub { font-size:.5rem;color:var(--text4);line-height:1.3;margin-top:1px; }
-.w-loc-line { font-size:.58rem;color:var(--text4);text-align:center;letter-spacing:.05em; }
-.retry-loc { display:none;margin:1px auto 0;font-size:.58rem;color:var(--purple-glow);
-background:none;border:none;cursor:pointer;font-family:'Manrope',sans-serif;text-decoration:underline;padding:1px; }
-
-/* ── ROAST CARD ── */
-.roast-card {
-  background: linear-gradient(135deg, rgba(91,46,255,0.08), rgba(10,10,11,0.9));
-  border:1px solid rgba(91,46,255,0.3);
-  border-radius:16px;
-  padding:18px;
-  margin:16px 0;
-  position:relative;
-  overflow:hidden;
-  min-height:90px;
-  animation: fadeUp 0.8s ease forwards;
-}
-.roast-card::before {
-  content:'"';
-  position:absolute;
-  top:-15px; left:10px;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:8rem;
-  color:rgba(91,46,255,0.08);
-  pointer-events:none;
-  line-height:1;
-}
-
-.roast-cat {
-  font-size:0.52rem;
-  letter-spacing:0.22em;
-  color:var(--purple-glow);
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:8px;
-}
-.roast-txt {
-  font-size:1rem;
-  font-weight:600;
-  line-height:1.55;
-  color:var(--text);
-  position:relative;
-  z-index:1;
-  transition: opacity 0.2s, transform 0.2s;
-}
-.roast-txt.out { opacity:0; transform:translateY(6px); }
-.roast-txt.in { animation: jokeIn 0.3s ease forwards; }
-
-/* ── REACTION BUTTONS ── */
-.reactions {
-  display:flex;
-  gap:8px;
-  margin:12px 0;
-  animation: fadeUp 0.9s ease forwards;
-}
-.rxn-btn {
-  flex:1;
-  padding:11px 6px;
-  border-radius:10px;
-  font-family:'Manrope',sans-serif;
-  font-size:0.65rem;
-  font-weight:700;
-  letter-spacing:0.02em;
-  cursor:pointer;
-  border:1px solid;
-  transition:all 0.18s;
-  text-align:center;
-  line-height:1.3;
-}
-.rxn-roast { background:rgba(255,77,109,0.1); border-color:rgba(255,77,109,0.35); color:var(--red); }
-.rxn-roast:active { background:rgba(255,77,109,0.25); transform:scale(0.97); }
-.rxn-weak { background:var(--bg2); border-color:var(--border); color:var(--text3); }
-.rxn-weak:active { background:var(--bg3); transform:scale(0.97); }
-.rxn-hard { background:rgba(91,46,255,0.12); border-color:rgba(91,46,255,0.4); color:var(--purple-glow); }
-.rxn-hard:active { background:rgba(91,46,255,0.25); transform:scale(0.97); }
-
-.chaos-banner {
-  display:none;
-  text-align:center;
-  font-size:0.65rem;
-  font-weight:700;
-  letter-spacing:0.18em;
-  color:var(--red);
-  padding:8px;
-  border:1px solid rgba(255,77,109,0.35);
-  border-radius:8px;
-  background:rgba(255,77,109,0.07);
-  animation:pulse 1.5s infinite;
-  margin-top:8px;
-}
-
-/* ── EXPLICIT TOGGLE ── */
-.explicit-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px 16px;
-  margin:12px 0;
-}
-.explicit-lbl {
-  font-size:0.62rem;
-  letter-spacing:0.14em;
-  color:var(--text3);
-  text-transform:uppercase;
-  font-weight:700;
-}
-.tog {
-  position:relative;
-  width:44px; height:24px;
-  display:inline-block;
-}
-.tog input { opacity:0; width:0; height:0; }
-.tog-slider {
-  position:absolute;
-  inset:0;
-  background:var(--bg3);
-  border-radius:24px;
-  border:1px solid var(--border);
-  cursor:pointer;
-  transition:0.3s;
-}
-.tog-slider::before {
-  content:'';
-  position:absolute;
-  width:16px; height:16px;
-  left:3px; bottom:3px;
-  background:var(--text4);
-  border-radius:50%;
-  transition:0.3s;
-}
-.tog input:checked + .tog-slider { background:var(--purple); border-color:var(--purple); }
-.tog input:checked + .tog-slider::before { transform:translateX(20px); background:#fff; box-shadow:0 0 6px rgba(91,46,255,0.6); }
-
-/* ── SETTINGS MODAL ── */
-.modal-bg {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(10,10,11,0.88);
-  backdrop-filter:blur(6px);
-  padding:20px 16px;
-  overflow-y:auto;
-}
-.modal-bg.open { display:flex; align-items:flex-start; justify-content:center; }
-.modal {
-  background: linear-gradient(180deg, var(--bg2), var(--bg));
-  border:1px solid rgba(91,46,255,0.25);
-  border-radius:18px;
-  width:100%;
-  max-width:440px;
-  margin:auto;
-  animation: modalIn 0.25s ease;
-}
-.modal-hdr {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 18px 0;
-  margin-bottom:16px;
-}
-.modal-title {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.4rem;
-  letter-spacing:0.06em;
-  color:var(--purple-glow);
-}
-.modal-close {
-  width:30px; height:30px;
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:6px;
-  color:var(--text3);
-  font-size:0.9rem;
-  cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-}
-.modal-body { padding:0 18px 20px; }
-
-.s-group { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid var(--border); }
-.s-group:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
-.s-lbl {
-  display:block;
-  font-size:0.58rem;
-  letter-spacing:0.18em;
-  color:var(--purple-glow);
-  text-transform:uppercase;
-  font-weight:700;
-  margin-bottom:4px;
-}
-.s-desc { font-size:0.68rem; color:var(--text3); margin-bottom:10px; line-height:1.5; }
-
-.asset-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
-.asset-btn {
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:10px 4px;
-  color:var(--text3);
-  font-family:'Manrope',sans-serif;
-  font-size:0.58rem;
-  font-weight:700;
-  cursor:pointer;
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-  transition:all 0.18s;
-}
-.asset-btn.active, .asset-btn:hover { border-color:var(--purple); color:var(--purple-glow); background:rgba(91,46,255,0.1); }
-.asset-ico { font-size:1.2rem; }
-
-.name-inp {
-  width:100%;
-  background:var(--bg3);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:10px 12px;
-  color:var(--text);
-  font-family:'Manrope',sans-serif;
-  font-size:0.85rem;
-  outline:none;
-}
-.name-inp:focus { border-color:var(--purple); }
-.name-inp::placeholder { color:var(--text4); }
-
-.reset-btn {
-  width:100%;
-  padding:11px;
-  background:rgba(255,77,109,0.08);
-  border:1px solid rgba(255,77,109,0.3);
-  border-radius:8px;
-  color:var(--red);
-  font-family:'Manrope',sans-serif;
-  font-size:0.72rem;
-  font-weight:700;
-  cursor:pointer;
-  transition:all 0.18s;
-}
-.reset-btn:hover { background:rgba(255,77,109,0.18); }
-
-/* ── FOOTER ── */
-.footer {
-  text-align:center;
-  padding:14px 0;
-  border-top:1px solid var(--border);
-  margin-top:8px;
-}
-.footer-txt { font-size:0.6rem; color:var(--text4); }
-.footer-time { font-size:0.65rem; color:var(--purple-glow); margin-top:3px; font-weight:600; }
-
-/* ── INSTALL BANNER ── */
-.install-bar {
-  display:none;
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:200;
-  background: linear-gradient(90deg, var(--purple), var(--purple-glow));
-  color:#fff;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  font-size:0.72rem;
-  font-weight:600;
-}
-.inst-btn {
-  background:rgba(255,255,255,0.2);
-  border:1px solid rgba(255,255,255,0.4);
-  color:#fff;
-  padding:4px 12px;
-  border-radius:20px;
-  font-size:0.7rem;
-  font-weight:700;
-  cursor:pointer;
-  font-family:'Manrope',sans-serif;
-}
-.inst-x { background:none; border:none; color:rgba(255,255,255,0.6); cursor:pointer; margin-left:auto; font-size:1rem; }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(10px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes jokeIn {
-  from { opacity:0; transform:translateY(6px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes modalIn {
-  from { opacity:0; transform:scale(0.96); }
-  to   { opacity:1; transform:scale(1); }
-}
-@keyframes pulse {
-  0%,100% { opacity:1; }
-  50% { opacity:0.5; }
-}
-@keyframes flicker {
-  0%,100% { opacity:1; }
-  92% { opacity:1; }
-  93% { opacity:0.7; }
-  94% { opacity:1; }
-  96% { opacity:0.8; }
-  97% { opacity:1; }
-}
-
-/* ── NEW LAYOUT OVERRIDES ── */
-.main-row { display:flex; gap:12px; align-items:stretch; margin-bottom:16px; animation:fadeUp .6s ease; }
-.fig-panel { flex:0 0 138px; background:linear-gradient(180deg,#0d0a1a,#0A0A0B); border:1px solid var(--border); border-radius:16px; overflow:hidden; position:relative; display:flex; flex-direction:column; align-items:center; }
-.fig-label { font-size:.48rem; letter-spacing:.18em; color:var(--text4); text-transform:uppercase; font-weight:700; padding:8px 0 2px; text-align:center; }
-.fig-svg-wrap { width:100%; flex:1; display:flex; align-items:flex-end; justify-content:center; position:relative; overflow:hidden; padding:0 18px 0 4px; }
-.fig-glow { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:120px; height:120px; background:radial-gradient(circle,rgba(91,46,255,.22),transparent 70%); pointer-events:none; }
-.wind-bar-wrap { position:absolute; right:6px; top:8px; bottom:34px; width:6px; background:var(--bg3); border-radius:3px; border:1px solid var(--border); overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
-.wind-bar-fill { width:100%; height:0%; background:linear-gradient(0deg,var(--cyan),var(--purple-glow)); border-radius:3px; transition:height 1.5s cubic-bezier(.34,1.56,.64,1); }
-.w-panel { flex:1; background:linear-gradient(135deg,var(--bg2),var(--bg)); border:1px solid var(--border); border-radius:16px; padding:14px; position:relative; overflow:hidden; display:flex; flex-direction:column; gap:8px; }
-.w-panel .w-stats { display:flex; flex-direction:column; gap:5px; }
-.w-panel .stat { background:var(--bg3); border-radius:7px; padding:6px 9px; display:flex; align-items:center; justify-content:space-between; }
-.w-panel .stat-lbl { font-size:.5rem; letter-spacing:.1em; color:var(--text4); text-transform:uppercase; font-weight:700; }
-.w-panel .stat-val { font-family:'Bebas Neue',sans-serif; font-size:.95rem; color:var(--purple-glow); letter-spacing:.03em; line-height:1; }
-.w-panel .stat-sub { font-size:.5rem; color:var(--text4); line-height:1.2; margin-top:1px; }
-.w-panel .w-main { display:flex; align-items:center; gap:8px; }
-.w-panel .w-icon { font-size:2rem; line-height:1; }
-.w-panel .w-temp { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; line-height:1; }
-.w-panel .w-feels { font-size:.56rem; color:var(--text4); letter-spacing:.05em; margin-top:1px; }
-.w-panel .w-desc { margin-left:auto; font-size:.6rem; color:var(--text3); text-align:right; text-transform:capitalize; max-width:65px; line-height:1.35; }
-.w-panel .w-loc { font-size:.56rem; color:var(--text4); text-align:center; letter-spacing:.04em; }
-@media(max-width:360px){ .fig-panel{flex:0 0 118px;} .w-panel .w-temp{font-size:2rem;} }
-
-.logo { animation: flicker 8s infinite; }
+  --bg:#0A0A0B; --bg2:#111113; --bg3:#1A1A1F; --border:#222228;
+  --purple:#5B2EFF; --pglow:#7A5CFF; --cyan:#00E0FF;
+  --text:#F5F5F7; --text3:#9A9AAD; --text4:#6B6B78; --red:#FF4D6D;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 85% 5%,rgba(91,46,255,.18) 0%,transparent 42%),radial-gradient(circle at 10% 90%,rgba(122,92,255,.12) 0%,transparent 38%);}
+.wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 16px 40px;}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;border-bottom:1px solid var(--border);margin-bottom:18px;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;background:linear-gradient(90deg,var(--pglow),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;animation:flicker 9s infinite;}
+.logo small{display:block;font-size:.52rem;color:var(--text4);-webkit-text-fill-color:var(--text4);text-transform:uppercase;letter-spacing:.2em;}
+.hdr-btns{display:flex;gap:8px;}
+.icon-btn{width:36px;height:36px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text3);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.icon-btn:hover{border-color:var(--purple);color:var(--pglow);}
+.greeting{margin-bottom:16px;}
+.greeting-main{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;line-height:1.2;}
+.greeting-sub{font-size:.7rem;color:var(--pglow);margin-top:4px;font-weight:700;}
+.main-row{display:flex;gap:12px;margin-bottom:16px;}
+.fig-panel{flex:0 0 138px;background:linear-gradient(180deg,#0d0a1a,#0A0A0B);border:1px solid var(--border);border-radius:16px;display:flex;flex-direction:column;align-items:center;position:relative;}
+.fig-label{font-size:.48rem;letter-spacing:.18em;color:var(--text4);text-transform:uppercase;font-weight:700;padding:8px 0 2px;}
+.fig-svg-wrap{width:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;position:relative;padding:0 4px;}
+.fig-glow{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:120px;background:radial-gradient(circle,rgba(91,46,255,.22),transparent 70%);pointer-events:none;}
+#silBox{width:112px;position:relative;z-index:1;}
+.wind-bar-wrap{position:absolute;right:6px;top:8px;bottom:34px;width:6px;background:var(--bg3);border-radius:3px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+.wind-bar-fill{width:100%;height:0%;background:linear-gradient(0deg,var(--cyan),var(--pglow));border-radius:3px;transition:height 1.5s cubic-bezier(.34,1.56,.64,1);}
+.meter-caption{font-size:.58rem;color:var(--red);text-align:center;padding:5px 6px 7px;min-height:28px;font-weight:600;font-style:italic;line-height:1.3;}
+.w-panel{flex:1;background:linear-gradient(135deg,var(--bg2),var(--bg));border:1px solid var(--border);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px;}
+.w-main{display:flex;align-items:center;gap:8px;}
+.w-icon{font-size:2rem;}
+.w-temp{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;}
+.w-feels{font-size:.56rem;color:var(--text4);}
+.w-desc{margin-left:auto;font-size:.6rem;color:var(--text3);text-align:right;text-transform:capitalize;max-width:68px;line-height:1.35;}
+.w-stats{display:flex;flex-direction:column;gap:5px;}
+.stat{background:var(--bg3);border-radius:7px;padding:6px 9px;display:flex;align-items:center;justify-content:space-between;}
+.stat-lbl{font-size:.5rem;letter-spacing:.1em;color:var(--text4);text-transform:uppercase;font-weight:700;}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--pglow);line-height:1;}
+.stat-sub{font-size:.5rem;color:var(--text4);margin-top:1px;}
+.w-loc{font-size:.56rem;color:var(--text4);text-align:center;}
+#retryBtn{display:none;margin:2px auto 0;font-size:.58rem;color:var(--pglow);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Manrope',sans-serif;}
+.roast-card{background:linear-gradient(135deg,rgba(91,46,255,.08),rgba(10,10,11,.9));border:1px solid rgba(91,46,255,.3);border-radius:16px;padding:18px;margin:16px 0;position:relative;overflow:hidden;min-height:80px;}
+.roast-card::before{content:'\201C';position:absolute;top:-15px;left:8px;font-family:'Bebas Neue',sans-serif;font-size:7rem;color:rgba(91,46,255,.07);pointer-events:none;line-height:1;}
+.roast-cat{font-size:.52rem;letter-spacing:.22em;color:var(--pglow);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.roast-txt{font-size:1rem;font-weight:600;line-height:1.55;position:relative;z-index:1;transition:opacity .2s,transform .2s;}
+.roast-txt.out{opacity:0;transform:translateY(6px);}
+.roast-txt.in{animation:jokeIn .3s ease;}
+.reactions{display:flex;gap:8px;margin:12px 0;}
+.rxn-btn{flex:1;padding:11px 6px;border-radius:10px;font-family:'Manrope',sans-serif;font-size:.65rem;font-weight:700;cursor:pointer;border:1px solid;text-align:center;transition:all .17s;}
+.rxn-roast{background:rgba(255,77,109,.1);border-color:rgba(255,77,109,.35);color:var(--red);}
+.rxn-roast:active{background:rgba(255,77,109,.25);transform:scale(.97);}
+.rxn-weak{background:var(--bg2);border-color:var(--border);color:var(--text3);}
+.rxn-weak:active{background:var(--bg3);transform:scale(.97);}
+.rxn-hard{background:rgba(91,46,255,.12);border-color:rgba(91,46,255,.4);color:var(--pglow);}
+.rxn-hard:active{background:rgba(91,46,255,.22);transform:scale(.97);}
+.chaos-banner{display:none;text-align:center;font-size:.65rem;font-weight:700;letter-spacing:.16em;color:var(--red);padding:8px;border:1px solid rgba(255,77,109,.3);border-radius:8px;background:rgba(255,77,109,.07);animation:pulse 1.5s infinite;margin-bottom:10px;}
+.explicit-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin:12px 0;}
+.explicit-lbl{font-size:.62rem;letter-spacing:.14em;color:var(--text3);text-transform:uppercase;font-weight:700;}
+.tog{position:relative;display:inline-block;width:44px;height:24px;}
+.tog input{opacity:0;width:0;height:0;}
+.tog-slider{position:absolute;inset:0;background:var(--bg3);border-radius:24px;border:1px solid var(--border);cursor:pointer;transition:.3s;}
+.tog-slider::before{content:'';position:absolute;width:16px;height:16px;left:3px;bottom:3px;background:var(--text4);border-radius:50%;transition:.3s;}
+.tog input:checked+.tog-slider{background:var(--purple);border-color:var(--purple);}
+.tog input:checked+.tog-slider::before{transform:translateX(20px);background:#fff;box-shadow:0 0 6px rgba(91,46,255,.6);}
+.footer{text-align:center;padding:14px 0;border-top:1px solid var(--border);}
+.footer-txt{font-size:.6rem;color:var(--text4);}
+.footer-time{font-size:.65rem;color:var(--pglow);margin-top:3px;font-weight:600;}
+.modal-bg{display:none;position:fixed;inset:0;z-index:100;background:rgba(10,10,11,.9);backdrop-filter:blur(6px);padding:20px;overflow-y:auto;}
+.modal-bg.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{background:linear-gradient(180deg,var(--bg2),var(--bg));border:1px solid rgba(91,46,255,.22);border-radius:18px;width:100%;max-width:440px;margin:auto;animation:modalIn .25s ease;}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 0;margin-bottom:14px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.06em;color:var(--pglow);}
+.modal-close{width:30px;height:30px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.modal-body{padding:0 18px 20px;}
+.s-group{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.s-group:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.s-lbl{display:block;font-size:.55rem;letter-spacing:.18em;color:var(--pglow);text-transform:uppercase;font-weight:700;margin-bottom:3px;}
+.s-desc{font-size:.67rem;color:var(--text3);margin-bottom:9px;line-height:1.5;}
+.asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.asset-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 4px;color:var(--text3);font-family:'Manrope',sans-serif;font-size:.56rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .18s;}
+.asset-btn.active{border-color:var(--purple);color:var(--pglow);background:rgba(91,46,255,.1);}
+.name-inp{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'Manrope',sans-serif;font-size:.85rem;outline:none;}
+.name-inp:focus{border-color:var(--purple);}
+.name-inp::placeholder{color:var(--text4);}
+.reset-btn{width:100%;padding:10px;background:rgba(255,77,109,.08);border:1px solid rgba(255,77,109,.28);border-radius:8px;color:var(--red);font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;}
+@keyframes jokeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes modalIn{from{opacity:0;transform:scale(.96);}to{opacity:1;transform:scale(1);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+@keyframes flicker{0%,100%{opacity:1;}92%{opacity:1;}93%{opacity:.6;}94%{opacity:1;}97%{opacity:.75;}98%{opacity:1;}}
+@media(max-width:360px){.fig-panel{flex:0 0 118px;}.w-temp{font-size:2rem;}}
 </style>
 </head>
 <body>
-
-<div class="install-bar" id="installBar">
-  <span>📲 Add METEORUSSY to home screen</span>
-  <button class="inst-btn" onclick="doInstall()">Install</button>
-  <button class="inst-x" onclick="dismissInstall()">✕</button>
-</div>
-
 <div class="wrap">
-
-  <!-- HEADER -->
   <header class="hdr">
-    <div>
-      <div class="logo"><small>MIMEN's</small>METEORUSSY</div>
-    </div>
+    <div><div class="logo"><small>MIMEN's</small>METEORUSSY</div></div>
     <div class="hdr-btns">
-      <button class="icon-btn" onclick="openSettings()">⚙</button>
-      <button class="icon-btn" onclick="requestNotif()">🔔</button>
+      <button class="icon-btn" onclick="openSettings()">&#9881;</button>
+      <button class="icon-btn" onclick="reqNotif()">&#128276;</button>
     </div>
   </header>
-
-  <!-- GREETING -->
   <div class="greeting">
     <div class="greeting-main" id="greetMain">Loading your daily roast...</div>
     <div class="greeting-sub" id="greetSub"></div>
   </div>
-
-  <!-- MAIN ROW: figure left + weather right -->
   <div class="main-row">
-
-    <!-- FIGURE PANEL -->
     <div class="fig-panel">
       <div class="fig-label">HOTNESS METER</div>
       <div class="fig-svg-wrap">
         <div class="fig-glow"></div>
-        <div id="silBox" style="width:112px;position:relative;z-index:1;"></div>
+        <div id="silBox"></div>
         <div class="wind-bar-wrap"><div class="wind-bar-fill" id="barFill"></div></div>
       </div>
-      <div class="meter-caption" id="meterCap">—</div>
+      <div class="meter-caption" id="meterCap">&#8212;</div>
     </div>
-
-    <!-- WEATHER PANEL -->
     <div class="w-panel">
       <div class="w-main">
-        <div class="w-icon" id="wIcon">🌡</div>
+        <div class="w-icon" id="wIcon">&#127777;</div>
         <div>
-          <div class="w-temp" id="wTemp">--°</div>
-          <div class="w-feels" id="wFeels">FEELS LIKE --°</div>
+          <div class="w-temp" id="wTemp">--&#176;</div>
+          <div class="w-feels" id="wFeels">FEELS LIKE --&#176;</div>
         </div>
         <div class="w-desc" id="wDesc">fetching...</div>
       </div>
       <div class="w-stats">
-        <div class="stat">
-          <span class="stat-lbl">WETNESS</span>
-          <div style="text-align:right">
-            <div class="stat-val" id="wHumidity">--%</div>
-            <div class="stat-sub" id="wHumidDesc">--</div>
-          </div>
-        </div>
-        <div class="stat">
-          <span class="stat-lbl">WIND</span>
-          <div style="text-align:right">
-            <div class="stat-val" id="wWind">--</div>
-            <div class="stat-sub" id="wWindDesc">--</div>
-          </div>
-        </div>
-        <div class="stat">
-          <span class="stat-lbl">SKY</span>
-          <div style="text-align:right">
-            <div class="stat-val" id="wSky">--</div>
-            <div class="stat-sub" id="wSkyDesc">--</div>
-          </div>
-        </div>
+        <div class="stat"><span class="stat-lbl">WETNESS</span><div style="text-align:right"><div class="stat-val" id="wHumidity">--%</div><div class="stat-sub" id="wHumidDesc">--</div></div></div>
+        <div class="stat"><span class="stat-lbl">WIND</span><div style="text-align:right"><div class="stat-val" id="wWind">--</div><div class="stat-sub" id="wWindDesc">--</div></div></div>
+        <div class="stat"><span class="stat-lbl">SKY</span><div style="text-align:right"><div class="stat-val" id="wSky">--</div><div class="stat-sub" id="wSkyDesc">--</div></div></div>
       </div>
-      <div class="w-loc" id="wLoc">📍 detecting location...</div>
-      <button id="retryBtn" onclick="retryLocation()" style="display:none;margin:2px auto 0;font-size:.58rem;color:var(--purple-glow);background:none;border:none;cursor:pointer;font-family:Manrope,sans-serif;text-decoration:underline;">↻ retry location</button>
+      <div class="w-loc" id="wLoc">&#128205; detecting location...</div>
+      <button id="retryBtn" onclick="retryLocation()">&#8635; retry location</button>
     </div>
-
   </div>
-
-  <!-- ROAST -->
   <div class="roast-card">
     <div class="roast-cat" id="roastCat">DAILY ROAST</div>
     <div class="roast-txt" id="roastTxt">Loading your personalized insult...</div>
   </div>
-
-  <!-- REACTIONS -->
   <div class="reactions">
-    <button class="rxn-btn rxn-roast" onclick="react('roast')">🔁 Roast again</button>
-    <button class="rxn-btn rxn-weak" onclick="react('weak')">😒 Too weak</button>
-    <button class="rxn-btn rxn-hard" onclick="react('hard')">🔥 Go harder</button>
+    <button class="rxn-btn rxn-roast" onclick="react('roast')">&#128257; Roast again</button>
+    <button class="rxn-btn rxn-weak" onclick="react('weak')">&#128530; Too weak</button>
+    <button class="rxn-btn rxn-hard" onclick="react('hard')">&#128293; Go harder</button>
   </div>
-  <div class="chaos-banner" id="chaosBanner">⚠ CHAOS MODE UNLOCKED ⚠</div>
-
-  <!-- EXPLICIT TOGGLE -->
+  <div class="chaos-banner" id="chaosBanner">&#9888; CHAOS MODE UNLOCKED &#9888;</div>
   <div class="explicit-row">
     <span class="explicit-lbl">Explicit Mode</span>
-    <label class="tog">
-      <input type="checkbox" id="explToggle" checked onchange="setExplicit(this.checked)">
-      <span class="tog-slider"></span>
-    </label>
+    <label class="tog"><input type="checkbox" id="explToggle" onchange="setExplicit(this.checked)"><span class="tog-slider"></span></label>
   </div>
-
-  <!-- FOOTER -->
   <div class="footer">
-    <div class="footer-txt">Built with love and malice by Ikrame 💀</div>
+    <div class="footer-txt">Built with love and malice by Ikrame &#128128;</div>
     <div class="footer-time" id="clock"></div>
   </div>
-
 </div>
 
-<!-- SETTINGS MODAL -->
 <div class="modal-bg" id="settingsModal" onclick="outsideClose(event,'settingsModal')">
   <div class="modal">
     <div class="modal-hdr">
-      <div class="modal-title">⚙ ASS-ET MANAGER</div>
-      <button class="modal-close" onclick="closeSettings()">✕</button>
+      <div class="modal-title">&#9881; ASS-ET MANAGER</div>
+      <button class="modal-close" onclick="closeSettings()">&#10005;</button>
     </div>
     <div class="modal-body">
       <div class="s-group">
         <label class="s-lbl">Explicit Mode</label>
-        <p class="s-desc">Off = PG-13. For when he's showing this to his mom.</p>
-        <label class="tog">
-          <input type="checkbox" id="explToggle2" checked onchange="setExplicit(this.checked)">
-          <span class="tog-slider"></span>
-        </label>
+        <p class="s-desc">Off = PG-13. For when he is showing this to his mom.</p>
+        <label class="tog"><input type="checkbox" id="explToggle2" onchange="setExplicit(this.checked)"><span class="tog-slider"></span></label>
       </div>
       <div class="s-group">
         <label class="s-lbl">Favorite Asset</label>
-        <p class="s-desc">Silhouette color scheme. He's going to pretend he doesn't care.</p>
+        <p class="s-desc">Changes her color scheme. He will pretend he does not care.</p>
         <div class="asset-grid">
-          <button class="asset-btn" data-a="brunette" onclick="setAsset('brunette')"><span class="asset-ico">🟤</span>Brunette</button>
-          <button class="asset-btn" data-a="blonde" onclick="setAsset('blonde')"><span class="asset-ico">🟡</span>Blonde</button>
-          <button class="asset-btn" data-a="redhead" onclick="setAsset('redhead')"><span class="asset-ico">🔴</span>Redhead</button>
-          <button class="asset-btn active" data-a="random" onclick="setAsset('random')"><span class="asset-ico">🎲</span>Random</button>
+          <button class="asset-btn" data-a="brunette" onclick="setAsset('brunette')"><span>&#127812;</span>Brunette</button>
+          <button class="asset-btn" data-a="blonde" onclick="setAsset('blonde')"><span>&#11088;</span>Blonde</button>
+          <button class="asset-btn" data-a="redhead" onclick="setAsset('redhead')"><span>&#128308;</span>Redhead</button>
+          <button class="asset-btn active" data-a="random" onclick="setAsset('random')"><span>&#127922;</span>Random</button>
         </div>
       </div>
       <div class="s-group">
         <label class="s-lbl">Short Mode</label>
-        <p class="s-desc">Extra short jokes. Check "yes" if he deserves it.</p>
-        <label class="tog">
-          <input type="checkbox" id="shortToggle" onchange="setShort(this.checked)">
-          <span class="tog-slider"></span>
-        </label>
+        <p class="s-desc">Extra short jokes. Enable if he deserves it (he does).</p>
+        <label class="tog"><input type="checkbox" id="shortToggle" onchange="setShort(this.checked)"><span class="tog-slider"></span></label>
       </div>
       <div class="s-group">
         <label class="s-lbl">Victim Name</label>
-        <p class="s-desc">Who's getting roasted today?</p>
+        <p class="s-desc">Who is getting roasted today?</p>
         <input type="text" class="name-inp" id="nameInp" value="Mimen" placeholder="Mimen" oninput="setName(this.value)">
       </div>
       <div class="s-group">
-        <button class="reset-btn" onclick="resetMood()">🔄 Reset Chaos Level</button>
+        <button class="reset-btn" onclick="resetMood()">&#128260; Reset Chaos Level</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-const OWM='2133b5855a85429480c181245261703';
-let S={name:'Mimen',explicit:true,asset:'random',short:false,intensity:0,harderCount:0,chaos:false,recent:[],weather:null,lastFetch:0};
-function loadS(){try{const d=JSON.parse(localStorage.getItem('mrs')||'{}');Object.assign(S,d);S.weather=null;S.lastFetch=0;}catch(e){}}
-function saveS(){try{localStorage.setItem('mrs',JSON.stringify({...S,weather:null,lastFetch:0}));}catch(e){}}
+const OWM = "2133b5855a85429480c181245261703";
+let weatherLoaded = false;
 
-// ASSET COLORS
-const COLORS={brunette:{hair:'#2A0E00',skin:'#C8855A',hi:'#E0A070'},blonde:{hair:'#B8860B',skin:'#D4956A',hi:'#F0B87A'},redhead:{hair:'#8B0000',skin:'#C07858',hi:'#D89068'}};
-function getColors(){if(S.asset==='random'){const k=Object.keys(COLORS);return COLORS[k[Math.floor(Math.random()*k.length)]];}return COLORS[S.asset]||COLORS.brunette;}
-
-// ILLUSTRATED SVG — proper pin-up art style, wind controls clothing opacity
-function makeSil(temp,windKmh){
-  const c=getColors(),sk=c.skin,ha=c.hair,hi=c.hi;
-  const nude=S.explicit&&temp>=32,bikini=S.explicit&&temp>=25&&temp<32,tank=temp>=15&&temp<25,sweat=temp>=5&&temp<15,coat=temp<5;
-  const wo=Math.max(0,1-(windKmh/55)); // wind opacity: high wind = clothes fade
-  return `<svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-<defs>
-<radialGradient id="sg" cx="45%" cy="35%" r="65%"><stop offset="0%" stop-color="${hi}"/><stop offset="100%" stop-color="${sk}"/></radialGradient>
-<radialGradient id="bg" cx="38%" cy="28%" r="55%"><stop offset="0%" stop-color="${hi}"/><stop offset="100%" stop-color="${sk}"/></radialGradient>
-<linearGradient id="hg" x1="0%" y1="0%" x2="15%" y2="100%"><stop offset="0%" stop-color="${hi}" stop-opacity="0.8"/><stop offset="100%" stop-color="${ha}"/></linearGradient>
-<filter id="ds"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="rgba(0,0,0,0.55)"/></filter>
-</defs>
-<!-- LEGS -->
-<path d="M40 175 Q34 198 36 230 Q42 238 52 236 Q60 234 58 226 Q56 204 58 178Z" fill="url(#sg)" filter="url(#ds)"/>
-<path d="M80 175 Q86 198 84 230 Q78 238 68 236 Q60 234 62 226 Q64 204 62 178Z" fill="url(#sg)" filter="url(#ds)"/>
-<path d="M56 180 Q58 208 60 230" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none"/>
-<!-- HIPS -->
-<path d="M28 158 Q22 172 28 185 Q42 195 60 196 Q78 195 92 185 Q98 172 92 158 Q76 150 60 151 Q44 150 28 158Z" fill="url(#sg)"/>
-<!-- WAIST -->
-<path d="M34 128 Q26 145 28 158 Q44 150 60 151 Q76 150 92 158 Q94 145 86 128 Q72 120 60 121 Q48 120 34 128Z" fill="url(#sg)"/>
-<!-- navel -->
-<ellipse cx="60" cy="145" rx="2.5" ry="1.8" fill="rgba(0,0,0,0.18)"/>
-<!-- TORSO -->
-<path d="M32 90 Q24 112 26 128 Q48 120 60 121 Q72 120 94 128 Q96 112 88 90 Q74 78 60 79 Q46 78 32 90Z" fill="url(#sg)" filter="url(#ds)"/>
-<!-- BREASTS -->
-<path d="M29 94 Q24 110 28 122 Q38 132 52 129 Q64 124 64 113 Q64 94 52 86 Q38 82 29 94Z" fill="url(#bg)"/>
-<path d="M91 94 Q96 110 92 122 Q82 132 68 129 Q56 124 56 113 Q56 94 68 86 Q82 82 91 94Z" fill="url(#bg)"/>
-<path d="M52 129 Q58 134 64 129" stroke="rgba(0,0,0,0.12)" stroke-width="1.5" fill="none"/>
-<path d="M29 118 Q40 132 52 129" stroke="rgba(0,0,0,0.1)" stroke-width="5" fill="none" stroke-linecap="round"/>
-<path d="M91 118 Q80 132 68 129" stroke="rgba(0,0,0,0.1)" stroke-width="5" fill="none" stroke-linecap="round"/>
-${nude?`<circle cx="41" cy="112" r="5" fill="#A86060"/><circle cx="41" cy="112" r="2.5" fill="#7A3030"/><circle cx="79" cy="112" r="5" fill="#A86060"/><circle cx="79" cy="112" r="2.5" fill="#7A3030"/>`:''}
-<!-- CLOTHING -->
-${bikini?`<g opacity="${wo}"><path d="M25 90 Q30 114 41 124 Q52 131 60 128 Q68 131 79 124 Q90 114 95 90 Q84 76 79 82 Q72 98 60 100 Q48 98 41 82 Q36 76 25 90Z" fill="#18002A" stroke="rgba(91,46,255,0.5)" stroke-width="1"/><line x1="28" y1="92" x2="60" y2="86" stroke="#2A0040" stroke-width="2.5" stroke-linecap="round"/><line x1="92" y1="92" x2="60" y2="86" stroke="#2A0040" stroke-width="2.5" stroke-linecap="round"/></g><g opacity="${wo}"><path d="M28 158 Q24 178 30 190 Q42 198 60 199 Q78 198 90 190 Q96 178 92 158 Q76 148 60 149 Q44 148 28 158Z" fill="#18002A" stroke="rgba(91,46,255,0.3)" stroke-width="1"/></g>`:''}
-${tank&&!bikini?`<g opacity="${wo}"><path d="M28 86 Q20 114 22 158 L98 158 Q100 114 92 86 Q76 72 60 74 Q44 72 28 86Z" fill="#0D0D18"/><path d="M44 74 Q42 86 40 98" stroke="#161628" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M76 74 Q78 86 80 98" stroke="#161628" stroke-width="7" fill="none" stroke-linecap="round"/></g>`:''}
-${sweat?`<g opacity="${wo}"><path d="M20 84 Q12 116 14 162 L106 162 Q108 116 100 84 Q80 66 60 68 Q40 66 20 84Z" fill="#0C0C14"/><ellipse cx="60" cy="70" rx="14" ry="5" fill="#08080E"/></g>`:''}
-${coat?`<g opacity="${wo}"><path d="M8 78 Q0 116 2 168 L118 168 Q120 116 112 78 Q88 56 60 60 Q32 56 8 78Z" fill="#0A0A0C"/><path d="M60 60 L52 82 L60 100 L68 82Z" fill="#141416"/><circle cx="60" cy="106" r="3" fill="#1A1A1E"/><circle cx="60" cy="120" r="3" fill="#1A1A1E"/><circle cx="60" cy="134" r="3" fill="#1A1A1E"/><path d="M24 80 Q36 70 60 68 Q84 70 96 80 Q84 90 60 88 Q36 90 24 80Z" fill="#EEEEEA" opacity="0.9"/></g>`:''}
-<!-- ARMS -->
-<path d="M28 90 Q12 106 14 130 Q18 144 28 140 Q32 122 34 106Z" fill="url(#sg)" filter="url(#ds)"/>
-<path d="M92 90 Q108 106 106 130 Q102 144 92 140 Q88 122 86 106Z" fill="url(#sg)" filter="url(#ds)"/>
-${coat||sweat?`<path d="M20 84 Q4 102 6 128 Q12 144 28 140 Q32 122 36 102Z" fill="${coat?'#0A0A0C':'#0C0C14'}" opacity="${wo}"/><path d="M100 84 Q116 102 114 128 Q108 144 92 140 Q88 122 84 102Z" fill="${coat?'#0A0A0C':'#0C0C14'}" opacity="${wo}"/>`:''}
-<!-- HANDS -->
-<ellipse cx="14" cy="134" rx="9" ry="7" fill="url(#sg)"/>
-<ellipse cx="106" cy="134" rx="9" ry="7" fill="url(#sg)"/>
-<!-- NECK -->
-<path d="M50 50 Q48 66 50 77 Q55 82 60 82 Q65 82 70 77 Q72 66 70 50 Q65 44 60 44 Q55 44 50 50Z" fill="url(#sg)"/>
-<!-- collarbone -->
-<path d="M34 82 Q46 76 60 78 Q74 76 86 82" stroke="rgba(0,0,0,0.1)" stroke-width="2" fill="none"/>
-<!-- HEAD -->
-<ellipse cx="60" cy="32" rx="25" ry="28" fill="url(#sg)" filter="url(#ds)"/>
-<path d="M38 40 Q40 56 50 64 Q55 68 60 69 Q65 68 70 64 Q80 56 82 40" fill="url(#sg)"/>
-<!-- HAIR -->
-<path d="M36 18 Q34 2 60 0 Q86 2 84 18 Q86 6 76 1 Q66 -3 60 -2 Q54 -3 44 1 Q34 6 36 18Z" fill="url(#hg)"/>
-<path d="M36 18 Q26 36 24 60 Q22 82 26 100" stroke="url(#hg)" stroke-width="9" fill="none" stroke-linecap="round"/>
-<path d="M84 18 Q94 36 96 60 Q98 82 94 100" stroke="url(#hg)" stroke-width="9" fill="none" stroke-linecap="round"/>
-<path d="M33 18 Q22 38 20 64 Q18 88 22 104" stroke="${ha}" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
-<path d="M47 2 Q60 -2 73 2" stroke="${hi}" stroke-width="2.5" fill="none" opacity="0.45" stroke-linecap="round"/>
-<!-- FACE -->
-<ellipse cx="48" cy="30" rx="7.5" ry="5.5" fill="rgba(0,0,0,0.06)"/>
-<ellipse cx="72" cy="30" rx="7.5" ry="5.5" fill="rgba(0,0,0,0.06)"/>
-<ellipse cx="48" cy="30" rx="6.5" ry="4.5" fill="#F5EDED"/>
-<ellipse cx="72" cy="30" rx="6.5" ry="4.5" fill="#F5EDED"/>
-<circle cx="48" cy="31" r="4" fill="#18061E"/>
-<circle cx="72" cy="31" r="4" fill="#18061E"/>
-<circle cx="48" cy="31" r="2.5" fill="#2C1040"/>
-<circle cx="72" cy="31" r="2.5" fill="#2C1040"/>
-<circle cx="48" cy="31" r="1.5" fill="#060208"/>
-<circle cx="72" cy="31" r="1.5" fill="#060208"/>
-<ellipse cx="46.5" cy="29.5" rx="1.3" ry="1.2" fill="rgba(255,255,255,0.75)"/>
-<ellipse cx="70.5" cy="29.5" rx="1.3" ry="1.2" fill="rgba(255,255,255,0.75)"/>
-<path d="M42 27 Q48 23 54 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M66 27 Q72 23 78 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M42 27 Q48 23 54 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M41 27 L39 24 M44 25 L43 22 M47 24 L47 21 M50 24 L51 21 M53 25 L55 22" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-<path d="M65 25 L65 22 M68 24 L69 21 M71 24 L72 21 M74 25 L76 22 M77 27 L79 24" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-<path d="M57 38 Q58 44 56 47 Q59 50 60 49 Q61 50 64 47 Q62 44 63 38" stroke="rgba(0,0,0,0.14)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-<path d="M48 56 Q53 53 60 54 Q67 53 72 56 Q67 63 60 63 Q53 63 48 56Z" fill="#7A1020"/>
-<path d="M48 56 Q53 52 58 55 Q60 53 62 55 Q67 52 72 56" fill="#7A1020" stroke="#5A0810" stroke-width="0.8"/>
-<path d="M53 56 Q58 54 62 56 Q64 54 67 56" stroke="rgba(255,140,140,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-<ellipse cx="40" cy="38" rx="7" ry="4" fill="rgba(180,80,80,0.09)"/>
-<ellipse cx="80" cy="38" rx="7" ry="4" fill="rgba(180,80,80,0.09)"/>
-<!-- FEET -->
-<ellipse cx="44" cy="234" rx="9" ry="5" fill="url(#sg)"/>
-<ellipse cx="76" cy="234" rx="9" ry="5" fill="url(#sg)"/>
-</svg>`;
-}
-
-// METER UPDATE
-function updateMeter(temp,windKmh){
-  windKmh=windKmh||0;
-  document.getElementById('silBox').innerHTML=makeSil(temp,windKmh);
-  const pct=Math.min(100,Math.max(0,((temp+20)/60)*100));
-  document.getElementById('barFill').style.height=pct+'%';
-  const cap=document.getElementById('meterCap');
-  if(temp<5) cap.textContent="Bundled up. Even she's cold.";
-  else if(temp<15) cap.textContent="Sweater off. Warming up.";
-  else if(temp<25) cap.textContent="Tank top. Vibes only.";
-  else if(temp<32) cap.textContent="Bikini. Sun wins.";
-  else cap.textContent="So hot she couldn't keep it on. Hydrate, whore.";
-}
-
-// JOKES
-const J={
-  bent:["That bent dick of yours looks like it's trying to dodge responsibility, fuck.","Call NASA, cunt—your cock's already launching on a 45-degree trajectory.","Six inches? More like six inches sideways, you kinky pretzel-dick bastard.","Your shaft's so curved it needs its own sat-nav, shithead.","I've seen straighter lines on a toddler's crayon drawing, you horny gremlin.","Congrats, fucker—you're the only guy who can high-five his own belly button.","That dick's a boomerang: throw it in, it curves right back to lonely town.","GPS rerouted—your cock keeps taking the scenic route, asshole.","Bend it like Beckham? Nah, you birthed Beckham's bend, you dirty legend.","Your dick's so crooked it signs its own name in cursive, cunt.","Six inches of question-mark energy—punctuation meets penetration, huh?","Even your dick can't commit to a straight line—on brand, you chaotic fuck.","Bro, surgeons use your cock as the protractor they lost in med school.","That dick curves harder than crypto charts on crash day—hold the line, fucker.","Six inches? Sure—if you measure along the arc, circus dick.","It's so bent, the condom needs a hinge, you filthy beast.","That pecker's basically a question mark asking, 'Why am I like this?'","Fuck symmetry—your cock's living its best avant-garde life, you degenerate king."],
-  mild:["Your confidence curves more than a mountain road.","You walk in at a 45-degree angle of optimism.","Your life trajectory is uniquely non-linear.","Six inches of chaotic energy. Still standing."],
-  weather:["Sun's out, tits out. Not yours though—just your confidence melting, short king.","UV index high. Goth girls still not texting you back. Tragic.","Hot day. Perfect time to cook something. Unlike your love life, which remains raw.","Still no goth girlfriend in sight. Stay strong, soldier.","It's so hot even your art skills couldn't draw you some bitches.","Sun shining. Asses everywhere. Still none for you. Stay hydrated.","It's wet outside. Not everything is about you, you horny bastard.","Rain falling. You cooking something or just staring at the window like a depressed chef?","Wet weather. Perfect for drawing. Or crying. Same thing for you.","Rainy day. Goth girl weather. You still alone though. Damn.","Humidity 80%. Your standards? 0%. Stay focused.","Storm incoming. Your mood already beat it to the punch.","Wind's strong today. Might finally lift you a few centimeters off the ground.","Windy. Your hair's a mess. Your life? Bigger mess.","Cold as hell. Even your motivation froze. Again.","Snowing. You tried to draw a snow angel but got mistaken for a footprint.","Freezing temps. Goth girls thriving. You still not invited.","Cold outside. Go cook something warm. Like your nonexistent love life.","Gray skies. Perfect match for your mood when a goth girl ignores you.","Clear night. Stars out. You still inside simping for imaginary goth girls.","It's late. Go to sleep. Even your crooked dick needs rest.","Thunderstorms. God is angry. Probably at your haircut.","Lightning: twice as many strikes as your Tinder matches.","Hail expected. Small ice balls. Like your future.","Flood warning. Stay inside. You might drown in a puddle.","Wind advisory. Secure loose objects. You are a loose object.","Tornado watch. Hide in a ditch. Finally, eye level."],
-  art:["Weather's perfect for cooking. At least one part of your life is under control.","You cook better than you date. That's not a compliment.","Nice weather for drawing. Too bad you can't sketch yourself some standards.","You draw beautifully. Shame you can't draw a girlfriend into existence.","Weather updated. Generated by AI. You hate me. Stay mad.","Forecast powered by AI. Yeah, I exist. Cry about it.","AI says it's sunny. You say AI sucks. Who's right today?","You opened this app again. Commitment. Shame you don't commit to anything else.","Daily reminder: you're short, horny, and somehow still optimistic. Respect.","Weather's mid. You're mid. Balance restored.","Another day, another chance to not get a girlfriend. You're consistent, king.","Rainy day meal incoming? Or are you just seasoning your sadness again?"],
-  wholesome:["Hey… have a good day. For real.","You're annoying, but you're my favorite annoying person.","Go cook something nice today. You deserve it.","You're actually talented. Don't waste that.","Take it easy today, yeah? Not everything needs to be chaos.","Weather's mid. Like you.\n…still checking this app though. I'm clearly your favorite.","You make people laugh. That's rarer than being tall."],
-  unhinged:["It's freezing. Your dick shrunk so much it's now a clit. Congrats on the upgrade.","Electrical storm. Your personality? Shocking. Not in a good way.","Global warming is real. So is your virginity.","Sun's out. She's out. You're still in. Symmetry.","Comet visible once in 80 years. You've been visible once in your life. Birth."],
-  short:["Looking for your self-esteem. Police widened the search to include the ground.","Dating profile: '6ft on Tinder.' Reality: '6ft if standing on your wallet.'","You walked under a rainbow. No one saw you for 3 days.","So short your belly button smells like feet.","So short, when you cry, you cry upwards.","You're not short. You're concentrated awesome. Like a grenade. Or a turd.","Wind advisory. Secure loose objects. You are a loose object."]
+let S = {
+  name: "Mimen", explicit: true, asset: "random", short: false,
+  intensity: 0, harderCount: 0, chaos: false, recent: [],
+  weather: null, lastFetch: 0
 };
 
-function pickJoke(){
-  const w=S.chaos?{wh:.03,u:.25,b:.55,a:.07,wr:.1}:S.intensity===2?{wh:.05,u:.2,b:.3,a:.1,wr:.35}:S.intensity===1?{wh:.1,u:.1,b:.2,a:.15,wr:.45}:{wh:.17,u:.05,b:.1,a:.2,wr:.48};
-  const r=Math.random();
-  let pool;
-  if(r<w.wh) pool=[...J.wholesome];
-  else if(r<w.wh+w.u) pool=[...J.unhinged];
-  else if(r<w.wh+w.u+w.b) pool=S.explicit?[...J.bent]:[...J.mild];
-  else if(r<w.wh+w.u+w.b+w.a) pool=[...J.art];
-  else pool=[...J.weather];
-  if(S.short&&Math.random()>.55) pool=[...pool,...J.short];
-  const av=pool.filter(j=>!S.recent.includes(j));
-  const fin=av.length?av:pool;
-  const jk=fin[Math.floor(Math.random()*fin.length)];
-  S.recent=[jk,...S.recent].slice(0,3);
-  return jk.replace(/Mimen/g,S.name||'Mimen');
+function loadState() {
+  try {
+    const d = JSON.parse(localStorage.getItem("mrs") || "{}");
+    if (typeof d.name === "string") S.name = d.name;
+    if (typeof d.explicit === "boolean") S.explicit = d.explicit;
+    if (typeof d.asset === "string") S.asset = d.asset;
+    if (typeof d.short === "boolean") S.short = d.short;
+    if (typeof d.intensity === "number") S.intensity = d.intensity;
+    if (typeof d.harderCount === "number") S.harderCount = d.harderCount;
+    if (typeof d.chaos === "boolean") S.chaos = d.chaos;
+    if (Array.isArray(d.recent)) S.recent = d.recent;
+  } catch(e) {}
 }
-function jokeCat(j){
-  if(J.bent.some(x=>j.startsWith(x.substring(0,15)))) return '🍆 BENT DICK ALERT';
-  if(J.wholesome.some(x=>j.startsWith(x.substring(0,15)))) return '💗 SURPRISINGLY WHOLESOME';
-  if(J.unhinged.some(x=>j.startsWith(x.substring(0,15)))) return '⚡ UNHINGED MODE';
-  if(J.art.some(x=>j.startsWith(x.substring(0,15)))) return '🎨 CHEF / ARTIST ENERGY';
-  return '🌡 DAILY ROAST';
+
+function saveState() {
+  try {
+    localStorage.setItem("mrs", JSON.stringify({
+      name: S.name, explicit: S.explicit, asset: S.asset, short: S.short,
+      intensity: S.intensity, harderCount: S.harderCount, chaos: S.chaos, recent: S.recent
+    }));
+  } catch(e) {}
+}
+
+// COLORS
+const COLORS = {
+  brunette: { hair: "#2A0E00", skin: "#C8855A", hi: "#E0A070" },
+  blonde:   { hair: "#B8860B", skin: "#D4956A", hi: "#F0B87A" },
+  redhead:  { hair: "#8B0000", skin: "#C07858", hi: "#D89068" }
+};
+function getColors() {
+  if (S.asset === "random") {
+    const k = Object.keys(COLORS);
+    return COLORS[k[Math.floor(Math.random() * k.length)]];
+  }
+  return COLORS[S.asset] || COLORS.brunette;
+}
+
+// SVG FIGURE
+function makeSil(temp, windKmh) {
+  const c = getColors(), sk = c.skin, ha = c.hair, hi = c.hi;
+  const nude   = S.explicit && temp >= 32;
+  const bikini = S.explicit && temp >= 25 && temp < 32;
+  const tank   = temp >= 15 && temp < 25;
+  const sweat  = temp >= 5  && temp < 15;
+  const coat   = temp < 5;
+  const wo = Math.max(0, 1 - (windKmh / 55)).toFixed(2);
+
+  return "<svg viewBox=\"0 0 120 240\" xmlns=\"http://www.w3.org/2000/svg\" style=\"width:100%;display:block;\">" +
+  "<defs>" +
+  "<radialGradient id=\"sg\" cx=\"45%\" cy=\"35%\" r=\"65%\"><stop offset=\"0%\" stop-color=\"" + hi + "\"/><stop offset=\"100%\" stop-color=\"" + sk + "\"/></radialGradient>" +
+  "<radialGradient id=\"bg\" cx=\"38%\" cy=\"28%\" r=\"55%\"><stop offset=\"0%\" stop-color=\"" + hi + "\"/><stop offset=\"100%\" stop-color=\"" + sk + "\"/></radialGradient>" +
+  "<linearGradient id=\"hg\" x1=\"0%\" y1=\"0%\" x2=\"15%\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"" + hi + "\" stop-opacity=\"0.8\"/><stop offset=\"100%\" stop-color=\"" + ha + "\"/></linearGradient>" +
+  "<filter id=\"ds\"><feDropShadow dx=\"0\" dy=\"3\" stdDeviation=\"3.5\" flood-color=\"rgba(0,0,0,0.55)\"/></filter>" +
+  "</defs>" +
+  "<path d=\"M40 175 Q34 198 36 230 Q42 238 52 236 Q60 234 58 226 Q56 204 58 178Z\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<path d=\"M80 175 Q86 198 84 230 Q78 238 68 236 Q60 234 62 226 Q64 204 62 178Z\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<path d=\"M28 158 Q22 172 28 185 Q42 195 60 196 Q78 195 92 185 Q98 172 92 158 Q76 150 60 151 Q44 150 28 158Z\" fill=\"url(#sg)\"/>" +
+  "<path d=\"M34 128 Q26 145 28 158 Q44 150 60 151 Q76 150 92 158 Q94 145 86 128 Q72 120 60 121 Q48 120 34 128Z\" fill=\"url(#sg)\"/>" +
+  "<ellipse cx=\"60\" cy=\"145\" rx=\"2.5\" ry=\"1.8\" fill=\"rgba(0,0,0,0.18)\"/>" +
+  "<path d=\"M32 90 Q24 112 26 128 Q48 120 60 121 Q72 120 94 128 Q96 112 88 90 Q74 78 60 79 Q46 78 32 90Z\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<path d=\"M29 94 Q24 110 28 122 Q38 132 52 129 Q64 124 64 113 Q64 94 52 86 Q38 82 29 94Z\" fill=\"url(#bg)\"/>" +
+  "<path d=\"M91 94 Q96 110 92 122 Q82 132 68 129 Q56 124 56 113 Q56 94 68 86 Q82 82 91 94Z\" fill=\"url(#bg)\"/>" +
+  "<path d=\"M52 129 Q58 134 64 129\" stroke=\"rgba(0,0,0,0.12)\" stroke-width=\"1.5\" fill=\"none\"/>" +
+  "<path d=\"M29 118 Q40 132 52 129\" stroke=\"rgba(0,0,0,0.1)\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  "<path d=\"M91 118 Q80 132 68 129\" stroke=\"rgba(0,0,0,0.1)\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  (nude ? "<circle cx=\"41\" cy=\"112\" r=\"5\" fill=\"#A86060\"/><circle cx=\"41\" cy=\"112\" r=\"2.5\" fill=\"#7A3030\"/><circle cx=\"79\" cy=\"112\" r=\"5\" fill=\"#A86060\"/><circle cx=\"79\" cy=\"112\" r=\"2.5\" fill=\"#7A3030\"/>" : "") +
+  (bikini ? "<g opacity=\"" + wo + "\"><path d=\"M25 90 Q30 114 41 124 Q52 131 60 128 Q68 131 79 124 Q90 114 95 90 Q84 76 79 82 Q72 98 60 100 Q48 98 41 82 Q36 76 25 90Z\" fill=\"#18002A\" stroke=\"rgba(91,46,255,0.5)\" stroke-width=\"1\"/><line x1=\"28\" y1=\"92\" x2=\"60\" y2=\"86\" stroke=\"#2A0040\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"92\" y1=\"92\" x2=\"60\" y2=\"86\" stroke=\"#2A0040\" stroke-width=\"2.5\" stroke-linecap=\"round\"/></g><g opacity=\"" + wo + "\"><path d=\"M28 158 Q24 178 30 190 Q42 198 60 199 Q78 198 90 190 Q96 178 92 158 Q76 148 60 149 Q44 148 28 158Z\" fill=\"#18002A\" stroke=\"rgba(91,46,255,0.3)\" stroke-width=\"1\"/></g>" : "") +
+  (tank && !bikini ? "<g opacity=\"" + wo + "\"><path d=\"M28 86 Q20 114 22 158 L98 158 Q100 114 92 86 Q76 72 60 74 Q44 72 28 86Z\" fill=\"#0D0D18\"/></g>" : "") +
+  (sweat ? "<g opacity=\"" + wo + "\"><path d=\"M20 84 Q12 116 14 162 L106 162 Q108 116 100 84 Q80 66 60 68 Q40 66 20 84Z\" fill=\"#0C0C14\"/></g>" : "") +
+  (coat ? "<g opacity=\"" + wo + "\"><path d=\"M8 78 Q0 116 2 168 L118 168 Q120 116 112 78 Q88 56 60 60 Q32 56 8 78Z\" fill=\"#0A0A0C\"/><path d=\"M24 80 Q36 70 60 68 Q84 70 96 80 Q84 90 60 88 Q36 90 24 80Z\" fill=\"#EEEEEA\" opacity=\"0.9\"/></g>" : "") +
+  "<path d=\"M28 90 Q12 106 14 130 Q18 144 28 140 Q32 122 34 106Z\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<path d=\"M92 90 Q108 106 106 130 Q102 144 92 140 Q88 122 86 106Z\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<ellipse cx=\"14\" cy=\"134\" rx=\"9\" ry=\"7\" fill=\"url(#sg)\"/>" +
+  "<ellipse cx=\"106\" cy=\"134\" rx=\"9\" ry=\"7\" fill=\"url(#sg)\"/>" +
+  "<path d=\"M50 50 Q48 66 50 77 Q55 82 60 82 Q65 82 70 77 Q72 66 70 50 Q65 44 60 44 Q55 44 50 50Z\" fill=\"url(#sg)\"/>" +
+  "<ellipse cx=\"60\" cy=\"32\" rx=\"25\" ry=\"28\" fill=\"url(#sg)\" filter=\"url(#ds)\"/>" +
+  "<path d=\"M38 40 Q40 56 50 64 Q55 68 60 69 Q65 68 70 64 Q80 56 82 40\" fill=\"url(#sg)\"/>" +
+  "<path d=\"M36 18 Q34 2 60 0 Q86 2 84 18 Q86 6 76 1 Q66 -3 60 -2 Q54 -3 44 1 Q34 6 36 18Z\" fill=\"url(#hg)\"/>" +
+  "<path d=\"M36 18 Q26 36 24 60 Q22 82 26 100\" stroke=\"url(#hg)\" stroke-width=\"9\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  "<path d=\"M84 18 Q94 36 96 60 Q98 82 94 100\" stroke=\"url(#hg)\" stroke-width=\"9\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  "<ellipse cx=\"48\" cy=\"30\" rx=\"6.5\" ry=\"4.5\" fill=\"#F5EDED\"/>" +
+  "<ellipse cx=\"72\" cy=\"30\" rx=\"6.5\" ry=\"4.5\" fill=\"#F5EDED\"/>" +
+  "<circle cx=\"48\" cy=\"31\" r=\"4\" fill=\"#18061E\"/>" +
+  "<circle cx=\"72\" cy=\"31\" r=\"4\" fill=\"#18061E\"/>" +
+  "<circle cx=\"48\" cy=\"31\" r=\"1.5\" fill=\"#060208\"/>" +
+  "<circle cx=\"72\" cy=\"31\" r=\"1.5\" fill=\"#060208\"/>" +
+  "<ellipse cx=\"46.5\" cy=\"29.5\" rx=\"1.3\" ry=\"1.2\" fill=\"rgba(255,255,255,0.75)\"/>" +
+  "<ellipse cx=\"70.5\" cy=\"29.5\" rx=\"1.3\" ry=\"1.2\" fill=\"rgba(255,255,255,0.75)\"/>" +
+  "<path d=\"M42 27 Q48 23 54 27\" stroke=\"" + ha + "\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  "<path d=\"M66 27 Q72 23 78 27\" stroke=\"" + ha + "\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>" +
+  "<path d=\"M57 38 Q58 44 56 47 Q59 50 60 49 Q61 50 64 47 Q62 44 63 38\" stroke=\"rgba(0,0,0,0.14)\" stroke-width=\"1.5\" fill=\"none\"/>" +
+  "<path d=\"M48 56 Q53 53 60 54 Q67 53 72 56 Q67 63 60 63 Q53 63 48 56Z\" fill=\"#7A1020\"/>" +
+  "<ellipse cx=\"44\" cy=\"234\" rx=\"9\" ry=\"5\" fill=\"url(#sg)\"/>" +
+  "<ellipse cx=\"76\" cy=\"234\" rx=\"9\" ry=\"5\" fill=\"url(#sg)\"/>" +
+  "</svg>";
+}
+
+function updateMeter(temp, windKmh) {
+  windKmh = windKmh || 0;
+  document.getElementById("silBox").innerHTML = makeSil(temp, windKmh);
+  const pct = Math.min(100, Math.max(0, ((temp + 20) / 60) * 100));
+  document.getElementById("barFill").style.height = pct + "%";
+  const cap = document.getElementById("meterCap");
+  if (temp < 5)       cap.textContent = "Bundled up. Even she is cold.";
+  else if (temp < 15) cap.textContent = "Sweater off. Warming up.";
+  else if (temp < 25) cap.textContent = "Tank top. Vibes only.";
+  else if (temp < 32) cap.textContent = "Bikini. Sun wins.";
+  else                cap.textContent = "So hot she could not keep it on. Hydrate, whore.";
+}
+
+// JOKES - all written talking TO him (you/your) for roasts, third person for observations
+const J = {
+  bent: [
+    "That bent dick of yours looks like it's trying to dodge responsibility, fuck.",
+    "Call NASA, cunt — your cock's already launching on a 45-degree trajectory.",
+    "Six inches? More like six inches sideways, you kinky pretzel-dick bastard.",
+    "Your shaft's so curved it needs its own sat-nav, shithead.",
+    "Congrats, fucker — you're the only guy who can high-five his own belly button.",
+    "That dick's a boomerang: throw it in, it curves right back to lonely town.",
+    "Your dick's so crooked it signs its own name in cursive, cunt.",
+    "Even your dick can't commit to a straight line — on brand, you chaotic fuck.",
+    "That dick curves harder than crypto charts on crash day. Hold the line, fucker.",
+    "Six inches? Sure — if you measure along the arc, circus dick.",
+    "Fuck symmetry — your cock's living its best avant-garde life, you degenerate king.",
+    "It's so bent, the condom needs a hinge, you filthy beast.",
+    "That pecker is basically a question mark asking: why am I like this."
+  ],
+  mild: [
+    "Your confidence curves more than a mountain road.",
+    "Your life trajectory is uniquely non-linear.",
+    "Six inches of chaotic energy. Still standing somehow."
+  ],
+  weather: [
+    "Sun's out, tits out. Not yours though. Just your confidence melting, short king.",
+    "UV index high. Goth girls still not texting you back. Tragic.",
+    "Hot day. Perfect time to cook something. Unlike your love life, which remains raw.",
+    "Still no goth girlfriend in sight. Stay strong, soldier.",
+    "Sun shining. Asses everywhere. Still none for you. Stay hydrated.",
+    "It's wet outside. Not everything is about you, you horny bastard.",
+    "Rain falling. Are you cooking or just staring out the window like a depressed chef?",
+    "Rainy day. Goth girl weather. You're still alone though. Damn.",
+    "Humidity at 80%. Your standards? 0%. Stay focused.",
+    "Wind's strong today. Might finally lift you a few centimeters off the ground.",
+    "Windy. Your hair's a mess. Your life? Bigger mess.",
+    "Cold as hell. Even your motivation froze. Again.",
+    "Snowing. You tried to draw a snow angel but got mistaken for a footprint.",
+    "Cold outside. Go cook something warm. Like your nonexistent love life.",
+    "Clear night. Stars out. You're still inside simping for imaginary goth girls.",
+    "Thunderstorms. God is angry. Probably at your haircut.",
+    "Hail expected. Small ice balls. Like your future.",
+    "Wind advisory. Secure loose objects. You are a loose object."
+  ],
+  art: [
+    "Weather's perfect for cooking. At least one part of your life is under control.",
+    "You cook better than you date. That's not a compliment.",
+    "Nice weather for drawing. Too bad you can't sketch yourself some standards.",
+    "You draw beautifully. Shame you can't draw a girlfriend into existence.",
+    "Daily reminder: you're short, horny, and somehow still optimistic. Respect.",
+    "Weather's mid. You're mid. Balance restored.",
+    "You opened this app again. That's commitment. Shame you don't commit to anything else.",
+    "Another day, another chance to not get a girlfriend. You're consistent, king."
+  ],
+  wholesome: [
+    "Hey. Have a good day. For real.",
+    "You're annoying, but you're my favorite annoying person.",
+    "Go cook something nice today. You deserve it.",
+    "You're actually talented. Don't waste that.",
+    "Take it easy today, yeah? Not everything needs to be chaos.",
+    "You make people laugh. That's rarer than being tall."
+  ],
+  unhinged: [
+    "It's freezing. Your dick shrunk so much it's now a clit. Congrats on the upgrade.",
+    "Global warming is real. So is your virginity.",
+    "Sun's out. She's out. You're still in. Symmetry.",
+    "Electrical storm. Your personality? Shocking. Not in a good way."
+  ],
+  short: [
+    "Looking for your self-esteem. Police widened the search to include the ground.",
+    "Dating profile: 6ft on Tinder. Reality: 6ft if standing on your wallet.",
+    "You walked under a rainbow. No one saw you for 3 days.",
+    "So short your belly button smells like feet.",
+    "Wind advisory. Secure loose objects. You are a loose object."
+  ]
+};
+
+function pickJoke() {
+  const w = S.chaos ?
+    { wh: 0.03, u: 0.25, b: 0.55, a: 0.07, wr: 0.1 } :
+    S.intensity === 2 ? { wh: 0.05, u: 0.2, b: 0.3, a: 0.1, wr: 0.35 } :
+    S.intensity === 1 ? { wh: 0.1,  u: 0.1, b: 0.2, a: 0.15, wr: 0.45 } :
+                        { wh: 0.17, u: 0.05, b: 0.1, a: 0.2, wr: 0.48 };
+  const r = Math.random();
+  let pool;
+  if (r < w.wh)                  pool = [...J.wholesome];
+  else if (r < w.wh + w.u)       pool = [...J.unhinged];
+  else if (r < w.wh + w.u + w.b) pool = S.explicit ? [...J.bent] : [...J.mild];
+  else if (r < w.wh + w.u + w.b + w.a) pool = [...J.art];
+  else pool = [...J.weather];
+  if (S.short && Math.random() > 0.55) pool = [...pool, ...J.short];
+  const available = pool.filter(j => !S.recent.includes(j));
+  const finalPool = available.length ? available : pool;
+  const joke = finalPool[Math.floor(Math.random() * finalPool.length)];
+  S.recent = [joke, ...S.recent].slice(0, 3);
+  return joke;
+}
+
+function showJoke() {
+  const joke = pickJoke();
+  const el = document.getElementById("roastTxt");
+  const cat = document.getElementById("roastCat");
+  let category = "DAILY ROAST";
+  if (J.bent.some(j => joke.startsWith(j.substring(0,15))))      category = "BENT DICK ALERT";
+  else if (J.wholesome.some(j => joke.startsWith(j.substring(0,15)))) category = "SURPRISINGLY WHOLESOME";
+  else if (J.unhinged.some(j => joke.startsWith(j.substring(0,15))))  category = "UNHINGED MODE";
+  else if (J.art.some(j => joke.startsWith(j.substring(0,15))))   category = "CHEF / ARTIST ENERGY";
+  el.classList.add("out");
+  setTimeout(function() {
+    el.textContent = joke;
+    cat.textContent = category;
+    el.classList.remove("out");
+    el.classList.add("in");
+    setTimeout(function() { el.classList.remove("in"); }, 350);
+  }, 200);
 }
 
 // GREETING
-function rnd(a){return a[Math.floor(Math.random()*a.length)];}
-const MN=['shortie','cunt','whore','toot','you absolute disaster'];
-function buildGreeting(h,code,temp){
-  const n=S.name||'Mimen';
-  const rain=code>=200&&code<700,sun=code===800||code===801,snow=code>=600&&code<700,storm=code>=200&&code<300,cloud=code>=802;
-  let main='',sub='';
-  if(h>=5&&h<12){
-    if(sun) main=`Morning, ${rnd(MN)}. Sun's up. Get your short ass out there.`;
-    else if(rain) main=`Rise and shine, ${n}. It's wet out there. Just like your dreams.`;
-    else if(snow) main=`Wake up, ${rnd(MN)}. It's snowing. Don't build a snowman — you're too short to reach the top.`;
-    else if(cloud) main=`Morning, ${rnd(MN)}. Gray and gloomy. Perfect for your personality.`;
-    else main=`Morning, ${rnd(MN)}. Weather's ${temp>20?'actually decent':'mid'}. Like you.`;
-    sub=h<7?"Bro it's so early. Why.":"You checked the weather. Champion behavior.";
-  } else if(h>=12&&h<17){
-    if(sun) main=`Afternoon, ${n}. UV index high. Wear sunscreen or you'll look like a lobster. Lobsters are taller than you.`;
-    else if(rain) main=`Still raining, ${n}. Still wet. Like your DMs.`;
-    else main=`Afternoon, ${rnd(MN)}. ${temp>25?"It's hot. Hydrate. Your tears don't count.":"Mid afternoon. Mid you."}`;
-    sub="…still checking this app. Clearly your favorite.";
-  } else if(h>=17&&h<21){
-    if(sun) main=`Evening, ${n}. Clear tonight. Can you see over the fence?`;
-    else if(storm) main=`Evening, ${n}. It's thundering. Bet that scared you. Tiny things startle easily.`;
-    else main=`Evening, ${rnd(MN)}. ${cloud?'Cloudy vibes.':'Nice evening.'} No goth girlfriend sighted.`;
-    sub="Golden hour. Too bad your dating life isn't.";
+const NAMES = ["shortie", "cunt", "whore", "toot", "you absolute disaster"];
+function rnd(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+function buildGreeting(h, code, temp) {
+  const name = S.name || "Mimen";
+  const rain  = code >= 200 && code < 700;
+  const sun   = code === 800 || code === 801;
+  const snow  = code >= 600 && code < 700;
+  const cloud = code >= 802;
+  let main = "", sub = "";
+  if (h >= 5 && h < 12) {
+    if (sun)        main = "Morning, " + rnd(NAMES) + ". Sun's up. Get your short ass out there.";
+    else if (rain)  main = "Rise and shine, " + name + ". It's wet out there. Just like your dreams.";
+    else if (snow)  main = "Wake up, " + rnd(NAMES) + ". It's snowing. Don't build a snowman. You're too short to reach the top.";
+    else if (cloud) main = "Morning, " + rnd(NAMES) + ". Gray and gloomy. Perfect for your personality.";
+    else            main = "Morning, " + rnd(NAMES) + ". Weather's " + (temp > 20 ? "actually decent" : "mid") + ". Like you.";
+    sub = h < 7 ? "Bro it's so early. Why." : "You checked the weather. Champion behavior.";
+  } else if (h >= 12 && h < 17) {
+    if (sun)       main = "Afternoon, " + name + ". UV index high. Wear sunscreen or you'll look like a lobster. Lobsters are taller than you.";
+    else if (rain) main = "Still raining, " + name + ". Still wet. Like your DMs.";
+    else           main = "Afternoon, " + rnd(NAMES) + ". " + (temp > 25 ? "It's hot. Hydrate. Your tears don't count." : "Mid afternoon. Mid you.");
+    sub = "Still checking this app. I'm clearly your favorite.";
+  } else if (h >= 17 && h < 21) {
+    if (sun)       main = "Evening, " + name + ". Clear tonight. Can you see over the fence?";
+    else           main = "Evening, " + rnd(NAMES) + ". " + (cloud ? "Cloudy vibes." : "Nice evening.") + " No goth girlfriend sighted.";
+    sub = "Golden hour. Too bad your dating life isn't.";
   } else {
-    main=`It's late, ${rnd(MN)}. Go to sleep. Nobody wants to see your short ass awake at this hour.`;
-    sub="Seriously. Put the phone down.";
+    main = "It's late, " + rnd(NAMES) + ". Go to sleep. Nobody wants to see your short ass awake at this hour.";
+    sub = "Seriously. Put the phone down.";
   }
-  return{main,sub};
+  return { main: main, sub: sub };
 }
 
-// TRUMP WIND / HUMIDITY
-function trumpWind(k){
-  if(k<10) return{v:'COVFEFE',d:'Barely a breeze. Still enough to blow your dignity.'};
-  if(k<20) return{v:'WALL LVL',d:'Nobody builds winds like this. Nobody.'};
-  if(k<30) return{v:'TWEET DEL',d:'Gone in an instant. Like your chances.'};
-  return{v:'IMPEACH',d:'Unhinged out there. Relatable.'};
-}
-function humDesc(h){
-  if(h<30) return 'Crisp and dry. Like your texts.';
-  if(h<60) return 'A little dewy. Getting there.';
-  if(h<80) return 'Glistening. Post-workout vibes.';
-  return 'Drenched. Gonna need a towel. And a cigarette.';
+// WEATHER API
+const WICO = { Clear:"☀️", Clouds:"☁️", Rain:"🌧️", Drizzle:"🌦️", Thunderstorm:"⛈️", Snow:"❄️", Mist:"🌫️", Fog:"🌫️", Haze:"🌤️" };
+
+function trumpWind(k) {
+  if (k < 10) return { v: "COVFEFE",   d: "Barely a breeze. Still enough to blow your dignity." };
+  if (k < 20) return { v: "WALL LVL",  d: "Nobody builds winds like this. Nobody." };
+  if (k < 30) return { v: "TWEET DEL", d: "Gone in an instant. Like your chances." };
+  return              { v: "IMPEACH",   d: "Unhinged out there. Relatable." };
 }
 
-// WEATHER
-const WICO={Clear:'☀️',Clouds:'☁️',Rain:'🌧️',Drizzle:'🌦️',Thunderstorm:'⛈️',Snow:'❄️',Mist:'🌫️',Fog:'🌫️',Haze:'🌤️'};
+function humDesc(h) {
+  if (h < 30) return "Crisp and dry. Like your texts.";
+  if (h < 60) return "A little dewy. Getting there.";
+  if (h < 80) return "Glistening. Post-workout vibes.";
+  return "Drenched. Gonna need a towel. And a cigarette.";
+}
 
-async function loadWeather(){
-  document.getElementById('wLoc').textContent='📍 detecting location...';
-  document.getElementById('retryBtn').style.display='none';
-  try{
-    const pos=await new Promise((res,rej)=>{
-      if(!navigator.geolocation){rej(new Error('no geo'));return;}
-      navigator.geolocation.getCurrentPosition(res,rej,{timeout:15000,maximumAge:600000,enableHighAccuracy:false});
+async function loadWeather() {
+  document.getElementById("wLoc").textContent = "detecting location...";
+  document.getElementById("retryBtn").style.display = "none";
+  try {
+    const pos = await new Promise(function(res, rej) {
+      if (!navigator.geolocation) { rej(new Error("no geo")); return; }
+      navigator.geolocation.getCurrentPosition(res, rej, { timeout: 15000, maximumAge: 600000, enableHighAccuracy: false });
     });
-    const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${OWM}&units=metric`)).json();
-    if(d.cod&&d.cod!==200) throw new Error('api');
-    renderWeather(d);
-  }catch(e){
-    console.warn('location:',e.message);
-    try{
-      const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.5731&lon=-7.5898&appid=${OWM}&units=metric`)).json();
-      renderWeather(d);
-      document.getElementById('wLoc').textContent='📍 Casablanca (location denied)';
-      document.getElementById('retryBtn').style.display='block';
-    }catch(e2){renderErr();}
+    const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + pos.coords.latitude + "&lon=" + pos.coords.longitude + "&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
+    if (data.cod && data.cod !== 200) throw new Error("api");
+    renderWeather(data);
+  } catch(e) {
+    try {
+      const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=33.5731&lon=-7.5898&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
+      renderWeather(data);
+      document.getElementById("wLoc").textContent = "Casablanca (location denied)";
+      document.getElementById("retryBtn").style.display = "block";
+    } catch(e2) {
+      renderError();
+    }
   }
 }
 
-function retryLocation(){loadWeather();}
+function retryLocation() { loadWeather(); }
 
-function renderWeather(d){
-  S.weather=d; S.lastFetch=Date.now();
-  const temp=Math.round(d.main.temp),feels=Math.round(d.main.feels_like),hum=d.main.humidity,wkm=Math.round(d.wind.speed*3.6);
-  const main=d.weather[0].main,desc=d.weather[0].description,code=d.weather[0].id,h=new Date().getHours();
-  document.getElementById('wIcon').textContent=WICO[main]||'🌡';
-  document.getElementById('wTemp').textContent=temp+'°C';
-  document.getElementById('wFeels').textContent='FEELS LIKE '+feels+'°C';
-  document.getElementById('wDesc').textContent=desc;
-  document.getElementById('wLoc').textContent='📍 '+d.name;
-  document.getElementById('retryBtn').style.display='none';
-  document.getElementById('wHumidity').textContent=hum+'%';
-  document.getElementById('wHumidDesc').textContent=humDesc(hum);
-  const w=trumpWind(wkm);
-  document.getElementById('wWind').textContent=wkm+' km/h';
-  document.getElementById('wWindDesc').textContent=w.v;
-  document.getElementById('wSky').textContent=main.toUpperCase();
-  document.getElementById('wSkyDesc').textContent=desc;
-  updateMeter(temp,wkm);
-  const g=buildGreeting(h,code,temp);
-  document.getElementById('greetMain').textContent=g.main;
-  document.getElementById('greetSub').textContent=g.sub;
-  showJoke();
+function renderWeather(data) {
+  S.weather = data;
+  S.lastFetch = Date.now();
+  const temp  = Math.round(data.main.temp);
+  const feels = Math.round(data.main.feels_like);
+  const hum   = data.main.humidity;
+  const wkm   = Math.round(data.wind.speed * 3.6);
+  const main  = data.weather[0].main;
+  const desc  = data.weather[0].description;
+  const code  = data.weather[0].id;
+  const h     = new Date().getHours();
+  document.getElementById("wIcon").textContent     = WICO[main] || "🌡";
+  document.getElementById("wTemp").textContent     = temp + "°C";
+  document.getElementById("wFeels").textContent    = "FEELS LIKE " + feels + "°C";
+  document.getElementById("wDesc").textContent     = desc;
+  document.getElementById("wLoc").textContent      = "📍 " + data.name;
+  document.getElementById("retryBtn").style.display = "none";
+  document.getElementById("wHumidity").textContent = hum + "%";
+  document.getElementById("wHumidDesc").textContent = humDesc(hum);
+  const w = trumpWind(wkm);
+  document.getElementById("wWind").textContent    = wkm + " km/h";
+  document.getElementById("wWindDesc").textContent = w.v;
+  document.getElementById("wSky").textContent     = main.toUpperCase();
+  document.getElementById("wSkyDesc").textContent = desc;
+  updateMeter(temp, wkm);
+  const g = buildGreeting(h, code, temp);
+  document.getElementById("greetMain").textContent = g.main;
+  document.getElementById("greetSub").textContent  = g.sub;
+  if (!weatherLoaded) { showJoke(); weatherLoaded = true; }
 }
 
-function renderErr(){
-  const el=document.getElementById('greetMain');
-  el.textContent="Weather's broken. Just like your love life.";
-  el.style.textAlign='center';
-  document.getElementById('greetSub').textContent="Couldn't fetch weather. Check your connection.";
-  document.getElementById('wLoc').textContent='📍 Location unavailable';
-  document.getElementById('retryBtn').style.display='block';
-  updateMeter(20,0);
-  showJoke();
-}
-
-// JOKE DISPLAY
-function showJoke(){
-  const jk=pickJoke();
-  const el=document.getElementById('roastTxt'),ct=document.getElementById('roastCat');
-  el.classList.add('out');
-  setTimeout(()=>{el.textContent=jk;ct.textContent=jokeCat(jk);el.classList.remove('out');el.classList.add('in');setTimeout(()=>el.classList.remove('in'),350);},200);
+function renderError() {
+  document.getElementById("greetMain").textContent = "Weather's broken. Just like your love life.";
+  document.getElementById("greetSub").textContent  = "Could not fetch weather. Check your connection.";
+  document.getElementById("wLoc").textContent      = "Location unavailable";
+  document.getElementById("retryBtn").style.display = "block";
+  updateMeter(20, 0);
+  if (!weatherLoaded) { showJoke(); weatherLoaded = true; }
 }
 
 // REACTIONS
-function react(t){
-  if(t==='roast') showJoke();
-  else if(t==='weak'){if(S.intensity<2)S.intensity++;showJoke();}
-  else if(t==='hard'){S.harderCount++;S.intensity=2;if(S.harderCount>=3&&!S.chaos){S.chaos=true;document.getElementById('chaosBanner').style.display='block';}showJoke();}
-  saveS();
+function react(type) {
+  if (type === "roast") {
+    showJoke();
+  } else if (type === "weak") {
+    if (S.intensity < 2) S.intensity++;
+    showJoke();
+  } else if (type === "hard") {
+    S.harderCount++;
+    S.intensity = 2;
+    if (S.harderCount >= 3 && !S.chaos) {
+      S.chaos = true;
+      document.getElementById("chaosBanner").style.display = "block";
+    }
+    showJoke();
+  }
+  saveState();
 }
 
 // SETTINGS
-function openSettings(){
-  document.getElementById('settingsModal').classList.add('open');
-  document.getElementById('explToggle2').checked=S.explicit;
-  document.getElementById('shortToggle').checked=S.short;
-  document.getElementById('nameInp').value=S.name||'Mimen';
-  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.asset===S.asset));
-}
-function closeSettings(){document.getElementById('settingsModal').classList.remove('open');}
-function outsideClose(e,id){if(e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
-function toggleExplicit(v){S.explicit=v;document.getElementById('explToggle').checked=v;document.getElementById('explToggle2').checked=v;saveS();if(S.weather)updateMeter(Math.round(S.weather.main.temp),Math.round(S.weather.wind.speed*3.6));}
-function selectAsset(a){S.asset=a;document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.asset===a));saveS();if(S.weather)updateMeter(Math.round(S.weather.main.temp),Math.round(S.weather.wind.speed*3.6));}
-function toggleShort(v){S.short=v;saveS();}
-function updateName(v){S.name=v.trim()||'Mimen';saveS();}
-function resetMood(){S.intensity=0;S.harderCount=0;S.chaos=false;S.recent=[];document.getElementById('chaosBanner').style.display='none';saveS();closeSettings();showJoke();}
-
-// NOTIFICATIONS
-async function requestNotif(){
-  if(!('Notification' in window)){alert('Notifications not supported.');return;}
-  const p=await Notification.requestPermission();
-  if(p==='granted'){new Notification("METEORUSSY 🌡️",{body:`Enabled, ${S.name||'Mimen'}. Daily roast at 8am. You asked for this.`});}
-  else{alert('You denied notifications. Just like everyone denies you.');}
+function setExplicit(val) {
+  S.explicit = val;
+  document.getElementById("explToggle").checked  = val;
+  document.getElementById("explToggle2").checked = val;
+  saveState();
 }
 
-// PWA INSTALL
-let dp=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!localStorage.getItem('inst'))document.getElementById('installBar').style.display='flex';});
-function installApp(){if(dp){dp.prompt();dp.userChoice.then(()=>{dp=null;dismissInstall();});}}
-function dismissInstall(){document.getElementById('installBar').style.display='none';localStorage.setItem('inst','1');}
+function setAsset(val) {
+  S.asset = val;
+  document.querySelectorAll(".asset-btn").forEach(function(b) {
+    b.classList.toggle("active", b.dataset.a === val);
+  });
+  saveState();
+  if (S.weather) updateMeter(Math.round(S.weather.main.temp), Math.round(S.weather.wind.speed * 3.6));
+}
+
+function setShort(val) { S.short = val; saveState(); }
+function setName(val)  { S.name = val.trim() || "Mimen"; saveState(); }
+
+function resetMood() {
+  S.intensity = 0; S.harderCount = 0; S.chaos = false; S.recent = [];
+  document.getElementById("chaosBanner").style.display = "none";
+  saveState(); closeSettings(); showJoke();
+}
+
+function openSettings() {
+  document.getElementById("settingsModal").classList.add("open");
+  document.getElementById("explToggle2").checked = S.explicit;
+  document.getElementById("shortToggle").checked = S.short;
+  document.getElementById("nameInp").value = S.name || "Mimen";
+  document.querySelectorAll(".asset-btn").forEach(function(b) {
+    b.classList.toggle("active", b.dataset.a === S.asset);
+  });
+}
+function closeSettings() { document.getElementById("settingsModal").classList.remove("open"); }
+function outsideClose(e, id) { if (e.target === document.getElementById(id)) document.getElementById(id).classList.remove("open"); }
+
+async function reqNotif() {
+  if (!("Notification" in window)) { alert("Notifications not supported."); return; }
+  const p = await Notification.requestPermission();
+  if (p === "granted") new Notification("METEORUSSY", { body: "Daily roasts enabled. You asked for this, " + (S.name || "Mimen") + "." });
+  else alert("You denied notifications. Just like everyone denies you.");
+}
 
 // SERVICE WORKER
-if('serviceWorker' in navigator){
-  const sw=`const CV='mrs-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(CV).then(c=>c.add('/')).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==CV).map(n=>caches.delete(n)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.url.includes('openweathermap')||e.request.url.includes('fonts'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
-  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
+if ("serviceWorker" in navigator) {
+  const sw = "const C='mrs-v6';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.add('/')).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==C).map(n=>caches.delete(n)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.url.includes('openweathermap')||e.request.url.includes('fonts'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});";
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw], { type: "application/javascript" }))).catch(function(){});
 }
 
 // CLOCK + INIT
-function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' · '+n.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
-tick();setInterval(tick,1000);
-loadS();
-document.getElementById('explToggle').checked=S.explicit;
-updateMeter(20,5);
+function updateClock() {
+  const n = new Date();
+  document.getElementById("clock").textContent =
+    n.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" }) + " · " +
+    n.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+}
+
+loadState();
+document.getElementById("explToggle").checked = S.explicit;
+if (S.chaos) document.getElementById("chaosBanner").style.display = "block";
+updateMeter(20, 5);
 loadWeather();
-setInterval(()=>{if(Date.now()-(S.lastFetch||0)>1800000)loadWeather();},60000);
+updateClock();
+setInterval(updateClock, 1000);
+setInterval(function() { if (Date.now() - (S.lastFetch || 0) > 1800000) { weatherLoaded = false; loadWeather(); } }, 60000);
 </script>
 </body>
 </html>
