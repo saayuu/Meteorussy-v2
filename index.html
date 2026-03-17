@@ -206,6 +206,16 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 
 <script>
 const OWM = "2133b5855a85429480c181245261703";
+const IMGS = [
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p1.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p2.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p3.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p4.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p5.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p6.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p7.png",
+  "https://raw.githubusercontent.com/saayuu/Meteorussy-v2/main/p8.png"
+];  
 let weatherLoaded = false;
 
 let S = {
@@ -312,16 +322,16 @@ function makeSil(temp, windKmh) {
 }
 
 function updateMeter(temp, windKmh) {
-  windKmh = windKmh || 0;
-  document.getElementById("silBox").innerHTML = makeSil(temp, windKmh);
+  const slot = Math.floor(Date.now() / (6 * 60 * 60 * 1000)) % 8;
+  document.getElementById("silBox").innerHTML =
+    '<img src="' + IMGS[slot] + '" style="width:100%;display:block;border-radius:8px;">';
   const pct = Math.min(100, Math.max(0, ((temp + 20) / 60) * 100));
   document.getElementById("barFill").style.height = pct + "%";
   const cap = document.getElementById("meterCap");
-  if (temp < 5)       cap.textContent = "Bundled up. Even she is cold.";
-  else if (temp < 15) cap.textContent = "Sweater off. Warming up.";
-  else if (temp < 25) cap.textContent = "Tank top. Vibes only.";
-  else if (temp < 32) cap.textContent = "Bikini. Sun wins.";
-  else                cap.textContent = "So hot she could not keep it on. Hydrate, whore.";
+  if (temp < 10) cap.textContent = "Cold out there.";
+  else if (temp < 20) cap.textContent = "Getting warmer.";
+  else if (temp < 30) cap.textContent = "Hot day.";
+  else cap.textContent = "Hydrate, whore.";
 }
 
 // JOKES - all written talking TO him (you/your) for roasts, third person for observations
@@ -503,9 +513,9 @@ async function loadWeather() {
     renderWeather(data);
   } catch(e) {
     try {
-      const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=33.5731&lon=-7.5898&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
+      const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=36.7509&lon=5.0564&appid=" + OWM + "&units=metric").then(function(r) { return r.json(); });
       renderWeather(data);
-      document.getElementById("wLoc").textContent = "Casablanca (location denied)";
+      document.getElementById("wLoc").textContent = "Bejaia, Algeria";
       document.getElementById("retryBtn").style.display = "block";
     } catch(e2) {
       renderError();
