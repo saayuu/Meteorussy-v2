@@ -456,7 +456,7 @@ function showJoke() {
 }
 
 // GREETING
-const NAMES = ["shortie", "cunt", "whore", "toot", "you absolute disaster"];
+const NAMES = ["shortie", "cunt", "whore", "gay", "you absolute disaster"];
 function rnd(a) { return a[Math.floor(Math.random() * a.length)]; }
 
 function buildGreeting(h, code, temp) {
@@ -551,7 +551,7 @@ function renderWeather(data) {
 function renderError() {
   document.getElementById("greetMain").textContent = "Weather's broken. Just like your love life.";
   document.getElementById("greetSub").textContent  = "Could not fetch weather. Check your connection.";
-  document.getElementById("wLoc").textContent      = "Location unavailable";
+  document.getElementById("wLoc").textContent      = "You're lost";
   updateMeter(20, 0);
   if (!weatherLoaded) { showJoke(); weatherLoaded = true; }
 }
@@ -617,7 +617,7 @@ async function reqNotif() {
   if (!("Notification" in window)) { alert("Notifications not supported."); return; }
   const p = await Notification.requestPermission();
   if (p === "granted") new Notification("METEORUSSY", { body: "Daily roasts enabled. You asked for this, " + (S.name || "Mimen") + "." });
-  else alert("You denied notifications. Just like everyone denies you.");
+  else alert("You denied notifications. Just like everyone denies you.\n\nTo fix: Chrome Settings → Site Settings → Notifications → find this site → Allow.");
 }
 
 // SERVICE WORKER
