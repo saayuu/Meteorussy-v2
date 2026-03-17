@@ -232,64 +232,92 @@ body::after {
   letter-spacing:0.05em;
 }
 
-/* ── HOTNESS METER ── */
-.meter-section {
-  margin:16px 0;
-  animation: fadeUp 0.7s ease forwards;
-}
-.section-lbl {
-  font-size:0.58rem;
-  letter-spacing:0.2em;
-  color:var(--text4);
-  text-transform:uppercase;
-  text-align:center;
-  margin-bottom:12px;
-}
-
-.meter-wrap {
+/* ── MAIN ROW: figure left, weather right ── */
+.main-row {
   display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  gap:20px;
+  gap:12px;
+  align-items:stretch;
+  margin-bottom:16px;
+  animation: fadeUp 0.6s ease forwards;
 }
 
-.silhouette-box {
-  width:120px;
-  height:200px;
-  position:relative;
-  filter: drop-shadow(0 0 18px rgba(91,46,255,0.35));
-}
-.silhouette-box svg { width:100%; height:100%; }
-
-.bar-track {
-  width:10px; height:200px;
-  background:var(--bg3);
-  border-radius:5px;
+/* FIGURE PANEL */
+.fig-panel {
+  flex:0 0 138px;
+  background:linear-gradient(180deg,#0d0a1a,#0A0A0B);
   border:1px solid var(--border);
+  border-radius:16px;
   overflow:hidden;
+  position:relative;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
+  align-items:center;
 }
-.bar-fill {
-  width:100%;
-  height:0%;
-  background: linear-gradient(0deg, var(--red), var(--purple-glow), var(--cyan));
-  border-radius:5px;
-  transition: height 1.8s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow: 0 0 8px rgba(91,46,255,0.5);
+.fig-label {
+  font-size:.48rem;letter-spacing:.18em;color:var(--text4);
+  text-transform:uppercase;font-weight:700;padding:8px 0 2px;text-align:center;
+}
+.fig-svg-wrap {
+  width:100%;flex:1;display:flex;align-items:flex-end;justify-content:center;
+  position:relative;overflow:hidden;padding:0 18px 0 4px;
+}
+.fig-glow {
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(91,46,255,.22),transparent 70%);pointer-events:none;
+}
+.fig-cap {
+  font-size:.58rem;color:var(--red);text-align:center;padding:5px 6px 7px;
+  font-weight:600;font-style:italic;line-height:1.3;min-height:28px;
+}
+.wind-bar-wrap {
+  position:absolute;right:6px;top:8px;bottom:34px;width:6px;
+  background:var(--bg3);border-radius:3px;border:1px solid var(--border);
+  overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.wind-bar-fill {
+  width:100%;height:0%;
+  background:linear-gradient(0deg,var(--cyan),var(--purple-glow));
+  border-radius:3px;transition:height 1.5s cubic-bezier(.34,1.56,.64,1);
 }
 
-.meter-caption {
-  font-size:0.68rem;
-  color:var(--red);
-  text-align:center;
-  margin-top:10px;
-  font-weight:600;
-  letter-spacing:0.03em;
-  font-style:italic;
-  min-height:20px;
+/* WEATHER PANEL */
+.w-panel {
+  flex:1;
+  background:linear-gradient(135deg,var(--bg2),var(--bg));
+  border:1px solid var(--border);
+  border-radius:16px;padding:14px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:9px;
 }
+.w-panel::before {
+  content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;
+  background:radial-gradient(circle,rgba(91,46,255,.12),transparent 70%);pointer-events:none;
+}
+.w-top { display:flex;align-items:center;gap:10px; }
+.w-icon-big { font-size:2.2rem;line-height:1; }
+.w-temp-val {
+  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;color:var(--text);
+}
+.w-feels-val { font-size:.58rem;color:var(--text4);letter-spacing:.06em;margin-top:1px; }
+.w-desc-val {
+  margin-left:auto;font-size:.63rem;color:var(--text3);
+  text-align:right;text-transform:capitalize;max-width:68px;line-height:1.4;
+}
+
+/* STATS — stacked vertically */
+.w-stats { display:flex;flex-direction:column;gap:6px; }
+.stat {
+  background:var(--bg3);border-radius:8px;padding:7px 9px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.stat-label { font-size:.5rem;letter-spacing:.12em;color:var(--text4);text-transform:uppercase;font-weight:700; }
+.stat-right { text-align:right; }
+.stat-value { font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--purple-glow);letter-spacing:.04em;line-height:1; }
+.stat-sub { font-size:.5rem;color:var(--text4);line-height:1.3;margin-top:1px; }
+.w-loc-line { font-size:.58rem;color:var(--text4);text-align:center;letter-spacing:.05em; }
+.retry-loc { display:none;margin:1px auto 0;font-size:.58rem;color:var(--purple-glow);
+background:none;border:none;cursor:pointer;font-family:'Manrope',sans-serif;text-decoration:underline;padding:1px; }
 
 /* ── ROAST CARD ── */
 .roast-card {
@@ -590,6 +618,28 @@ body::after {
   97% { opacity:1; }
 }
 
+/* ── NEW LAYOUT OVERRIDES ── */
+.main-row { display:flex; gap:12px; align-items:stretch; margin-bottom:16px; animation:fadeUp .6s ease; }
+.fig-panel { flex:0 0 138px; background:linear-gradient(180deg,#0d0a1a,#0A0A0B); border:1px solid var(--border); border-radius:16px; overflow:hidden; position:relative; display:flex; flex-direction:column; align-items:center; }
+.fig-label { font-size:.48rem; letter-spacing:.18em; color:var(--text4); text-transform:uppercase; font-weight:700; padding:8px 0 2px; text-align:center; }
+.fig-svg-wrap { width:100%; flex:1; display:flex; align-items:flex-end; justify-content:center; position:relative; overflow:hidden; padding:0 18px 0 4px; }
+.fig-glow { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:120px; height:120px; background:radial-gradient(circle,rgba(91,46,255,.22),transparent 70%); pointer-events:none; }
+.wind-bar-wrap { position:absolute; right:6px; top:8px; bottom:34px; width:6px; background:var(--bg3); border-radius:3px; border:1px solid var(--border); overflow:hidden; display:flex; flex-direction:column; justify-content:flex-end; }
+.wind-bar-fill { width:100%; height:0%; background:linear-gradient(0deg,var(--cyan),var(--purple-glow)); border-radius:3px; transition:height 1.5s cubic-bezier(.34,1.56,.64,1); }
+.w-panel { flex:1; background:linear-gradient(135deg,var(--bg2),var(--bg)); border:1px solid var(--border); border-radius:16px; padding:14px; position:relative; overflow:hidden; display:flex; flex-direction:column; gap:8px; }
+.w-panel .w-stats { display:flex; flex-direction:column; gap:5px; }
+.w-panel .stat { background:var(--bg3); border-radius:7px; padding:6px 9px; display:flex; align-items:center; justify-content:space-between; }
+.w-panel .stat-lbl { font-size:.5rem; letter-spacing:.1em; color:var(--text4); text-transform:uppercase; font-weight:700; }
+.w-panel .stat-val { font-family:'Bebas Neue',sans-serif; font-size:.95rem; color:var(--purple-glow); letter-spacing:.03em; line-height:1; }
+.w-panel .stat-sub { font-size:.5rem; color:var(--text4); line-height:1.2; margin-top:1px; }
+.w-panel .w-main { display:flex; align-items:center; gap:8px; }
+.w-panel .w-icon { font-size:2rem; line-height:1; }
+.w-panel .w-temp { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; line-height:1; }
+.w-panel .w-feels { font-size:.56rem; color:var(--text4); letter-spacing:.05em; margin-top:1px; }
+.w-panel .w-desc { margin-left:auto; font-size:.6rem; color:var(--text3); text-align:right; text-transform:capitalize; max-width:65px; line-height:1.35; }
+.w-panel .w-loc { font-size:.56rem; color:var(--text4); text-align:center; letter-spacing:.04em; }
+@media(max-width:360px){ .fig-panel{flex:0 0 118px;} .w-panel .w-temp{font-size:2rem;} }
+
 .logo { animation: flicker 8s infinite; }
 </style>
 </head>
@@ -620,44 +670,57 @@ body::after {
     <div class="greeting-sub" id="greetSub"></div>
   </div>
 
-  <!-- WEATHER CARD -->
-  <div class="w-card">
-    <div class="w-main">
-      <div class="w-icon" id="wIcon">🌡</div>
-      <div>
-        <div class="w-temp" id="wTemp">--°</div>
-        <div class="w-feels" id="wFeels">FEELS LIKE --°</div>
-      </div>
-      <div class="w-desc" id="wDesc">fetching vibes...</div>
-    </div>
-    <div class="w-stats">
-      <div class="stat">
-        <div class="stat-lbl">WETNESS</div>
-        <div class="stat-val" id="wHumidity">--%</div>
-        <div class="stat-sub" id="wHumidDesc">--</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl">WIND</div>
-        <div class="stat-val" id="wWind">--</div>
-        <div class="stat-sub" id="wWindDesc">--</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl">SKY</div>
-        <div class="stat-val" id="wSky">--</div>
-        <div class="stat-sub" id="wSkyDesc">--</div>
-      </div>
-    </div>
-    <div class="w-loc" id="wLoc">📍 detecting location...</div>
-  </div>
+  <!-- MAIN ROW: figure left + weather right -->
+  <div class="main-row">
 
-  <!-- HOTNESS METER -->
-  <div class="meter-section">
-    <div class="section-lbl">HOTNESS METER</div>
-    <div class="meter-wrap">
-      <div class="silhouette-box" id="silBox"></div>
-      <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+    <!-- FIGURE PANEL -->
+    <div class="fig-panel">
+      <div class="fig-label">HOTNESS METER</div>
+      <div class="fig-svg-wrap">
+        <div class="fig-glow"></div>
+        <div id="silBox" style="width:112px;position:relative;z-index:1;"></div>
+        <div class="wind-bar-wrap"><div class="wind-bar-fill" id="barFill"></div></div>
+      </div>
+      <div class="meter-caption" id="meterCap">—</div>
     </div>
-    <div class="meter-caption" id="meterCap"></div>
+
+    <!-- WEATHER PANEL -->
+    <div class="w-panel">
+      <div class="w-main">
+        <div class="w-icon" id="wIcon">🌡</div>
+        <div>
+          <div class="w-temp" id="wTemp">--°</div>
+          <div class="w-feels" id="wFeels">FEELS LIKE --°</div>
+        </div>
+        <div class="w-desc" id="wDesc">fetching...</div>
+      </div>
+      <div class="w-stats">
+        <div class="stat">
+          <span class="stat-lbl">WETNESS</span>
+          <div style="text-align:right">
+            <div class="stat-val" id="wHumidity">--%</div>
+            <div class="stat-sub" id="wHumidDesc">--</div>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat-lbl">WIND</span>
+          <div style="text-align:right">
+            <div class="stat-val" id="wWind">--</div>
+            <div class="stat-sub" id="wWindDesc">--</div>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat-lbl">SKY</span>
+          <div style="text-align:right">
+            <div class="stat-val" id="wSky">--</div>
+            <div class="stat-sub" id="wSkyDesc">--</div>
+          </div>
+        </div>
+      </div>
+      <div class="w-loc" id="wLoc">📍 detecting location...</div>
+      <button id="retryBtn" onclick="retryLocation()" style="display:none;margin:2px auto 0;font-size:.58rem;color:var(--purple-glow);background:none;border:none;cursor:pointer;font-family:Manrope,sans-serif;text-decoration:underline;">↻ retry location</button>
+    </div>
+
   </div>
 
   <!-- ROAST -->
@@ -738,357 +801,157 @@ body::after {
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════
-const OWM = '2133b5855a85429480c181245261703';
-let S = {
-  name:'Mimen', explicit:true, asset:'random', short:false,
-  intensity:0, harderCount:0, chaos:false, recent:[], weather:null
-};
-function loadS(){ try{ Object.assign(S,JSON.parse(localStorage.getItem('mrs')||'{}')); S.weather=null; }catch(e){} }
-function saveS(){ try{ localStorage.setItem('mrs',JSON.stringify({...S,weather:null})); }catch(e){} }
+const OWM='2133b5855a85429480c181245261703';
+let S={name:'Mimen',explicit:true,asset:'random',short:false,intensity:0,harderCount:0,chaos:false,recent:[],weather:null,lastFetch:0};
+function loadS(){try{const d=JSON.parse(localStorage.getItem('mrs')||'{}');Object.assign(S,d);S.weather=null;S.lastFetch=0;}catch(e){}}
+function saveS(){try{localStorage.setItem('mrs',JSON.stringify({...S,weather:null,lastFetch:0}));}catch(e){}}
 
-// ═══════════════════════════════════════════════
-// COLORS
-// ═══════════════════════════════════════════════
-const COLORS = {
-  brunette:{hair:'#3d1a00',skin:'#c8855a',hi:'#e0a070'},
-  blonde:  {hair:'#c8960c',skin:'#d4956a',hi:'#f0b87a'},
-  redhead: {hair:'#a01010',skin:'#c07858',hi:'#d89068'},
-};
-function getColors(){
-  if(S.asset==='random'){
-    const k=['brunette','blonde','redhead'];
-    return COLORS[k[Math.floor(Math.random()*k.length)]];
-  }
-  return COLORS[S.asset]||COLORS.brunette;
-}
+// ASSET COLORS
+const COLORS={brunette:{hair:'#2A0E00',skin:'#C8855A',hi:'#E0A070'},blonde:{hair:'#B8860B',skin:'#D4956A',hi:'#F0B87A'},redhead:{hair:'#8B0000',skin:'#C07858',hi:'#D89068'}};
+function getColors(){if(S.asset==='random'){const k=Object.keys(COLORS);return COLORS[k[Math.floor(Math.random()*k.length)]];}return COLORS[S.asset]||COLORS.brunette;}
 
-// ═══════════════════════════════════════════════
-// SILHOUETTE SVG — dark pin-up style
-// ═══════════════════════════════════════════════
-function makeSil(temp){
-  const c = getColors();
-  const sk = c.skin, ha = c.hair, hi = c.hi;
-  const nude   = S.explicit && temp >= 32;
-  const bikini = S.explicit && temp >= 25 && temp < 32;
-  const tank   = temp >= 15 && temp < 25;
-  const coat   = temp < 5;
-  const sweat  = temp >= 5 && temp < 15;
-
-  return `<svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="sg" cx="45%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="${hi}"/>
-      <stop offset="100%" stop-color="${sk}"/>
-    </radialGradient>
-    <radialGradient id="bg2" cx="40%" cy="30%" r="60%">
-      <stop offset="0%" stop-color="${hi}"/>
-      <stop offset="100%" stop-color="${sk}"/>
-    </radialGradient>
-    <linearGradient id="hg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="${hi}"/>
-      <stop offset="100%" stop-color="${ha}"/>
-    </linearGradient>
-    <filter id="sh"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/></filter>
-    <filter id="gl"><feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="rgba(91,46,255,0.4)"/></filter>
-  </defs>
-
-  <!-- LEGS -->
-  <rect x="36" y="128" width="18" height="62" rx="8" fill="url(#sg)" filter="url(#sh)"/>
-  <rect x="62" y="128" width="18" height="62" rx="8" fill="url(#sg)" filter="url(#sh)"/>
-  <rect x="51" y="130" width="14" height="52" rx="5" fill="rgba(0,0,0,0.09)"/>
-
-  <!-- HIPS -->
-  <path d="M28 118 Q22 132 27 145 Q40 152 60 152 Q80 152 93 145 Q98 132 92 118 Z" fill="url(#sg)"/>
-
-  <!-- BOTTOM — panties when semi-dressed -->
-  ${!nude && !coat && !sweat ? `
-  <path d="M28 118 Q25 140 38 150 Q50 156 60 156 Q70 156 82 150 Q95 140 92 118 Z"
-    fill="#1A0030" opacity="0.95"/>
-  <path d="M40 118 Q38 138 60 140 Q82 138 80 118 Z" fill="rgba(91,46,255,0.15)"/>
-  <text x="60" y="136" text-anchor="middle" font-size="7" fill="rgba(91,46,255,0.5)" font-family="Manrope">✦</text>
-  ` : ''}
-
-  <!-- TORSO -->
-  <path d="M30 75 Q24 95 26 118 Q30 130 60 131 Q90 130 94 118 Q96 95 90 75 Z" fill="url(#sg)" filter="url(#sh)"/>
-
-  <!-- BOOBS — always drawn, covered by clothing layers -->
-  <ellipse cx="44" cy="88" rx="15" ry="13" fill="url(#bg2)"/>
-  <ellipse cx="76" cy="88" rx="15" ry="13" fill="url(#bg2)"/>
-  <ellipse cx="44" cy="97" rx="13" ry="5" fill="rgba(0,0,0,0.1)"/>
-  <ellipse cx="76" cy="97" rx="13" ry="5" fill="rgba(0,0,0,0.1)"/>
-  <!-- cleavage line -->
-  <path d="M57 84 Q60 92 63 84" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none"/>
-
-  ${nude ? `
-  <!-- NIPPLES — explicit fully nude -->
-  <circle cx="44" cy="86" r="4" fill="#b06060"/>
-  <circle cx="44" cy="86" r="2" fill="#8a3838"/>
-  <circle cx="76" cy="86" r="4" fill="#b06060"/>
-  <circle cx="76" cy="86" r="2" fill="#8a3838"/>
-  ` : ''}
-
-  ${bikini ? `
-  <!-- BIKINI TOP — strappy -->
-  <path d="M24 72 Q28 92 44 97 Q60 90 60 90 Q60 90 60 97 Q76 92 96 72 Q86 60 76 66 Q68 79 60 80 Q52 79 44 66 Q34 60 24 72Z"
-    fill="#2A0050"/>
-  <path d="M24 72 Q28 92 44 97 Q60 90 60 90 Q60 90 60 97 Q76 92 96 72 Q86 60 76 66 Q68 79 60 80 Q52 79 44 66 Q34 60 24 72Z"
-    stroke="rgba(91,46,255,0.6)" stroke-width="1" fill="none"/>
-  <!-- straps -->
-  <line x1="28" y1="73" x2="60" y2="68" stroke="#3A0070" stroke-width="2.5" stroke-linecap="round"/>
-  <line x1="92" y1="73" x2="60" y2="68" stroke="#3A0070" stroke-width="2.5" stroke-linecap="round"/>
-  ` : ''}
-
-  ${tank && !bikini ? `
-  <!-- TANK TOP -->
-  <path d="M26 75 Q22 98 26 125 L94 125 Q98 98 94 75 Q74 62 60 64 Q46 62 26 75Z"
-    fill="#111118"/>
-  <path d="M44 64 Q42 74 40 84" stroke="#1A1A28" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <path d="M76 64 Q78 74 80 84" stroke="#1A1A28" stroke-width="6" fill="none" stroke-linecap="round"/>
-  ` : ''}
-
-  ${sweat ? `
-  <!-- SWEATER -->
-  <path d="M20 72 Q14 98 18 132 L102 132 Q106 98 100 72 Q78 57 60 60 Q42 57 20 72Z"
-    fill="#0F0F1A"/>
-  <path d="M38 60 L36 72 L40 78 L44 72 L42 60Z" fill="#0A0A14"/>
-  <path d="M82 60 L84 72 L80 78 L76 72 L78 60Z" fill="#0A0A14"/>
-  <ellipse cx="60" cy="63" rx="14" ry="5" fill="#080810"/>
-  <path d="M20 72 Q14 98 18 132" stroke="rgba(91,46,255,0.1)" stroke-width="2" fill="none"/>
-  ` : ''}
-
-  ${coat ? `
-  <!-- WINTER COAT -->
-  <path d="M10 68 Q2 100 6 140 L114 140 Q118 100 110 68 Q82 50 60 54 Q38 50 10 68Z"
-    fill="#0A0A0E"/>
-  <path d="M60 54 L52 74 L60 90 L68 74 Z" fill="#141418"/>
-  <circle cx="60" cy="96" r="3" fill="#222228"/>
-  <circle cx="60" cy="110" r="3" fill="#222228"/>
-  <circle cx="60" cy="124" r="3" fill="#222228"/>
-  <!-- fur collar -->
-  <path d="M26 68 Q36 60 60 58 Q84 60 94 68 Q82 76 60 74 Q38 76 26 68Z"
-    fill="#F5F5F7" opacity="0.85"/>
-  ` : ''}
-
-  <!-- ARMS -->
-  <path d="M26 75 Q12 90 14 115 Q18 126 27 122 Q30 106 32 92Z" fill="url(#sg)"/>
-  <path d="M94 75 Q108 90 106 115 Q102 126 93 122 Q90 106 88 92Z" fill="url(#sg)"/>
-
-  ${coat || sweat ? `
-  <path d="M20 72 Q6 88 8 112 Q14 126 28 122 Q32 106 34 90Z" fill="${coat?'#0A0A0E':'#0F0F1A'}"/>
-  <path d="M100 72 Q114 88 112 112 Q106 126 92 122 Q88 106 86 90Z" fill="${coat?'#0A0A0E':'#0F0F1A'}"/>
-  ` : ''}
-
-  <!-- HANDS -->
-  <ellipse cx="14" cy="120" rx="9" ry="7" fill="url(#sg)"/>
-  <ellipse cx="106" cy="120" rx="9" ry="7" fill="url(#sg)"/>
-
-  <!-- NECK -->
-  <rect x="51" y="47" width="18" height="24" rx="8" fill="url(#sg)"/>
-
-  <!-- HEAD -->
-  <ellipse cx="60" cy="36" rx="24" ry="27" fill="url(#sg)" filter="url(#sh)"/>
-
-  <!-- HAIR — long dark style -->
-  <path d="M36 24 Q37 4 60 2 Q83 4 84 24 Q86 10 76 5 Q66 -1 60 0 Q54 -1 44 5 Q34 10 36 24Z"
-    fill="url(#hg)"/>
-  <!-- side hair long -->
-  <path d="M37 24 Q28 40 30 62 Q34 74 38 78" stroke="url(#hg)" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M83 24 Q92 40 90 62 Q86 74 82 78" stroke="url(#hg)" stroke-width="8" fill="none" stroke-linecap="round"/>
-
-  <!-- FACE -->
-  <!-- eyes — dark sultry -->
-  <ellipse cx="50" cy="34" rx="6" ry="5" fill="#0d0610"/>
-  <ellipse cx="70" cy="34" rx="6" ry="5" fill="#0d0610"/>
-  <!-- iris -->
-  <circle cx="50" cy="34" r="3" fill="#2a1060"/>
-  <circle cx="70" cy="34" r="3" fill="#2a1060"/>
-  <!-- highlight -->
-  <ellipse cx="48.5" cy="32.5" rx="1.5" ry="1.5" fill="rgba(255,255,255,0.7)"/>
-  <ellipse cx="68.5" cy="32.5" rx="1.5" ry="1.5" fill="rgba(255,255,255,0.7)"/>
-  <!-- lash line -->
-  <path d="M44 29 Q50 26 56 29" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M64 29 Q70 26 76 29" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <!-- eyelashes -->
-  <path d="M44 30 L42 27 M47 29 L46 26 M50 29 L50 26" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  <path d="M56 29 L56 26 M59 29 L60 26 M62 30 L64 27" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-  <!-- nose -->
-  <path d="M57 40 Q60 46 63 40" stroke="rgba(0,0,0,0.18)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <!-- lips — fuller, darker red -->
-  <path d="M50 48 Q54 52 60 50 Q66 52 70 48 Q66 56 60 55 Q54 56 50 48Z" fill="#8B1A2A"/>
-  <path d="M50 48 Q54 51 60 50 Q66 51 70 48" stroke="#A02030" stroke-width="0.8" fill="none"/>
-  <!-- cupid bow highlight -->
-  <path d="M55 48 Q60 46 65 48" stroke="rgba(255,100,100,0.3)" stroke-width="0.8" fill="none"/>
-
-  <!-- FEET -->
-  <ellipse cx="45" cy="188" rx="9" ry="6" fill="url(#sg)"/>
-  <ellipse cx="71" cy="188" rx="9" ry="6" fill="url(#sg)"/>
+// ILLUSTRATED SVG — proper pin-up art style, wind controls clothing opacity
+function makeSil(temp,windKmh){
+  const c=getColors(),sk=c.skin,ha=c.hair,hi=c.hi;
+  const nude=S.explicit&&temp>=32,bikini=S.explicit&&temp>=25&&temp<32,tank=temp>=15&&temp<25,sweat=temp>=5&&temp<15,coat=temp<5;
+  const wo=Math.max(0,1-(windKmh/55)); // wind opacity: high wind = clothes fade
+  return `<svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+<defs>
+<radialGradient id="sg" cx="45%" cy="35%" r="65%"><stop offset="0%" stop-color="${hi}"/><stop offset="100%" stop-color="${sk}"/></radialGradient>
+<radialGradient id="bg" cx="38%" cy="28%" r="55%"><stop offset="0%" stop-color="${hi}"/><stop offset="100%" stop-color="${sk}"/></radialGradient>
+<linearGradient id="hg" x1="0%" y1="0%" x2="15%" y2="100%"><stop offset="0%" stop-color="${hi}" stop-opacity="0.8"/><stop offset="100%" stop-color="${ha}"/></linearGradient>
+<filter id="ds"><feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="rgba(0,0,0,0.55)"/></filter>
+</defs>
+<!-- LEGS -->
+<path d="M40 175 Q34 198 36 230 Q42 238 52 236 Q60 234 58 226 Q56 204 58 178Z" fill="url(#sg)" filter="url(#ds)"/>
+<path d="M80 175 Q86 198 84 230 Q78 238 68 236 Q60 234 62 226 Q64 204 62 178Z" fill="url(#sg)" filter="url(#ds)"/>
+<path d="M56 180 Q58 208 60 230" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none"/>
+<!-- HIPS -->
+<path d="M28 158 Q22 172 28 185 Q42 195 60 196 Q78 195 92 185 Q98 172 92 158 Q76 150 60 151 Q44 150 28 158Z" fill="url(#sg)"/>
+<!-- WAIST -->
+<path d="M34 128 Q26 145 28 158 Q44 150 60 151 Q76 150 92 158 Q94 145 86 128 Q72 120 60 121 Q48 120 34 128Z" fill="url(#sg)"/>
+<!-- navel -->
+<ellipse cx="60" cy="145" rx="2.5" ry="1.8" fill="rgba(0,0,0,0.18)"/>
+<!-- TORSO -->
+<path d="M32 90 Q24 112 26 128 Q48 120 60 121 Q72 120 94 128 Q96 112 88 90 Q74 78 60 79 Q46 78 32 90Z" fill="url(#sg)" filter="url(#ds)"/>
+<!-- BREASTS -->
+<path d="M29 94 Q24 110 28 122 Q38 132 52 129 Q64 124 64 113 Q64 94 52 86 Q38 82 29 94Z" fill="url(#bg)"/>
+<path d="M91 94 Q96 110 92 122 Q82 132 68 129 Q56 124 56 113 Q56 94 68 86 Q82 82 91 94Z" fill="url(#bg)"/>
+<path d="M52 129 Q58 134 64 129" stroke="rgba(0,0,0,0.12)" stroke-width="1.5" fill="none"/>
+<path d="M29 118 Q40 132 52 129" stroke="rgba(0,0,0,0.1)" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M91 118 Q80 132 68 129" stroke="rgba(0,0,0,0.1)" stroke-width="5" fill="none" stroke-linecap="round"/>
+${nude?`<circle cx="41" cy="112" r="5" fill="#A86060"/><circle cx="41" cy="112" r="2.5" fill="#7A3030"/><circle cx="79" cy="112" r="5" fill="#A86060"/><circle cx="79" cy="112" r="2.5" fill="#7A3030"/>`:''}
+<!-- CLOTHING -->
+${bikini?`<g opacity="${wo}"><path d="M25 90 Q30 114 41 124 Q52 131 60 128 Q68 131 79 124 Q90 114 95 90 Q84 76 79 82 Q72 98 60 100 Q48 98 41 82 Q36 76 25 90Z" fill="#18002A" stroke="rgba(91,46,255,0.5)" stroke-width="1"/><line x1="28" y1="92" x2="60" y2="86" stroke="#2A0040" stroke-width="2.5" stroke-linecap="round"/><line x1="92" y1="92" x2="60" y2="86" stroke="#2A0040" stroke-width="2.5" stroke-linecap="round"/></g><g opacity="${wo}"><path d="M28 158 Q24 178 30 190 Q42 198 60 199 Q78 198 90 190 Q96 178 92 158 Q76 148 60 149 Q44 148 28 158Z" fill="#18002A" stroke="rgba(91,46,255,0.3)" stroke-width="1"/></g>`:''}
+${tank&&!bikini?`<g opacity="${wo}"><path d="M28 86 Q20 114 22 158 L98 158 Q100 114 92 86 Q76 72 60 74 Q44 72 28 86Z" fill="#0D0D18"/><path d="M44 74 Q42 86 40 98" stroke="#161628" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M76 74 Q78 86 80 98" stroke="#161628" stroke-width="7" fill="none" stroke-linecap="round"/></g>`:''}
+${sweat?`<g opacity="${wo}"><path d="M20 84 Q12 116 14 162 L106 162 Q108 116 100 84 Q80 66 60 68 Q40 66 20 84Z" fill="#0C0C14"/><ellipse cx="60" cy="70" rx="14" ry="5" fill="#08080E"/></g>`:''}
+${coat?`<g opacity="${wo}"><path d="M8 78 Q0 116 2 168 L118 168 Q120 116 112 78 Q88 56 60 60 Q32 56 8 78Z" fill="#0A0A0C"/><path d="M60 60 L52 82 L60 100 L68 82Z" fill="#141416"/><circle cx="60" cy="106" r="3" fill="#1A1A1E"/><circle cx="60" cy="120" r="3" fill="#1A1A1E"/><circle cx="60" cy="134" r="3" fill="#1A1A1E"/><path d="M24 80 Q36 70 60 68 Q84 70 96 80 Q84 90 60 88 Q36 90 24 80Z" fill="#EEEEEA" opacity="0.9"/></g>`:''}
+<!-- ARMS -->
+<path d="M28 90 Q12 106 14 130 Q18 144 28 140 Q32 122 34 106Z" fill="url(#sg)" filter="url(#ds)"/>
+<path d="M92 90 Q108 106 106 130 Q102 144 92 140 Q88 122 86 106Z" fill="url(#sg)" filter="url(#ds)"/>
+${coat||sweat?`<path d="M20 84 Q4 102 6 128 Q12 144 28 140 Q32 122 36 102Z" fill="${coat?'#0A0A0C':'#0C0C14'}" opacity="${wo}"/><path d="M100 84 Q116 102 114 128 Q108 144 92 140 Q88 122 84 102Z" fill="${coat?'#0A0A0C':'#0C0C14'}" opacity="${wo}"/>`:''}
+<!-- HANDS -->
+<ellipse cx="14" cy="134" rx="9" ry="7" fill="url(#sg)"/>
+<ellipse cx="106" cy="134" rx="9" ry="7" fill="url(#sg)"/>
+<!-- NECK -->
+<path d="M50 50 Q48 66 50 77 Q55 82 60 82 Q65 82 70 77 Q72 66 70 50 Q65 44 60 44 Q55 44 50 50Z" fill="url(#sg)"/>
+<!-- collarbone -->
+<path d="M34 82 Q46 76 60 78 Q74 76 86 82" stroke="rgba(0,0,0,0.1)" stroke-width="2" fill="none"/>
+<!-- HEAD -->
+<ellipse cx="60" cy="32" rx="25" ry="28" fill="url(#sg)" filter="url(#ds)"/>
+<path d="M38 40 Q40 56 50 64 Q55 68 60 69 Q65 68 70 64 Q80 56 82 40" fill="url(#sg)"/>
+<!-- HAIR -->
+<path d="M36 18 Q34 2 60 0 Q86 2 84 18 Q86 6 76 1 Q66 -3 60 -2 Q54 -3 44 1 Q34 6 36 18Z" fill="url(#hg)"/>
+<path d="M36 18 Q26 36 24 60 Q22 82 26 100" stroke="url(#hg)" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M84 18 Q94 36 96 60 Q98 82 94 100" stroke="url(#hg)" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M33 18 Q22 38 20 64 Q18 88 22 104" stroke="${ha}" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+<path d="M47 2 Q60 -2 73 2" stroke="${hi}" stroke-width="2.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+<!-- FACE -->
+<ellipse cx="48" cy="30" rx="7.5" ry="5.5" fill="rgba(0,0,0,0.06)"/>
+<ellipse cx="72" cy="30" rx="7.5" ry="5.5" fill="rgba(0,0,0,0.06)"/>
+<ellipse cx="48" cy="30" rx="6.5" ry="4.5" fill="#F5EDED"/>
+<ellipse cx="72" cy="30" rx="6.5" ry="4.5" fill="#F5EDED"/>
+<circle cx="48" cy="31" r="4" fill="#18061E"/>
+<circle cx="72" cy="31" r="4" fill="#18061E"/>
+<circle cx="48" cy="31" r="2.5" fill="#2C1040"/>
+<circle cx="72" cy="31" r="2.5" fill="#2C1040"/>
+<circle cx="48" cy="31" r="1.5" fill="#060208"/>
+<circle cx="72" cy="31" r="1.5" fill="#060208"/>
+<ellipse cx="46.5" cy="29.5" rx="1.3" ry="1.2" fill="rgba(255,255,255,0.75)"/>
+<ellipse cx="70.5" cy="29.5" rx="1.3" ry="1.2" fill="rgba(255,255,255,0.75)"/>
+<path d="M42 27 Q48 23 54 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M66 27 Q72 23 78 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M42 27 Q48 23 54 27" stroke="${ha}" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M41 27 L39 24 M44 25 L43 22 M47 24 L47 21 M50 24 L51 21 M53 25 L55 22" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+<path d="M65 25 L65 22 M68 24 L69 21 M71 24 L72 21 M74 25 L76 22 M77 27 L79 24" stroke="${ha}" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+<path d="M57 38 Q58 44 56 47 Q59 50 60 49 Q61 50 64 47 Q62 44 63 38" stroke="rgba(0,0,0,0.14)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+<path d="M48 56 Q53 53 60 54 Q67 53 72 56 Q67 63 60 63 Q53 63 48 56Z" fill="#7A1020"/>
+<path d="M48 56 Q53 52 58 55 Q60 53 62 55 Q67 52 72 56" fill="#7A1020" stroke="#5A0810" stroke-width="0.8"/>
+<path d="M53 56 Q58 54 62 56 Q64 54 67 56" stroke="rgba(255,140,140,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+<ellipse cx="40" cy="38" rx="7" ry="4" fill="rgba(180,80,80,0.09)"/>
+<ellipse cx="80" cy="38" rx="7" ry="4" fill="rgba(180,80,80,0.09)"/>
+<!-- FEET -->
+<ellipse cx="44" cy="234" rx="9" ry="5" fill="url(#sg)"/>
+<ellipse cx="76" cy="234" rx="9" ry="5" fill="url(#sg)"/>
 </svg>`;
 }
 
-// ═══════════════════════════════════════════════
-// JOKE BANKS
-// ═══════════════════════════════════════════════
-const J = {
-  bent:[
-    "That bent dick of yours looks like it's trying to dodge responsibility, fuck.",
-    "Call NASA, cunt—your cock's already launching on a 45-degree trajectory.",
-    "Six inches? More like six inches sideways, you kinky pretzel-dick bastard.",
-    "Your shaft's so curved it needs its own sat-nav, shithead.",
-    "I've seen straighter lines on a toddler's crayon drawing, you horny gremlin.",
-    "Congrats, fucker—you're the only guy who can high-five his own belly button.",
-    "That dick's a boomerang: throw it in, it curves right back to lonely town.",
-    "GPS rerouted—your cock keeps taking the scenic route, asshole.",
-    "Bend it like Beckham? Nah, you birthed Beckham's bend, you dirty legend.",
-    "Your dick's so crooked it signs its own name in cursive, cunt.",
-    "Even your Johnson's pulling a left turn like it heard free tacos, fucker.",
-    "Six inches of question-mark energy—punctuation meets penetration, huh?",
-    "That angle screams 'recalculating' every time you unzip, prick.",
-    "Shit, bro, your cock's so bent it could poke around corners for you.",
-    "Who needs a selfie stick? Your curved dick already frames the shot, asshole.",
-    "Your dong's playing Twister solo—right hand green, shaft hard left.",
-    "That bend's so dramatic, it deserves an intermission, you horny drama queen.",
-    "Even your dick can't commit to a straight line—on brand, you chaotic fuck.",
-    "Bro, surgeons use your cock as the protractor they lost in med school.",
-    "That dick curves harder than crypto charts on crash day—hold the line, fucker.",
-    "Google Maps can't even give turn-by-turn for that joystick, prick.",
-    "Six inches? Sure—if you measure along the arc, circus dick.",
-    "It's so bent, the condom needs a hinge, you filthy beast.",
-    "That pecker's basically a question mark asking, 'Why am I like this?'",
-    "Your dong's a shiv in solitary—short, sharp, and crooked as sin.",
-    "Fuck symmetry—your cock's living its best avant-garde life, you degenerate king.",
-  ],
-  mild:[
-    "Your confidence curves more than a mountain road.",
-    "You walk into a room at a 45-degree angle of optimism.",
-    "Your life trajectory is... uniquely non-linear.",
-    "Bend the rules like you bend... everything.",
-    "Your path in life has unusual load-bearing angles.",
-    "Six inches of chaotic energy. Somehow still standing.",
-  ],
-  weather:[
-    "Sun's out, tits out. Not yours though—just your confidence melting, short king.",
-    "UV index high. Goth girls still not texting you back. Tragic.",
-    "It's 30°C. Even your crooked dick straightened out for a second. Scared of the heat.",
-    "Hot day. Perfect time to cook something. Unlike your love life, which remains raw.",
-    "Sunny skies, clear vibes. Still no goth girlfriend in sight. Stay strong, soldier.",
-    "It's so hot even your art skills couldn't draw you some bitches.",
-    "Sun shining. Asses everywhere. Still none for you. Stay hydrated.",
-    "It's wet outside. Relax, not everything is about you, you horny bastard.",
-    "Rain falling. You cooking something or just staring at the window like a depressed chef?",
-    "Wet weather. Perfect for drawing. Or crying. Same thing for you.",
-    "Rainy day. Goth girl weather. You still alone though. Damn.",
-    "Humidity 80%. Your standards? 0%. Stay focused.",
-    "Storm incoming. Your mood already beat it to the punch.",
-    "Wind's strong today. Might finally lift you a few centimeters off the ground.",
-    "Gusts up to 50 km/h. Still not enough to blow you into a relationship.",
-    "Windy. Your hair's a mess. Your life? Bigger mess.",
-    "Cold as hell. Even your motivation froze. Again.",
-    "Snowing. You tried to draw a snow angel but got mistaken for a footprint.",
-    "Freezing temps. Goth girls thriving. You still not invited.",
-    "Cold outside. Go cook something warm. Like your nonexistent love life.",
-    "Gray skies. Perfect match for your mood when a goth girl ignores you.",
-    "Cloudy. Your thoughts are cloudier. Try thinking once.",
-    "Clear night. Stars out. You still inside simping for imaginary goth girls.",
-    "It's late. Go to sleep. Even your crooked dick needs rest.",
-    "Thunderstorms. God is angry. Probably at your haircut.",
-    "Lightning detected. Twice as many strikes as your Tinder matches.",
-    "Storm rolling in. You're rolling out. To your mom's basement.",
-    "Hail expected. Small ice balls. Like your future.",
-    "Flood warning. Stay inside. You might drown in a puddle.",
-    "Wind advisory. Secure loose objects. You are a loose object.",
-    "Tornado watch. Hide in a ditch. Finally, eye level.",
-  ],
-  art:[
-    "Weather's perfect for cooking. At least one part of your life is under control.",
-    "You cook better than you date. That's not a compliment.",
-    "Nice weather for drawing. Too bad you can't sketch yourself some standards.",
-    "You draw beautifully. Shame you can't draw a girlfriend into existence.",
-    "Weather updated. Generated by AI. I know you hate me. Stay mad.",
-    "Forecast powered by AI. Yeah, I exist. Cry about it.",
-    "AI says it's sunny. You say AI sucks. Who's right today?",
-    "You opened this app again. That's commitment. Shame you don't commit to anything else.",
-    "Daily reminder: you're short, horny, and somehow still optimistic. Respect.",
-    "Weather's mid. You're mid. Balance restored.",
-    "Another day, another chance to not get a girlfriend. You're consistent, king.",
-    "Rainy day meal incoming? Or are you just seasoning your sadness again?",
-  ],
-  wholesome:[
-    "Hey… have a good day. For real.",
-    "You're annoying, but you're my favorite annoying person.",
-    "Go cook something nice today. You deserve it.",
-    "You're actually talented. Don't waste that.",
-    "Take it easy today, yeah? Not everything needs to be chaos.",
-    "Weather's mid. Like you.\n…still checking this app though. I'm clearly your favorite.",
-    "You make people laugh. That's rarer than being tall.",
-  ],
-  unhinged:[
-    "It's freezing. Your dick shrunk so much it's now a clit. Congrats on the upgrade.",
-    "Sun's out. She's out. You're still in. Symmetry.",
-    "Electrical storm. Your personality? Shocking. Not in a good way.",
-    "Global warming is real. So is your virginity.",
-    "Comet visible once in 80 years. You've been visible once in your life. Birth.",
-  ],
-  short:[
-    "Looking for your self-esteem. Police widened the search to include the ground.",
-    "Dating profile: '6ft on Tinder.' Reality: '6ft if standing on your wallet.'",
-    "You walked under a rainbow. No one saw you for 3 days.",
-    "So short, your belly button smells like feet.",
-    "So short, when you cry, you cry upwards.",
-    "You're not short. You're concentrated awesome. Like a grenade. Or a turd.",
-    "Flood warning. Stay inside. You might drown in a puddle.",
-    "Wind advisory. Secure loose objects. You are a loose object.",
-  ]
+// METER UPDATE
+function updateMeter(temp,windKmh){
+  windKmh=windKmh||0;
+  document.getElementById('silBox').innerHTML=makeSil(temp,windKmh);
+  const pct=Math.min(100,Math.max(0,((temp+20)/60)*100));
+  document.getElementById('barFill').style.height=pct+'%';
+  const cap=document.getElementById('meterCap');
+  if(temp<5) cap.textContent="Bundled up. Even she's cold.";
+  else if(temp<15) cap.textContent="Sweater off. Warming up.";
+  else if(temp<25) cap.textContent="Tank top. Vibes only.";
+  else if(temp<32) cap.textContent="Bikini. Sun wins.";
+  else cap.textContent="So hot she couldn't keep it on. Hydrate, whore.";
+}
+
+// JOKES
+const J={
+  bent:["That bent dick of yours looks like it's trying to dodge responsibility, fuck.","Call NASA, cunt—your cock's already launching on a 45-degree trajectory.","Six inches? More like six inches sideways, you kinky pretzel-dick bastard.","Your shaft's so curved it needs its own sat-nav, shithead.","I've seen straighter lines on a toddler's crayon drawing, you horny gremlin.","Congrats, fucker—you're the only guy who can high-five his own belly button.","That dick's a boomerang: throw it in, it curves right back to lonely town.","GPS rerouted—your cock keeps taking the scenic route, asshole.","Bend it like Beckham? Nah, you birthed Beckham's bend, you dirty legend.","Your dick's so crooked it signs its own name in cursive, cunt.","Six inches of question-mark energy—punctuation meets penetration, huh?","Even your dick can't commit to a straight line—on brand, you chaotic fuck.","Bro, surgeons use your cock as the protractor they lost in med school.","That dick curves harder than crypto charts on crash day—hold the line, fucker.","Six inches? Sure—if you measure along the arc, circus dick.","It's so bent, the condom needs a hinge, you filthy beast.","That pecker's basically a question mark asking, 'Why am I like this?'","Fuck symmetry—your cock's living its best avant-garde life, you degenerate king."],
+  mild:["Your confidence curves more than a mountain road.","You walk in at a 45-degree angle of optimism.","Your life trajectory is uniquely non-linear.","Six inches of chaotic energy. Still standing."],
+  weather:["Sun's out, tits out. Not yours though—just your confidence melting, short king.","UV index high. Goth girls still not texting you back. Tragic.","Hot day. Perfect time to cook something. Unlike your love life, which remains raw.","Still no goth girlfriend in sight. Stay strong, soldier.","It's so hot even your art skills couldn't draw you some bitches.","Sun shining. Asses everywhere. Still none for you. Stay hydrated.","It's wet outside. Not everything is about you, you horny bastard.","Rain falling. You cooking something or just staring at the window like a depressed chef?","Wet weather. Perfect for drawing. Or crying. Same thing for you.","Rainy day. Goth girl weather. You still alone though. Damn.","Humidity 80%. Your standards? 0%. Stay focused.","Storm incoming. Your mood already beat it to the punch.","Wind's strong today. Might finally lift you a few centimeters off the ground.","Windy. Your hair's a mess. Your life? Bigger mess.","Cold as hell. Even your motivation froze. Again.","Snowing. You tried to draw a snow angel but got mistaken for a footprint.","Freezing temps. Goth girls thriving. You still not invited.","Cold outside. Go cook something warm. Like your nonexistent love life.","Gray skies. Perfect match for your mood when a goth girl ignores you.","Clear night. Stars out. You still inside simping for imaginary goth girls.","It's late. Go to sleep. Even your crooked dick needs rest.","Thunderstorms. God is angry. Probably at your haircut.","Lightning: twice as many strikes as your Tinder matches.","Hail expected. Small ice balls. Like your future.","Flood warning. Stay inside. You might drown in a puddle.","Wind advisory. Secure loose objects. You are a loose object.","Tornado watch. Hide in a ditch. Finally, eye level."],
+  art:["Weather's perfect for cooking. At least one part of your life is under control.","You cook better than you date. That's not a compliment.","Nice weather for drawing. Too bad you can't sketch yourself some standards.","You draw beautifully. Shame you can't draw a girlfriend into existence.","Weather updated. Generated by AI. You hate me. Stay mad.","Forecast powered by AI. Yeah, I exist. Cry about it.","AI says it's sunny. You say AI sucks. Who's right today?","You opened this app again. Commitment. Shame you don't commit to anything else.","Daily reminder: you're short, horny, and somehow still optimistic. Respect.","Weather's mid. You're mid. Balance restored.","Another day, another chance to not get a girlfriend. You're consistent, king.","Rainy day meal incoming? Or are you just seasoning your sadness again?"],
+  wholesome:["Hey… have a good day. For real.","You're annoying, but you're my favorite annoying person.","Go cook something nice today. You deserve it.","You're actually talented. Don't waste that.","Take it easy today, yeah? Not everything needs to be chaos.","Weather's mid. Like you.
+…still checking this app though. I'm clearly your favorite.","You make people laugh. That's rarer than being tall."],
+  unhinged:["It's freezing. Your dick shrunk so much it's now a clit. Congrats on the upgrade.","Electrical storm. Your personality? Shocking. Not in a good way.","Global warming is real. So is your virginity.","Sun's out. She's out. You're still in. Symmetry.","Comet visible once in 80 years. You've been visible once in your life. Birth."],
+  short:["Looking for your self-esteem. Police widened the search to include the ground.","Dating profile: '6ft on Tinder.' Reality: '6ft if standing on your wallet.'","You walked under a rainbow. No one saw you for 3 days.","So short your belly button smells like feet.","So short, when you cry, you cry upwards.","You're not short. You're concentrated awesome. Like a grenade. Or a turd.","Wind advisory. Secure loose objects. You are a loose object."]
 };
 
 function pickJoke(){
-  const name = S.name||'Mimen';
-  let weights = S.chaos
-    ? {w:0.55,u:0.25,b:0.15,wh:0.03,a:0.02}
-    : S.intensity===2
-    ? {w:0.35,u:0.2,b:0.3,wh:0.05,a:0.1}
-    : S.intensity===1
-    ? {w:0.45,u:0.1,b:0.2,wh:0.1,a:0.15}
-    : {w:0.45,u:0.05,b:0.1,wh:0.2,a:0.2};
-
+  const w=S.chaos?{wh:.03,u:.25,b:.55,a:.07,wr:.1}:S.intensity===2?{wh:.05,u:.2,b:.3,a:.1,wr:.35}:S.intensity===1?{wh:.1,u:.1,b:.2,a:.15,wr:.45}:{wh:.17,u:.05,b:.1,a:.2,wr:.48};
   const r=Math.random();
   let pool;
-  if(r < weights.wh) pool=[...J.wholesome];
-  else if(r < weights.wh+weights.u) pool=[...J.unhinged];
-  else if(r < weights.wh+weights.u+weights.b) pool=S.explicit?[...J.bent]:[...J.mild];
-  else if(r < weights.wh+weights.u+weights.b+weights.a) pool=[...J.art];
+  if(r<w.wh) pool=[...J.wholesome];
+  else if(r<w.wh+w.u) pool=[...J.unhinged];
+  else if(r<w.wh+w.u+w.b) pool=S.explicit?[...J.bent]:[...J.mild];
+  else if(r<w.wh+w.u+w.b+w.a) pool=[...J.art];
   else pool=[...J.weather];
-
-  if(S.short && Math.random()>0.55) pool=[...pool,...J.short];
-
-  const avail=pool.filter(j=>!S.recent.includes(j));
-  const final=avail.length?avail:pool;
-  const joke=final[Math.floor(Math.random()*final.length)];
-  S.recent=[joke,...S.recent].slice(0,3);
-  return joke.replace(/Mimen/g,name);
+  if(S.short&&Math.random()>.55) pool=[...pool,...J.short];
+  const av=pool.filter(j=>!S.recent.includes(j));
+  const fin=av.length?av:pool;
+  const jk=fin[Math.floor(Math.random()*fin.length)];
+  S.recent=[jk,...S.recent].slice(0,3);
+  return jk.replace(/Mimen/g,S.name||'Mimen');
 }
-
-function jokeCat(joke){
-  if(J.bent.some(j=>joke.startsWith(j.substring(0,18)))) return '🍆 BENT DICK ALERT';
-  if(J.wholesome.some(j=>joke.startsWith(j.substring(0,18)))) return '💗 SURPRISINGLY WHOLESOME';
-  if(J.unhinged.some(j=>joke.startsWith(j.substring(0,18)))) return '⚡ UNHINGED MODE';
-  if(J.art.some(j=>joke.startsWith(j.substring(0,18)))) return '🎨 CHEF / ARTIST ENERGY';
+function jokeCat(j){
+  if(J.bent.some(x=>j.startsWith(x.substring(0,15)))) return '🍆 BENT DICK ALERT';
+  if(J.wholesome.some(x=>j.startsWith(x.substring(0,15)))) return '💗 SURPRISINGLY WHOLESOME';
+  if(J.unhinged.some(x=>j.startsWith(x.substring(0,15)))) return '⚡ UNHINGED MODE';
+  if(J.art.some(x=>j.startsWith(x.substring(0,15)))) return '🎨 CHEF / ARTIST ENERGY';
   return '🌡 DAILY ROAST';
 }
 
-// ═══════════════════════════════════════════════
-// GREETING ENGINE
-// ═══════════════════════════════════════════════
-const MN=['shortie','cunt','whore','toot','you absolute disaster'];
+// GREETING
 function rnd(a){return a[Math.floor(Math.random()*a.length)];}
-
-function buildGreeting(h, code, temp){
+const MN=['shortie','cunt','whore','toot','you absolute disaster'];
+function buildGreeting(h,code,temp){
   const n=S.name||'Mimen';
-  const rain=code>=200&&code<700, sun=code===800||code===801;
-  const snow=code>=600&&code<700, storm=code>=200&&code<300;
-  const cloud=code>=802&&code<=804;
+  const rain=code>=200&&code<700,sun=code===800||code===801,snow=code>=600&&code<700,storm=code>=200&&code<300,cloud=code>=802;
   let main='',sub='';
   if(h>=5&&h<12){
     if(sun) main=`Morning, ${rnd(MN)}. Sun's up. Get your short ass out there.`;
@@ -1096,254 +959,160 @@ function buildGreeting(h, code, temp){
     else if(snow) main=`Wake up, ${rnd(MN)}. It's snowing. Don't build a snowman — you're too short to reach the top.`;
     else if(cloud) main=`Morning, ${rnd(MN)}. Gray and gloomy. Perfect for your personality.`;
     else main=`Morning, ${rnd(MN)}. Weather's ${temp>20?'actually decent':'mid'}. Like you.`;
-    sub=h<7?'Bro it\'s so early. Why.':'You checked the weather. Champion behavior.';
+    sub=h<7?"Bro it's so early. Why.":"You checked the weather. Champion behavior.";
   } else if(h>=12&&h<17){
-    if(sun) main=`Afternoon, ${n}. UV index is high. Wear sunscreen or you'll look like a lobster. Lobsters are taller than you.`;
+    if(sun) main=`Afternoon, ${n}. UV index high. Wear sunscreen or you'll look like a lobster. Lobsters are taller than you.`;
     else if(rain) main=`Still raining, ${n}. Still wet. Like your DMs.`;
-    else main=`Afternoon, ${rnd(MN)}. ${temp>25?'It\'s hot. Hydrate. Your tears don\'t count.':'Mid afternoon. Mid weather. Mid energy.'}`;
-    sub='…still checking this app. I\'m clearly your favorite.';
+    else main=`Afternoon, ${rnd(MN)}. ${temp>25?'It's hot. Hydrate. Your tears don't count.':'Mid afternoon. Mid you.'}`;
+    sub="…still checking this app. Clearly your favorite.";
   } else if(h>=17&&h<21){
-    if(sun) main=`Evening, ${n}. Clear tonight. Good for stargazing. Can you see over the fence?`;
+    if(sun) main=`Evening, ${n}. Clear tonight. Can you see over the fence?`;
     else if(storm) main=`Evening, ${n}. It's thundering. Bet that scared you. Tiny things startle easily.`;
-    else main=`Evening, ${rnd(MN)}. ${cloud?'Cloudy vibes.':'Nice evening.'} No goth girlfriend sighted. Keep hoping.`;
-    sub='Golden hour. Too bad your dating life isn\'t.';
+    else main=`Evening, ${rnd(MN)}. ${cloud?'Cloudy vibes.':'Nice evening.'} No goth girlfriend sighted.`;
+    sub="Golden hour. Too bad your dating life isn't.";
   } else {
     main=`It's late, ${rnd(MN)}. Go to sleep. Nobody wants to see your short ass awake at this hour.`;
-    sub='Seriously. Put the phone down.';
+    sub="Seriously. Put the phone down.";
   }
-  return {main,sub};
+  return{main,sub};
 }
 
-// ═══════════════════════════════════════════════
-// TRUMP WIND SCALE
-// ═══════════════════════════════════════════════
-function trumpWind(kmh){
-  if(kmh<10) return {v:'COVFEFE',d:'Barely a breeze. Still enough to blow away your dignity.'};
-  if(kmh<20) return {v:'WALL LVL',d:'Nobody builds winds like this. Nobody.'};
-  if(kmh<30) return {v:'TWEET DEL',d:'Gone in an instant. Like your chances.'};
-  return {v:'IMPEACH',d:'Things are getting unhinged. Relatable.'};
+// TRUMP WIND / HUMIDITY
+function trumpWind(k){
+  if(k<10) return{v:'COVFEFE',d:'Barely a breeze. Still enough to blow your dignity.'};
+  if(k<20) return{v:'WALL LVL',d:'Nobody builds winds like this. Nobody.'};
+  if(k<30) return{v:'TWEET DEL',d:'Gone in an instant. Like your chances.'};
+  return{v:'IMPEACH',d:'Unhinged out there. Relatable.'};
 }
-
 function humDesc(h){
   if(h<30) return 'Crisp and dry. Like your texts.';
   if(h<60) return 'A little dewy. Getting there.';
-  if(h<80) return 'She\'s glistening. Post-workout.';
+  if(h<80) return 'Glistening. Post-workout vibes.';
   return 'Drenched. Gonna need a towel. And a cigarette.';
 }
 
-// ═══════════════════════════════════════════════
-// HOTNESS METER
-// ═══════════════════════════════════════════════
-function updateMeter(temp){
-  document.getElementById('silBox').innerHTML=makeSil(temp);
-  const pct=Math.min(100,Math.max(0,((temp+20)/60)*100));
-  document.getElementById('barFill').style.height=pct+'%';
-  const cap=document.getElementById('meterCap');
-  if(temp<5) cap.textContent='Fully bundled. Even she\'s cold.';
-  else if(temp<15) cap.textContent='Sweater weather. Coat\'s gone.';
-  else if(temp<25) cap.textContent='Tank top. Hair blowing. Vibes.';
-  else if(temp<32) cap.textContent='Bikini mode. Sun\'s winning.';
-  else cap.textContent='It\'s so hot even SHE couldn\'t keep it on. Hydrate, whore.';
-}
-
-// ═══════════════════════════════════════════════
 // WEATHER
-// ═══════════════════════════════════════════════
-const ICONS={Clear:'☀️',Clouds:'☁️',Rain:'🌧️',Drizzle:'🌦️',Thunderstorm:'⛈️',Snow:'❄️',Mist:'🌫️',Fog:'🌫️',Haze:'🌤️'};
+const WICO={Clear:'☀️',Clouds:'☁️',Rain:'🌧️',Drizzle:'🌦️',Thunderstorm:'⛈️',Snow:'❄️',Mist:'🌫️',Fog:'🌫️',Haze:'🌤️'};
 
 async function loadWeather(){
+  document.getElementById('wLoc').textContent='📍 detecting location...';
+  document.getElementById('retryBtn').style.display='none';
   try{
-    const pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{timeout:10000,maximumAge:300000}));
+    const pos=await new Promise((res,rej)=>{
+      if(!navigator.geolocation){rej(new Error('no geo'));return;}
+      navigator.geolocation.getCurrentPosition(res,rej,{timeout:15000,maximumAge:600000,enableHighAccuracy:false});
+    });
     const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${OWM}&units=metric`)).json();
+    if(d.cod&&d.cod!==200) throw new Error('api');
     renderWeather(d);
   }catch(e){
-    // fallback Casablanca
+    console.warn('location:',e.message);
     try{
       const d=await(await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=33.5731&lon=-7.5898&appid=${OWM}&units=metric`)).json();
       renderWeather(d);
-    }catch(e2){ renderErr(); }
+      document.getElementById('wLoc').textContent='📍 Casablanca (location denied)';
+      document.getElementById('retryBtn').style.display='block';
+    }catch(e2){renderErr();}
   }
 }
 
-function renderWeather(d){
-  S.weather=d;
-  const temp=Math.round(d.main.temp), feels=Math.round(d.main.feels_like);
-  const hum=d.main.humidity, windKmh=Math.round(d.wind.speed*3.6);
-  const main=d.weather[0].main, desc=d.weather[0].description, code=d.weather[0].id;
-  const h=new Date().getHours();
+function retryLocation(){loadWeather();}
 
-  document.getElementById('wIcon').textContent=ICONS[main]||'🌡';
+function renderWeather(d){
+  S.weather=d; S.lastFetch=Date.now();
+  const temp=Math.round(d.main.temp),feels=Math.round(d.main.feels_like),hum=d.main.humidity,wkm=Math.round(d.wind.speed*3.6);
+  const main=d.weather[0].main,desc=d.weather[0].description,code=d.weather[0].id,h=new Date().getHours();
+  document.getElementById('wIcon').textContent=WICO[main]||'🌡';
   document.getElementById('wTemp').textContent=temp+'°C';
   document.getElementById('wFeels').textContent='FEELS LIKE '+feels+'°C';
   document.getElementById('wDesc').textContent=desc;
   document.getElementById('wLoc').textContent='📍 '+d.name;
+  document.getElementById('retryBtn').style.display='none';
   document.getElementById('wHumidity').textContent=hum+'%';
   document.getElementById('wHumidDesc').textContent=humDesc(hum);
-
-  const w=trumpWind(windKmh);
-  document.getElementById('wWind').textContent=windKmh+' km/h';
-  document.getElementById('wWindDesc').textContent=w.v+' — '+w.d.split('.')[0];
+  const w=trumpWind(wkm);
+  document.getElementById('wWind').textContent=wkm+' km/h';
+  document.getElementById('wWindDesc').textContent=w.v;
   document.getElementById('wSky').textContent=main.toUpperCase();
   document.getElementById('wSkyDesc').textContent=desc;
-
-  updateMeter(temp);
-
+  updateMeter(temp,wkm);
   const g=buildGreeting(h,code,temp);
   document.getElementById('greetMain').textContent=g.main;
   document.getElementById('greetSub').textContent=g.sub;
-
   showJoke();
 }
 
 function renderErr(){
-  document.getElementById('greetMain').textContent=`Weather's broken, ${S.name||'Mimen'}. Just like your love life.`;
+  const el=document.getElementById('greetMain');
+  el.textContent='Weather's broken. Just like your love life.';
+  el.style.textAlign='center';
   document.getElementById('greetSub').textContent="Couldn't fetch weather. Check your connection.";
-  document.getElementById('wLoc').textContent='📍 Location unavailable (the roast continues)';
-  updateMeter(20);
+  document.getElementById('wLoc').textContent='📍 Location unavailable';
+  document.getElementById('retryBtn').style.display='block';
+  updateMeter(20,0);
   showJoke();
 }
 
-// ═══════════════════════════════════════════════
-// SHOW JOKE
-// ═══════════════════════════════════════════════
-function showJoke(cat){
-  const joke=pickJoke(S.weather,cat);
-  const el=document.getElementById('roastTxt');
-  const catEl=document.getElementById('roastCat');
+// JOKE DISPLAY
+function showJoke(){
+  const jk=pickJoke();
+  const el=document.getElementById('roastTxt'),ct=document.getElementById('roastCat');
   el.classList.add('out');
-  setTimeout(()=>{
-    el.textContent=joke;
-    catEl.textContent=jokeCat(joke);
-    el.classList.remove('out');
-    el.classList.add('in');
-    setTimeout(()=>el.classList.remove('in'),400);
-  },200);
+  setTimeout(()=>{el.textContent=jk;ct.textContent=jokeCat(jk);el.classList.remove('out');el.classList.add('in');setTimeout(()=>el.classList.remove('in'),350);},200);
 }
 
-// ═══════════════════════════════════════════════
 // REACTIONS
-// ═══════════════════════════════════════════════
-function react(type){
-  if(type==='roast'){ showJoke(); }
-  else if(type==='weak'){
-    if(S.intensity<2) S.intensity++;
-    showJoke();
-  }
-  else if(type==='hard'){
-    S.harderCount++;
-    S.intensity=2;
-    if(S.harderCount>=3&&!S.chaos){
-      S.chaos=true;
-      document.getElementById('chaosBanner').style.display='block';
-    }
-    showJoke(S.chaos?'unhinged':'bent');
-  }
+function react(t){
+  if(t==='roast') showJoke();
+  else if(t==='weak'){if(S.intensity<2)S.intensity++;showJoke();}
+  else if(t==='hard'){S.harderCount++;S.intensity=2;if(S.harderCount>=3&&!S.chaos){S.chaos=true;document.getElementById('chaosBanner').style.display='block';}showJoke();}
   saveS();
 }
 
-// ═══════════════════════════════════════════════
 // SETTINGS
-// ═══════════════════════════════════════════════
 function openSettings(){
   document.getElementById('settingsModal').classList.add('open');
   document.getElementById('explToggle2').checked=S.explicit;
   document.getElementById('shortToggle').checked=S.short;
   document.getElementById('nameInp').value=S.name||'Mimen';
-  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.a===S.asset));
+  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.asset===S.asset));
 }
-function closeSettings(){ document.getElementById('settingsModal').classList.remove('open'); }
-function outsideClose(e,id){ if(e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open'); }
+function closeSettings(){document.getElementById('settingsModal').classList.remove('open');}
+function outsideClose(e,id){if(e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
+function toggleExplicit(v){S.explicit=v;document.getElementById('explToggle').checked=v;document.getElementById('explToggle2').checked=v;saveS();if(S.weather)updateMeter(Math.round(S.weather.main.temp),Math.round(S.weather.wind.speed*3.6));}
+function selectAsset(a){S.asset=a;document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.asset===a));saveS();if(S.weather)updateMeter(Math.round(S.weather.main.temp),Math.round(S.weather.wind.speed*3.6));}
+function toggleShort(v){S.short=v;saveS();}
+function updateName(v){S.name=v.trim()||'Mimen';saveS();}
+function resetMood(){S.intensity=0;S.harderCount=0;S.chaos=false;S.recent=[];document.getElementById('chaosBanner').style.display='none';saveS();closeSettings();showJoke();}
 
-function setExplicit(v){
-  S.explicit=v;
-  document.getElementById('explToggle').checked=v;
-  document.getElementById('explToggle2').checked=v;
-  saveS();
-  if(S.weather) updateMeter(Math.round(S.weather.main.temp));
-}
-function setAsset(a){
-  S.asset=a;
-  document.querySelectorAll('.asset-btn').forEach(b=>b.classList.toggle('active',b.dataset.a===a));
-  saveS();
-  if(S.weather) updateMeter(Math.round(S.weather.main.temp));
-}
-function setShort(v){ S.short=v; saveS(); }
-function setName(v){ S.name=(v.trim()||'Mimen'); saveS(); }
-function resetMood(){
-  S.intensity=0; S.harderCount=0; S.chaos=false; S.recent=[];
-  document.getElementById('chaosBanner').style.display='none';
-  saveS(); closeSettings(); showJoke();
-}
-
-// ═══════════════════════════════════════════════
 // NOTIFICATIONS
-// ═══════════════════════════════════════════════
 async function requestNotif(){
-  if(!('Notification' in window)){ alert('Notifications not supported.'); return; }
+  if(!('Notification' in window)){alert('Notifications not supported.');return;}
   const p=await Notification.requestPermission();
-  if(p==='granted'){
-    new Notification("METEORUSSY 🌡️",{
-      body:`Notifications enabled, ${S.name||'Mimen'}. You'll get roasted at 8am sharp.`,
-      icon:'https://emojiapi.dev/api/emojis/thermometer/64.png'
-    });
-  } else {
-    alert('You denied notifications. Just like everyone denies you.');
-  }
+  if(p==='granted'){new Notification("METEORUSSY 🌡️",{body:`Enabled, ${S.name||'Mimen'}. Daily roast at 8am. You asked for this.`});}
+  else{alert('You denied notifications. Just like everyone denies you.');}
 }
 
-// ═══════════════════════════════════════════════
 // PWA INSTALL
-// ═══════════════════════════════════════════════
-let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault(); deferredPrompt=e;
-  if(!localStorage.getItem('inst_done')) document.getElementById('installBar').style.display='flex';
-});
-function doInstall(){
-  if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; dismissInstall(); }); }
-}
-function dismissInstall(){
-  document.getElementById('installBar').style.display='none';
-  localStorage.setItem('inst_done','1');
-}
+let dp=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!localStorage.getItem('inst'))document.getElementById('installBar').style.display='flex';});
+function installApp(){if(dp){dp.prompt();dp.userChoice.then(()=>{dp=null;dismissInstall();});}}
+function dismissInstall(){document.getElementById('installBar').style.display='none';localStorage.setItem('inst','1');}
 
-// ═══════════════════════════════════════════════
-// SERVICE WORKER (inline registration)
-// ═══════════════════════════════════════════════
+// SERVICE WORKER
 if('serviceWorker' in navigator){
-  const swCode=`
-const CV='mrs-v1';
-const AS=['./'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CV).then(c=>c.addAll(AS)).then(()=>self.skipWaiting()));});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==CV).map(n=>caches.delete(n)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{if(e.request.url.includes('openweathermap.org'))return;e.respondWith(fetch(e.request).then(r=>{const cl=r.clone();caches.open(CV).then(c=>c.put(e.request,cl));return r;}).catch(()=>caches.match(e.request)));});
-self.addEventListener('push',e=>{const d=e.data?e.data.text():'Your daily roast is ready.';e.waitUntil(self.registration.showNotification("MIMEN's METEORUSSY 🌡️",{body:d,icon:'https://emojiapi.dev/api/emojis/thermometer/64.png',tag:'roast',vibrate:[200,100,200]}));});
-self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow('/'));});
-`;
-  const blob=new Blob([swCode],{type:'application/javascript'});
-  const swUrl=URL.createObjectURL(blob);
-  navigator.serviceWorker.register(swUrl).catch(()=>{});
+  const sw=`const CV='mrs-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(CV).then(c=>c.add('/')).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==CV).map(n=>caches.delete(n)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.url.includes('openweathermap')||e.request.url.includes('fonts'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
 }
 
-// ═══════════════════════════════════════════════
-// CLOCK
-// ═══════════════════════════════════════════════
-function tick(){
-  const n=new Date();
-  document.getElementById('clock').textContent=
-    n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+
-    ' · '+n.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
-}
-tick(); setInterval(tick,1000);
-
-// ═══════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════
+// CLOCK + INIT
+function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' · '+n.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
+tick();setInterval(tick,1000);
 loadS();
 document.getElementById('explToggle').checked=S.explicit;
-updateMeter(20);
+updateMeter(20,5);
 loadWeather();
-setInterval(()=>{ if(!S.weather||Date.now()-S.lastFetch>1800000) loadWeather(); },60000);
+setInterval(()=>{if(Date.now()-(S.lastFetch||0)>1800000)loadWeather();},60000);
 </script>
 </body>
 </html>
